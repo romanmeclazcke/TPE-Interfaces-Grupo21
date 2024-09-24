@@ -1,0 +1,16 @@
+:root{
+    --color-primario: #0D609F;
+    --color-primario-luz1: #2E71A5;
+    --color-primario-luz2: #508BB8;
+    --color-primario-luz3: #98C8ED;
+    --color-primario-sombra1: #084A7C;
+    --color-primario-sombra2: #053961;
+    --color-primario-sombra3: #022B49;
+    --color-secundario: #89E3E3;
+    --color-secundario-luz1: #BDF4F4;
+    --color-secundario-luz2: #D3FFFF;
+    --color-secundario-luz3: #E2FFFF;
+    --color-secundario-sombra1: #009797;
+    --color-secundario-sombra2: #007575;
+    --color-secundario-sombra3: #014B4B;
+}
