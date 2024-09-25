@@ -21,6 +21,31 @@
     --color-acento-sombra2: #9A4A00;
     --color-acento-sombra3: #793A00;
     --color-blanco: #ffffff;
+
+    --color-degrade-etiqueta-nombre-cards:
+        linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(8, 86, 86, 0.6) 47%,
+            rgba(0, 151, 151, 1) 67%
+        );
+
+    --color-degrade-rectangulo-flechas-carrusel-left:
+    linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8) 15%, 
+        rgba(1, 25, 44, 0.71) 56%, 
+        rgba(2, 43, 73, 0.43) 91%
+    );
+
+    --color-degrade-rectangulo-flechas-carrusel-rigth:
+        linear-gradient(
+            to left,
+            rgba(0, 0, 0, 0.8) 15%,
+            rgba(1, 25, 44, 0.71) 56%,
+            rgba(2, 43, 73, 0.43) 43%
+        );
+
 }
 
 
@@ -33,7 +58,11 @@
     text-decoration: none;
     border: none;
     outline: none;
+    color: var(--color-blanco);
+}
 
+body{
+    background-color: var(--color-primario);
 }
 
 /*Comienza el header*/
@@ -52,7 +81,7 @@ header img {
 }
 
 .title {
-    display: flex; 
+    display: flex;
     align-items: center;
 }
 
@@ -157,7 +186,97 @@ footer ul li a {
     font-size: 20px;
     line-height: 21px;
 }
+
 .text-cards-footer.email {
-    display: block; 
-    margin-top: 10px; 
+    display: block;
+    margin-top: 10px;
 }
+
+
+
+
+/*CARRUSEL*/
+
+.carrusel{
+    background-color: var(--color-primario-sombra2);
+    border-radius: 8px;
+    margin: 20px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+}
+
+.rectangulo-izq {
+    background: var(--color-degrade-rectangulo-flechas-carrusel-left);
+    width: 90px;
+    height: 250px;
+    position: fixed;
+    z-index: 10;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.rectangulo-der{
+    background: var(--color-degrade-rectangulo-flechas-carrusel-rigth);
+    width: 90px;
+    height: 250px;
+    position: fixed;
+    z-index: 10;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.container-titulo-categorias-carrusel>h2{
+    display: flex;
+    justify-content: left;
+    padding-left: 24px;
+    padding-top: 15px;
+}
+
+.container-cards-carrusel{
+    display: flex;
+    border-radius: 8px;
+
+}
+
+
+/*CARD*/
+
+.container-card {
+    width: 300px;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 5px 25px 5px;
+    border-radius: 4px;
+    flex-shrink: 0; /*esto evita que la card se "achiche" mientras mas cards hayan*/
+}
+
+.container-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-seccion-nombre-juego {
+    background: var(--color-degrade-etiqueta-nombre-cards);
+    height: 29.77px;
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.container-seccion-nombre-juego h3 {
+    margin: 0;
+    padding: 5px 10px;
+    color: var(--color-blanco);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+}
+
