@@ -58,26 +58,26 @@ footer {
     text-align: center;
     border-radius: 10px;
     margin: 20px 0;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
 }
 
-.card-footer img {
+.card-footer>img {
     position: absolute;
     width: 141.39px;
     height: 193.85px;
     top: 206px;
 }
 
-.img-left{
+.img-left {
     left: -20px;
     transform: rotate(16.25deg);
 }
-.img-right{
+
+.img-right {
     right: -20px;
     transform: rotate(-12.45deg);
 }
-
 
 
 footer ul {
@@ -109,7 +109,7 @@ footer ul li a {
 
 }
 
-.text-cards-footer{
+.text-cards-footer {
     color: var(--color-blanco);
     padding: 20px 0px 20px 0px;
     font-family: 'Ligconsolata';
@@ -117,6 +117,11 @@ footer ul li a {
     font-weight: 400;
     font-size: 20px;
     line-height: 21px;
+}
+
+
+.logos-redes-sociales {
+    width: 40px;
 }
 
 .container-section-copyrigth {
@@ -127,4 +132,8 @@ footer ul li a {
     font-weight: 400;
     font-size: 20px;
     line-height: 21px;
+}
+.text-cards-footer.email {
+    display: block; /* Hace que el span ocupe toda la línea */
+    margin-top: 10px; /* Espacio entre el texto anterior y el span */
 }
