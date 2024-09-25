@@ -1,4 +1,4 @@
-:root{
+:root {
     --color-primario: #0D609F;
     --color-primario-luz1: #2E71A5;
     --color-primario-luz2: #508BB8;
@@ -20,4 +20,111 @@
     --color-acento-sombra1: #C65F00;
     --color-acento-sombra2: #9A4A00;
     --color-acento-sombra3: #793A00;
+    --color-blanco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+
+}
+
+footer {
+    background-color: var(--color-primario-sombra3);
+    width: 100%;
+    height: 460;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+
+}
+
+.container-cards-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-footer {
+    background-color: var(--color-primario-sombra2);
+    width: 250px;
+    height: 350px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden; 
+    position: relative;
+}
+
+.card-footer img {
+    position: absolute;
+    width: 141.39px;
+    height: 193.85px;
+    top: 206px;
+}
+
+.img-left{
+    left: -20px;
+    transform: rotate(16.25deg);
+}
+.img-right{
+    right: -20px;
+    transform: rotate(-12.45deg);
+}
+
+
+
+footer ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    display: inline-block;
+    padding-top: 30px;
+}
+
+footer ul li a {
+    color: var(--color-blanco);
+    padding: 5px 0px 5px 0px;
+    font-family: 'Ligconsolata';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+}
+
+.title-cards-footer {
+    color: var(--color-blanco);
+    font-family: 'Ligconsolata';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 26px;
+    padding-top: 15px;
+
+}
+
+.text-cards-footer{
+    color: var(--color-blanco);
+    padding: 20px 0px 20px 0px;
+    font-family: 'Ligconsolata';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+}
+
+.container-section-copyrigth {
+    text-align: center;
+    color: var(--color-blanco);
+    font-family: 'Ligconsolata';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
 }
