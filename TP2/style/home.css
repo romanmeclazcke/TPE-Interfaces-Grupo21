@@ -23,6 +23,8 @@
     --color-blanco: #ffffff;
 }
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -33,6 +35,28 @@
     outline: none;
 
 }
+
+/*Comienza el header*/
+header {
+    display: flex;
+    background-color: rgba(5, 57, 97, 1);
+    color: white;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0px 15px 0px 15px;
+    align-items: center;
+}
+
+header img {
+    padding: 10px;
+}
+
+.title {
+    display: flex; 
+    align-items: center;
+}
+
+/*Comineza footer*/
 
 footer {
     background-color: var(--color-primario-sombra3);
@@ -134,6 +158,6 @@ footer ul li a {
     line-height: 21px;
 }
 .text-cards-footer.email {
-    display: block; /* Hace que el span ocupe toda la línea */
-    margin-top: 10px; /* Espacio entre el texto anterior y el span */
+    display: block; 
+    margin-top: 10px; 
 }
