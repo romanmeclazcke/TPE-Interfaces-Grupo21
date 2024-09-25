@@ -1,5 +1,9 @@
 body {
     margin: 0;
+    background-color: rgba(13, 96, 159, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
@@ -17,4 +21,63 @@ header img {
 
 .title {
     display: flex;
+}
+
+.login {
+    width: 45%;
+    margin: 50px;
+    color: white;
+    background-color: rgba(5, 57, 97, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.login p {
+    font-size: x-large;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.social-btn {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.social-btn img {
+    width: 19.6px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.social-btn:hover {
+    transform: scale(1.07);
+}
+
+.login input {
+    border: 2px solid transparent;
+    height: 41px;
+    width: 250px;
+    border-radius: 5px;
+    transition: all 0.4s;
+}
+  
+.login input:hover,
+.login input:focus {
+    box-shadow: 0px 0px 0px 5px rgb(152, 200, 237, 80%);
 }
