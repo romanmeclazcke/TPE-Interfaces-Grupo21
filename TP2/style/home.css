@@ -48,8 +48,11 @@
 
 }
 
+body{
+    background-color: var(--color-primario);
+}
 
-
+/*EMPEZAR A BORRAR DESDE ACÁ*/
 * {
     margin: 0;
     padding: 0;
@@ -61,12 +64,8 @@
     color: var(--color-blanco);
 }
 
-body{
-    background-color: var(--color-primario);
-}
-
 /*Comienza el header*/
-header {
+header { 
     display: flex;
     background-color: rgba(5, 57, 97, 1);
     color: white;
@@ -191,7 +190,7 @@ footer ul li a {
     margin-top: 10px;
 }
 
-
+/*BORRAR HASTA ACÁ.*/
 
 
 /*CARRUSEL*/
