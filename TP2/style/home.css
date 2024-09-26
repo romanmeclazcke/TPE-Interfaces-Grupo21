@@ -64,6 +64,31 @@ body{
     
 }
 
+.container-titulo-categorias-carrusel>h2{
+    display: flex;
+    justify-content: left;
+    padding-left: 21px;
+    padding-top: 12px;
+}
+
+.container-cards-carrusel{
+    display: flex;
+    border-radius: 8px;
+
+}
+
+/*comienza card especial*/
+.carrusel{
+    background-color: var(--color-primario-sombra2);
+    border-radius: 8px;
+    margin: 33px 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scrollbar-width: none;
+    
+}
+
 .rectangulo-izq {
     background: var(--color-degrade-rectangulo-flechas-carrusel-left);
     width: 90px;
@@ -98,8 +123,26 @@ body{
 }
 
 
-/*CARD*/
+/*CARD ESECIAl*/
+.container-card-especial {
+    display:flex;
+    width: 430px;
+    height: 244px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 5px 25px 5px;
+    border-radius: 4px;
+    flex-shrink: 0; /*esto evita que la card se "achiche" mientras mas cards hayan*/
+}
 
+.container-card-especial img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*CARD NORMAL*/
 .container-card {
     display:flex;
     width: 300px;
