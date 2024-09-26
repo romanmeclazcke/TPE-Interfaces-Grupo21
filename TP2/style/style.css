@@ -22,7 +22,6 @@
     --color-acento-sombra1: #C65F00;
     --color-acento-sombra2: #9A4A00;
     --color-acento-sombra3: #793A00;
-    --color-blanco: #ffffff;
 }
 
 * {
@@ -34,6 +33,7 @@
     text-decoration: none;
     border: none;
     outline: none;
+    color:white;
 }
 
 /*Comienza el header*/
@@ -112,33 +112,19 @@ footer ul {
 }
 
 footer ul li a {
-    color: var(--color-blanco);
+    color: white;
     padding: 5px 0px 5px 0px;
-    font-family: 'Ligconsolata';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 21px;
 }
 
 .title-cards-footer {
-    color: var(--color-blanco);
-    font-family: 'Ligconsolata';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 26px;
+    color: white;
     padding-top: 15px;
 
 }
 
 .text-cards-footer {
-    color: var(--color-blanco);
+    color: white;
     padding: 20px 0px 20px 0px;
-    font-family: 'Ligconsolata';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
     line-height: 21px;
 }
 
@@ -149,11 +135,7 @@ footer ul li a {
 
 .container-section-copyrigth {
     text-align: center;
-    color: var(--color-blanco);
-    font-family: 'Ligconsolata';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
+    color: white;
     line-height: 21px;
 }
 .text-cards-footer.email {
