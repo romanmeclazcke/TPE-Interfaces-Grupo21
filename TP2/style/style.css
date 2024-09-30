@@ -145,6 +145,7 @@ footer ul li a {
 }
 
 .container-menu-hamburguesa {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -157,7 +158,7 @@ footer ul li a {
 }
 
 .container-menu-hamburguesa>div{
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .container-cruz-menu-hamburguesa{
@@ -235,4 +236,9 @@ footer ul li a {
 
 .btn-clickeable:hover{
     cursor: pointer;
+}
+
+.container-line{
+    border-bottom: 2px solid white;
+    margin: 0px 20px;
 }
