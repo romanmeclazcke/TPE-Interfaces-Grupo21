@@ -50,6 +50,7 @@ header {
 
 header img {
     padding: 10px;
+    cursor: pointer;
 }
 
 .title {
