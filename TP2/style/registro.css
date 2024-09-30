@@ -30,7 +30,7 @@ body {
     align-items: center;
 }
 
-.login {
+.registro {
     width: 45%;
     margin: 50px;
     color: white;
@@ -41,17 +41,6 @@ body {
     text-align: center;
     padding: 20px;
     border-radius: 20px;
-}
-
-.login .divisor {
-    font-size: x-large;
-    margin: 15px;
-}
-
-.login p a {
-    color: var(--color-acento);
-    font-weight: bolder;
-    cursor: pointer;
 }
 
 #login-character1, #login-character2 {
@@ -69,12 +58,12 @@ body {
     top: 3em;
 }
 
-.login .tit {
-    font-size: xx-large;
-    margin-bottom: 10px;
+.registro .divisor {
+    font-size: x-large;
+    margin: 15px;
 }
 
-.form-login {
+.div-registro {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -84,7 +73,7 @@ body {
 .social-btn {
     display: flex;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     padding: 13px;
     margin-top: 10px;
     border: none;
@@ -106,30 +95,7 @@ body {
     transform: scale(1.10);
 }
 
-.login input {
-    border: 2px solid transparent;
-    height: 41px;
-    width: 90%;
-    border-radius: 5px;
-    color: grey;
+.registro .tit {
+    font-size: xx-large;
+    margin-bottom: 10px;
 }
-
-.submit-btn {
-    border-radius: 10px;
-    width: 104px;
-    height: 43px;
-    font-size: larger;
-    font-weight: bolder;
-    background-color: white;
-    color: var(--color-acento);
-    border: 5px solid var(--color-acento);
-    transition: all 0.3s;
-    cursor: pointer;
-    margin-bottom: 30px;
-}  
-.submit-btn:hover {
-    background: var(--color-acento);
-    color: white;
-    font-size: 1.5em;
-}
-  
