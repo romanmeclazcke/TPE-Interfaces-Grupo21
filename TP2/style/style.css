@@ -45,6 +45,7 @@ header {
     justify-content: space-between;
     padding: 0px 15px 0px 15px;
     align-items: center;
+    position: relative;
 }
 
 header img {
@@ -141,4 +142,97 @@ footer ul li a {
 .text-cards-footer.email {
     display: block; 
     margin-top: 10px; 
+}
+
+.container-menu-hamburguesa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100; 
+    width: 346px;
+    height: 1027px;
+    background-color: var(--color-primario-sombra3);
+    align-items: center;
+    text-align: center;
+}
+
+.container-menu-hamburguesa>div{
+    margin-bottom: 20px;
+}
+
+.container-cruz-menu-hamburguesa{
+    display: flex;
+    justify-content: end;
+    padding-right: 10px;
+    padding-top: 10px;
+
+}
+.icono-cruz-menu-hamburguesa{
+    width: 40px;
+    height: 40px;
+}
+
+.container-informacion-usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px; 
+    text-align: center; 
+}
+
+.imagen-usuario-logueado{
+    width: 87px;
+    height: 113px ;
+}
+
+.container-nombre-usuario{
+    justify-content: center;
+    align-content: center;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.container-nombre-usuario>p{
+    color: rgb(158, 158, 158);
+}
+
+.container-categorias {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container-categorias>ul>li>img{
+    width: 30px;
+    height: 42px;
+}
+
+.container-categorias ul {
+    padding-left: 50px;
+}
+
+.container-categorias li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.container-categorias li img {
+    margin-right: 10px;
+}
+
+.container-redes-sociales-menu-hamburguesa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-redes-menu-hamburguesa{
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+
+.btn-clickeable:hover{
+    cursor: pointer;
 }
