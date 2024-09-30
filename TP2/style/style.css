@@ -57,6 +57,10 @@ header img {
     align-items: center;
 }
 
+.logo-carrito{
+    cursor: pointer;
+}
+
 /*Comineza footer*/
 
 footer {
@@ -117,21 +121,26 @@ footer ul li a {
     padding: 5px 0px 5px 0px;
 }
 
+footer ul li a:hover {
+    color: rgb(150, 150, 150);
+    padding: 5px 0px 5px 0px;
+}
 .title-cards-footer {
     color: white;
     padding-top: 15px;
-
 }
 
 .text-cards-footer {
     color: white;
     padding: 20px 0px 20px 0px;
     line-height: 21px;
+    margin:0px 20px;
 }
 
 
 .logos-redes-sociales {
     width: 40px;
+    cursor: pointer;    
 }
 
 .container-section-copyrigth {
@@ -197,6 +206,10 @@ footer ul li a {
     color: rgb(158, 158, 158);
 }
 
+.text-configurar-perfil{
+    cursor: pointer;
+}
+
 .container-categorias {
     display: flex;
     justify-content: flex-start;
@@ -228,6 +241,11 @@ footer ul li a {
     justify-content: center;
     align-items: center;
 }
+
+.container-redes-sociales-menu-hamburguesa>img{
+    cursor: pointer;
+}
+
 .logo-redes-menu-hamburguesa{
     width: 40px;
     height: 40px;

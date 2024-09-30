@@ -159,7 +159,7 @@ body{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter 0.2s
+    transition: filter 0.3s ease-in-out
 }
 
 .container-seccion-nombre-juego {
@@ -227,6 +227,10 @@ body{
 }
 
 
+.container-card:hover .container-btn-comprar{
+    opacity: 1;
+}
+
 .container-icono-jugar {
     position: absolute;
     top: 0;
@@ -240,7 +244,33 @@ body{
     transition: opacity 0.3s ease;
     z-index: 2;
 }
+
+.container-btn-comprar{
+    color: var(--color-acento-luz2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
   
+.btn-comprar{
+    width: 158px;
+    height: 31px;
+    background-color: var(--color-acento);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.btn-comprar:hover{
+    background-color: var(--color-acento-luz2);
+}
 .icono-jugar {
     width: 65px;
     height: 60px;
