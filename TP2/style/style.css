@@ -77,7 +77,9 @@ footer {
 
 .container-cards-footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    gap: 20px;
 }
 
 .card-footer {
@@ -159,7 +161,7 @@ footer ul li a:hover {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100; 
+    z-index:3000; 
     width: 346px;
     height: 1027px;
     background-color: var(--color-primario-sombra3);
@@ -262,6 +264,7 @@ footer ul li a:hover {
     margin: 0px 20px;
 }
 
+<<<<<<< HEAD
 .div-password {
     position: relative;
     width: 100%;
@@ -276,3 +279,14 @@ footer ul li a:hover {
     cursor: pointer;
 }
 
+=======
+
+@media only screen and (max-width: 768px) {
+    
+    
+      .card-footer {
+        width: 45%;
+        margin-bottom: 20px; 
+      }
+}
+>>>>>>> 0b283e64e9d9291f5016459b32e7a53486f2e098
