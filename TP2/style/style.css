@@ -265,6 +265,20 @@ footer ul li a:hover {
     margin: 0px 20px;
 }
 
+.div-password {
+    position: relative;
+    width: 100%;
+}
+
+#ojo-password {
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    left: 85%;
+    width: 24px;
+    cursor: pointer;
+}
+
 
 @media only screen and (max-width: 768px) {
     

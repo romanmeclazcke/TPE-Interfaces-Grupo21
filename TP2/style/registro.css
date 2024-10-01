@@ -51,7 +51,7 @@ body {
 
 #login-character1 {
     left: 50em;
-    bottom: -5em;
+    bottom: -42em;
 }
 #login-character2 {
     left: 15em;
@@ -99,3 +99,47 @@ body {
     font-size: xx-large;
     margin-bottom: 10px;
 }
+
+.registro input {
+    border: 2px solid transparent;
+    height: 41px;
+    width: 200px;
+    border-radius: 5px;
+    color: grey;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.form-registro {
+    text-align: left;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;  
+}
+
+.registro p a {
+    color: var(--color-acento);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.btn-registro {
+    padding: 18px;
+    margin-top: 20px;
+    font-size: large;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    background: var(--color-acento);
+    box-shadow: 0 0 25px var(--color-acento-luz1);
+    cursor: pointer;
+}
+  
+.btn-registro:hover {
+    box-shadow: 0 0 5px var(--color-acento-luz3),
+                0 0 25px var(--color-acento-luz3),
+                0 0 50px var(--color-acento-luz3),
+                0 0 100px var(--color-acento-luz3);
+}
+  
+
