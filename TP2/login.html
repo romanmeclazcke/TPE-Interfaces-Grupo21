@@ -35,7 +35,13 @@
             <h2>Ingresa con tu nickname</h2>
             
             <input placeholder="Nickname" type="text">
-            <input type="password" placeholder="Contraseña"> 
+            <div class="div-password">
+                <input type="password" id="contraseña" placeholder="Contraseña">
+                <span id="togglePassword">
+                    <img src="images/ojo contraseña.png" alt="Ocultar contraseña" id="ojo-password">
+                </span>
+            </div>
+
             <a href="home.html"><button class="submit-btn" type="submit">Login</button></a>
         </div>
 
@@ -99,6 +105,6 @@
             <p>2024 © todos los derechos reservados</p>
         </div>
     </footer>
-    <script src="js/login.js"></script>
+    <script src="js/log.js"></script>
 </body>
 </html>
