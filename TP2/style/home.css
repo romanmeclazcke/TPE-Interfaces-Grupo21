@@ -42,7 +42,7 @@
             to left,
             rgba(0, 0, 0, 0.8) 15%,
             rgba(1, 25, 44, 0.71) 56%,
-            rgba(2, 43, 73, 0.43) 43%
+            rgba(2, 43, 73, 0.43) 91%
         );
 
 }
@@ -52,17 +52,6 @@ body{
 }
 
 /*CARRUSEL*/
-
-.carrusel{
-    background-color: var(--color-primario-sombra2);
-    border-radius: 8px;
-    margin: 33px 20px;
-    overflow-x: auto;
-    white-space: nowrap;
-    position: relative;
-    scrollbar-width: none;
-    
-}
 
 .container-titulo-categorias-carrusel>h2{
     display: flex;
@@ -74,6 +63,11 @@ body{
 .container-cards-carrusel{
     display: flex;
     border-radius: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
 
 }
 
@@ -90,36 +84,47 @@ body{
 }
 
 .rectangulo-izq {
-    background: var(--color-degrade-rectangulo-flechas-carrusel-left);
-    width: 90px;
-    height: 250px;
+    background:var(--color-degrade-rectangulo-flechas-carrusel-left);
+    width: 4%; 
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    z-index: 10;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
 }
 
-.rectangulo-der{
-    background: var(--color-degrade-rectangulo-flechas-carrusel-rigth);
-    width: 90px;
-    height: 250px;
-    position: fixed;
-    z-index: 10;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+.rectangulo-izq>button ,.rectangulo-der>button{
+    cursor: pointer;
+    background-color: transparent;
 }
+
+.rectangulo-der {
+    background:var(--color-degrade-rectangulo-flechas-carrusel-rigth);
+    width: 4%; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100; 
+}
+.flechas-carrusel{
+    height: 60px;
+}
+
 
 .container-titulo-categorias-carrusel>h2{
     display: flex;
     justify-content: left;
     padding-left: 21px;
     padding-top: 12px;
-}
-
-.container-cards-carrusel{
-    display: flex;
-    border-radius: 8px;
-
 }
 
 
@@ -133,6 +138,7 @@ body{
     margin: 10px 5px 25px 5px;
     border-radius: 4px;
     flex-shrink: 0; /*esto evita que la card se "achiche" mientras mas cards hayan*/
+    transition: transform 0.3s ease;
 }
 
 .container-card-especial>img {
@@ -140,6 +146,14 @@ body{
     height: 100%;
     object-fit: cover;
     transition: filter 0.2s ;
+}
+
+.rotar-izquierda {
+    transform: rotate(-5deg); /* Rotar ligeramente a la izquierda */
+}
+
+.rotar-derecha {
+    transform: rotate(5deg); /* Rotar ligeramente a la derecha */
 }
 
 
@@ -225,7 +239,6 @@ body{
 .container-card-especial:hover .container-icono-jugar{
     opacity: 1;
 }
-
 
 .container-card:hover .container-btn-comprar{
     opacity: 1;
