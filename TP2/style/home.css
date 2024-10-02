@@ -22,45 +22,39 @@
     --color-acento-sombra3: #793A00;
 
     --color-degrade-etiqueta-nombre-cards:
-        linear-gradient(
-            to right,
+        linear-gradient(to right,
             rgba(255, 255, 255, 0.5) 0%,
             rgba(8, 86, 86, 0.6) 47%,
-            rgba(0, 151, 151, 1) 67%
-        );
+            rgba(0, 151, 151, 1) 67%);
 
     --color-degrade-rectangulo-flechas-carrusel-left:
-    linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.8) 15%, 
-        rgba(1, 25, 44, 0.71) 56%, 
-        rgba(2, 43, 73, 0.43) 91%
-    );
-
-    --color-degrade-rectangulo-flechas-carrusel-rigth:
-        linear-gradient(
-            to left,
+        linear-gradient(to right,
             rgba(0, 0, 0, 0.8) 15%,
             rgba(1, 25, 44, 0.71) 56%,
-            rgba(2, 43, 73, 0.43) 91%
-        );
+            rgba(2, 43, 73, 0.43) 91%);
+
+    --color-degrade-rectangulo-flechas-carrusel-rigth:
+        linear-gradient(to left,
+            rgba(0, 0, 0, 0.8) 15%,
+            rgba(1, 25, 44, 0.71) 56%,
+            rgba(2, 43, 73, 0.43) 91%);
 
 }
 
-body{
+body {
     background-color: var(--color-primario);
 }
 
 /*CARRUSEL*/
 
-.container-titulo-categorias-carrusel>h2{
+.container-titulo-categorias-carrusel>h2 {
     display: flex;
     justify-content: left;
     padding-left: 21px;
     padding-top: 12px;
 }
 
-.container-cards-carrusel{
+.container-cards-carrusel {
     display: flex;
     border-radius: 8px;
     overflow-x: auto;
@@ -72,7 +66,7 @@ body{
 }
 
 /*comienza card especial*/
-.carrusel{
+.carrusel {
     background-color: var(--color-primario-sombra2);
     border-radius: 8px;
     margin: 33px 20px;
@@ -80,13 +74,22 @@ body{
     white-space: nowrap;
     position: relative;
     scrollbar-width: none;
-    
+}
+
+.carrusel-especial {
+    background-color: var(--color-primario-sombra2);
+    border-radius: 8px;
+    margin: 33px 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scrollbar-width: none;
 }
 
 .rectangulo-izq {
-    background:var(--color-degrade-rectangulo-flechas-carrusel-left);
-    width: 4%; 
-    height: 100%; 
+    background: var(--color-degrade-rectangulo-flechas-carrusel-left);
+    width: 4%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,14 +100,15 @@ body{
     z-index: 100;
 }
 
-.rectangulo-izq>button ,.rectangulo-der>button{
+.rectangulo-izq>button,
+.rectangulo-der>button {
     cursor: pointer;
     background-color: transparent;
 }
 
 .rectangulo-der {
-    background:var(--color-degrade-rectangulo-flechas-carrusel-rigth);
-    width: 4%; 
+    background: var(--color-degrade-rectangulo-flechas-carrusel-rigth);
+    width: 4%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -113,14 +117,15 @@ body{
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 100; 
+    z-index: 100;
 }
-.flechas-carrusel{
+
+.flechas-carrusel {
     height: 60px;
 }
 
 
-.container-titulo-categorias-carrusel>h2{
+.container-titulo-categorias-carrusel>h2 {
     display: flex;
     justify-content: left;
     padding-left: 21px;
@@ -130,14 +135,15 @@ body{
 
 /*CARD ESECIAl*/
 .container-card-especial {
-    display:flex;
+    display: flex;
     width: 430px;
     height: 244px;
     position: relative;
     overflow: hidden;
     margin: 10px 5px 25px 5px;
     border-radius: 4px;
-    flex-shrink: 0; /*esto evita que la card se "achiche" mientras mas cards hayan*/
+    flex-shrink: 0;
+    /*esto evita que la card se "achiche" mientras mas cards hayan*/
     transition: transform 0.3s ease;
 }
 
@@ -145,28 +151,31 @@ body{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter 0.2s ;
+    transition: filter 0.2s;
 }
 
 .rotar-izquierda {
-    transform: rotate(-5deg); /* Rotar ligeramente a la izquierda */
+    transform: rotate(-5deg);
+    /* Rotar ligeramente a la izquierda */
 }
 
 .rotar-derecha {
-    transform: rotate(5deg); /* Rotar ligeramente a la derecha */
+    transform: rotate(5deg);
+    /* Rotar ligeramente a la derecha */
 }
 
 
 /*CARD NORMAL*/
 .container-card {
-    display:flex;
+    display: flex;
     width: 300px;
     height: 180px;
     position: relative;
     overflow: hidden;
     margin: 10px 5px 25px 5px;
     border-radius: 4px;
-    flex-shrink: 0; /*esto evita que la card se "achiche" mientras mas cards hayan*/
+    flex-shrink: 0;
+    /*esto evita que la card se "achiche" mientras mas cards hayan*/
 }
 
 .container-card>img {
@@ -199,28 +208,28 @@ body{
     line-height: 21px;
 }
 
-.tag{
+.tag {
     background-color: var(--color-acento-luz2);
     position: absolute;
     text-align: center;
     align-content: center;
 }
 
-.tag-gratis{
-    width:203px;
-    height:30px;
+.tag-gratis {
+    width: 203px;
+    height: 30px;
     right: -70px;
     top: 10px;
     transform: rotate(45deg);
 }
 
-.tag-agregado-al-carrito{
+.tag-agregado-al-carrito {
     align-content: center;
     width: 100%;
     height: 29px;
 }
 
-.tag-precio{
+.tag-precio {
     width: 157px;
     height: 26px;
     bottom: 10px;
@@ -229,18 +238,20 @@ body{
     z-index: 2;
 }
 
-.container-card:hover>img, .container-card-especial:hover>img {
+.container-card:hover>img,
+.container-card-especial:hover>img {
     filter: brightness(0.2);
 }
 
 .container-card:hover .container-icono-jugar {
     opacity: 1;
 }
-.container-card-especial:hover .container-icono-jugar{
+
+.container-card-especial:hover .container-icono-jugar {
     opacity: 1;
 }
 
-.container-card:hover .container-btn-comprar{
+.container-card:hover .container-btn-comprar {
     opacity: 1;
 }
 
@@ -258,7 +269,7 @@ body{
     z-index: 2;
 }
 
-.container-btn-comprar{
+.container-btn-comprar {
     color: var(--color-acento-luz2);
     position: absolute;
     top: 0;
@@ -272,8 +283,8 @@ body{
     transition: opacity 0.3s ease;
     z-index: 2;
 }
-  
-.btn-comprar{
+
+.btn-comprar {
     width: 158px;
     height: 31px;
     background-color: var(--color-acento);
@@ -281,24 +292,22 @@ body{
     border-radius: 10px;
 }
 
-.btn-comprar:hover{
+.btn-comprar:hover {
     background-color: var(--color-acento-luz2);
 }
+
 .icono-jugar {
     width: 65px;
     height: 60px;
-    transition:scale 0.35s ease-in-out;
+    transition: scale 0.35s ease-in-out;
 }
 
-.especial{
+.especial {
     width: 85px;
     height: 80px;
 }
 
-.icono-jugar:hover{
-    scale: 1.2; /*Cambiar el color del elemento*/
+.icono-jugar:hover {
+    scale: 1.2;
+    /*Cambiar el color del elemento*/
 }
-
-
-  
-  
