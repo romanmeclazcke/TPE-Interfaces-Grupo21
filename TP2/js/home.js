@@ -23,7 +23,7 @@ carruseles.forEach((carrusel) => {
     let rectanguloDer = carrusel.querySelector(".rectangulo-der")
     let movimientoEnPixeles = 600;
     let totalPixels = cardsNormal.length * 300; //tamanio de la card
-    let movimientosActualesEnPixeles = cardsNormal.clientWidth; //siempre arranco desde el ancho del contendor dado que sino funciona mal(tomo el ancho del contenedor a desplazar)
+    let movimientosActualesEnPixeles = containerCards.clientWidth; //siempre arranco desde el ancho del contendor dado que sino funciona mal(tomo el ancho del contenedor a desplazar)
 
     btnIzq.addEventListener("click", () => {
         movimientosActualesEnPixeles -= movimientoEnPixeles;
@@ -36,8 +36,8 @@ carruseles.forEach((carrusel) => {
         if (rectanguloDer.style.display == "none") {
             rectanguloDer.style.display = "flex"
         }
-        if (movimientosActualesEnPixeles <= 0) {
-            movimientosActualesEnPixeles = 0;
+        if (movimientosActualesEnPixeles <= containerCards.clientWidth) {
+            movimientosActualesEnPixeles = containerCards.clientWidth;
             rectanguloIzq.style.display = "none"
         }
 
@@ -70,55 +70,55 @@ carruseles.forEach((carrusel) => {
 let carruselEspecial = document.querySelectorAll(".carrusel-especial");
 
 carruselEspecial.forEach((carrusel) => {
-    let btnIzq = carrusel.querySelector(".btn-izq");
-    let btnDer = carrusel.querySelector(".btn-der");
-    let containerCards = carrusel.querySelector(".container-cards-carrusel");
+    let btnIzqEspecial = carrusel.querySelector(".btn-izq");
+    let btnDerEspecial = carrusel.querySelector(".btn-der");
+    let containerCardsEspecial = carrusel.querySelector(".container-cards-carrusel");
     let cardsEspeciales = carrusel.querySelectorAll(".container-card-especial");
-    let rectanguloIzq = carrusel.querySelector(".rectangulo-izq")
-    let rectanguloDer = carrusel.querySelector(".rectangulo-der")
-    let movimientoEnPixeles = 600;
-    let totalPixels = cardsEspeciales.length * 430; //tamanio de la card especial
-    let movimientosActualesEnPixeles = containerCards.clientWidth; //siempre arranco desde el ancho del contendor dado que sino funciona mal(tomo el ancho del contenedor a desplazar)
-    console.log("total  pixeles  "+totalPixels )
+    let rectanguloIzqEspecial = carrusel.querySelector(".rectangulo-izq")
+    let rectanguloDerEspecial = carrusel.querySelector(".rectangulo-der")
+    let movimientoEnPixelesEspecial = 600;
+    let totalPixelsEspecial = cardsEspeciales.length * 430; //tamanio de la card especial
+    let movimientosActualesEnPixelesEspecial = containerCardsEspecial.clientWidth; //siempre arranco desde el ancho del contendor dado que sino funciona mal(tomo el ancho del contenedor a desplazar)
+    console.log("total  pixeles  "+totalPixelsEspecial )
 
-    btnIzq.addEventListener("click", () => {
-        movimientosActualesEnPixeles -= movimientoEnPixeles;
+    btnIzqEspecial.addEventListener("click", () => {
+        movimientosActualesEnPixelesEspecial -= movimientoEnPixelesEspecial;
 
-        containerCards.scrollBy({
-            left: -movimientoEnPixeles,
+        containerCardsEspecial.scrollBy({
+            left: -movimientoEnPixelesEspecial,
             behavior: 'smooth' // Scroll suave
         });
 
-        if (rectanguloDer.style.display == "none") {
-            rectanguloDer.style.display = "flex"
+        if (rectanguloDerEspecial.style.display == "none") {
+            rectanguloDerEspecial.style.display = "flex"
         }
-        if (movimientosActualesEnPixeles <= 0) {
-            movimientosActualesEnPixeles = containerCards.clientWidth;
-            rectanguloIzq.style.display = "none"
+        if (movimientosActualesEnPixelesEspecial <= containerCardsEspecial.clientWidth) {
+            movimientosActualesEnPixelesEspecial = containerCardsEspecial.clientWidth;
+            rectanguloIzqEspecial.style.display = "none"
         }
 
-        console.log("toque izq Total pixeles: " + totalPixels);
-        console.log("Movimiento actual: " + movimientosActualesEnPixeles);
+        console.log("toque izq Total pixeles: " + totalPixelsEspecial);
+        console.log("Movimiento actual: " + movimientosActualesEnPixelesEspecial);
         rotarDerecha(cardsEspeciales)
     });
 
-    btnDer.addEventListener("click", () => {
-        movimientosActualesEnPixeles += movimientoEnPixeles;
+    btnDerEspecial.addEventListener("click", () => {
+        movimientosActualesEnPixelesEspecial += movimientoEnPixelesEspecial;
 
-        containerCards.scrollBy({
-            left: movimientoEnPixeles,
+        containerCardsEspecial.scrollBy({
+            left: movimientoEnPixelesEspecial,
             behavior: 'smooth' // Scroll suave
         });
 
-        if (rectanguloIzq.style.display == "none") {
-            rectanguloIzq.style.display = "flex"
+        if (rectanguloIzqEspecial.style.display == "none") {
+            rectanguloIzqEspecial.style.display = "flex"
         }
-        if (movimientosActualesEnPixeles >= totalPixels) {
-            movimientosActualesEnPixeles = totalPixels - containerCards.clientWidth;
-            rectanguloDer.style.display = "none"
+        if (movimientosActualesEnPixelesEspecial >= totalPixelsEspecial) {
+            movimientosActualesEnPixelesEspecial = totalPixelsEspecial;
+            rectanguloDerEspecial.style.display = "none"
         }
-        console.log("Total pixeles: " + totalPixels);
-        console.log("Movimiento actual: " + movimientosActualesEnPixeles);
+        console.log("Total pixeles: " + totalPixelsEspecial);
+        console.log("Movimiento actual: " + movimientosActualesEnPixelesEspecial);
         rotarIzquierda(cardsEspeciales)
     });
 });
