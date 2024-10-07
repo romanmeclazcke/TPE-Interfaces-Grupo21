@@ -356,10 +356,13 @@ body {
     background-color: var(--color-acento);
     padding: 5px;
     border-radius: 10px;
+    transition: scale 0.3s ease;
+    
 }
 
 .btn-comprar:hover {
     background-color: var(--color-acento-luz2);
+    scale: 1.1;
 }
 
 .icono-jugar {
