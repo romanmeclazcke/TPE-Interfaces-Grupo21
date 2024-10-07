@@ -45,8 +45,71 @@ body {
     background-color: var(--color-primario);
 }
 
-/*CARRUSEL*/
+.container-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--color-primario);
+}
 
+.spinner {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.spinner p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.spinner::before {
+    content: "";
+    width: 60px;
+    height: 60px;
+    border: 6px solid white; 
+    border-top: 6px solid var(--color-primario-luz2); 
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.container-barra-carga {
+    width: 80%;
+    height: 20px;
+    background-color:  white;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.barra-carga {
+    width: 0%;
+    height: 100%;
+    background-color:var(--color-primario-luz2); /* Azul claro */
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.porcentaje-carga{
+    margin-top: 10px;
+    color: white;
+    font-size: 25px;
+}
+
+
+
+
+/*CARRUSEL*/
 .container-titulo-categorias-carrusel>h2 {
     display: flex;
     justify-content: left;
@@ -252,6 +315,9 @@ body {
 }
 
 .container-card:hover .container-btn-comprar {
+    opacity: 1;
+}
+.container-card-especial:hover .container-btn-comprar {
     opacity: 1;
 }
 
