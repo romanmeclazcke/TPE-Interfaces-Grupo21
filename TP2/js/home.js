@@ -72,10 +72,6 @@ carruselesNormales.forEach((carrusel) => {
 
     containerCards.addEventListener('scroll', () => {
         let scrollX = containerCards.scrollLeft;
-
-        console.log('Scroll X:', scrollX);
-        console.log('Total pixels:', totalPixels);
-
        
         if (scrollX > 0) {
             rectanguloIzq.style.display = "flex"; 

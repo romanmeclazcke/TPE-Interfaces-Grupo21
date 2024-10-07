@@ -47,6 +47,11 @@ header {
     align-items: center;
     position: relative;
 }
+.titulo-logo-pagina{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 header img {
     padding: 10px;
