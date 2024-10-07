@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--Faltaria: agregar js file, para abrir menu hamburguesa
+<!--
     hacer seccion comentarios
     boton start naranja revisar
-    modificar home para llegar al 4 en linea
 -->
 
 <head>
@@ -24,6 +23,41 @@
         <img src="images/Carrito.png" alt="" class="logo-carrito">
     </header>
     <main>
+        <div class="container-menu-hamburguesa" id="menu-hamburguesa">
+            <div class="container-cruz-menu-hamburguesa btn-clickeable" id="btn-cerrar-menu">
+                <img src="images/icono-cruz.png" class="icono-cruz-menu-hamburguesa" alt="">
+            </div>
+            <div class="container-informacion-usuario">
+                <div class=" container-foto-perfil">
+                    <img src="images/imagen-usuario1.png" class="imagen-usuario-logueado">
+                </div>
+                <div class="container-nombre-usuario">
+                    <h3>Milagros Alvarez</h2>
+                        <p class="text-configurar-perfil">Configurar perfil</p>
+                </div>
+            </div>
+            <div class="container-line"></div>
+            <div class="container-categorias">
+                <ul>
+                    <li><img src="images/icono-categoria-accion.png" alt="">Accion</li>
+                    <li> <img src="images/icono-categoria-auto.png" alt="">Autos</li>
+                    <li> <img src="images/icono-categoria-aventura.png" alt="">Aventura</li>
+                    <li> <img src="images/icono-categoria-retro.png" alt="">Retro</li>
+                    <li> <img src="images/icono-categoria-multijugador.png" alt="">Multijugador</li>
+                    <li> <img src="images/icono-categoria-cocina.png" alt="">Cocina</li>
+                </ul>
+            </div>
+            <div class="container-redes-sociales-menu-hamburguesa">
+                <img src="images/Logo-instagram.png" alt="" class="logo-redes-menu-hamburguesa">
+                <img src="images/Logo-x.png" alt="" class="logo-redes-menu-hamburguesa">
+                <img src="images/Logo-facebook.png" alt="" class="logo-redes-menu-hamburguesa">
+                <img src="images/Logo-discord.png" alt="" class="logo-redes-menu-hamburguesa">
+            </div>
+            <div class="container-line"></div>
+            <a href="login.html">
+                <p>Cerrar sesion</p>
+            </a>
+        </div>
         <section class="connect-four">
             <h4 class="breadcrums">Inicio > Recomendado para ti > 4 en línea</h4>
             <div class="game-and-media-container">
@@ -36,7 +70,7 @@
                     <h3>Si te gustó compartilo con amigos!</h3>
                     <img src="images/Icono chat redes.png" alt="Boton chat" class="logos-redes-sociales">
                     <img src="images/Icono mail redes.png" alt="Boton mail" class="logos-redes-sociales">
-                    <img src="images/PeopleWorkingTogether-icono.png" alt="Boton foro" class="logos-redes-sociales">
+                    <img src="images/foro-icono.png" alt="Boton foro" class="logos-redes-sociales">
                 </div>
             </div>
             <aside class="instructions">
@@ -56,7 +90,7 @@
             <div class="game-description-details">
                 <div class="game-description-title-and-text">
                     <h2 class="game-description-title">4 en linea</h2>
-                    <h4>
+                    <h4 class="game-description-text">
                         ¡Sumérgete en la acción con 4 en linea: Batman vs. Joker! En este emocionante juego, elige tu
                         bando
                         y
@@ -71,7 +105,52 @@
                 </div>
                 <img class="game-description-image" src="images/BatmanVSJokerimagen.png" alt="Batman vs Joker imagen">
             </div>
-            <p class="game-description-options">Tutoriales | Ranking | Estrategias </p>
+            <p class="game-description-options">
+                <span class="game-description-tutoriales-button">Tutoriales</span> |
+                <span class="game-description-ranking-button">Ranking</span> |
+                <span class="game-description-estrategias-button">Estrategias</span>
+            </p>
+        </section>
+        <section class="comentarios-container">
+            <div class="input-and-profile-pic-container">
+                <img src="images/imagen-usuario1.png" alt="Imagen usuario">
+                <div class="input-container">
+                    <p class="input-placeholder">Ingrese un comentario</p>
+                    <div class="horizontal-line-input"></div>
+                    <div class="input-buttons-container">
+                        <button class="cancelar-button">Cancelar</button>
+                        <button class="comentar-button">Comentar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box-comentarios">
+                <h2 class="comentarios-title">Comentarios de la comunidad</h2>
+                <div class="comentario">
+                    <img src="images/imagen-usuario2.png" alt="imagen usuario">
+                    <div class="info-comentario">
+                        <h3>Martin Acosta</h3>
+                        <p class="comentario-texto">El mejor juego que jugue en mi vida</p>
+                    </div>
+                </div>
+                <div class="linea-separadora-comentarios"></div>
+                <div class="comentario">
+                    <img src="images/imagen-usuario3.png" alt="imagen usuario">
+                    <div class="info-comentario">
+                        <h3>Sofia Gutierrez</h3>
+                        <p class="comentario-texto">Necesito una nueva version, es increible</p>
+                    </div>
+                </div>
+                <div class="linea-separadora-comentarios"></div>
+                <div class="comentario">
+                    <img src="images/imagen-usuario3.png" alt="imagen usuario">
+                    <div class="info-comentario">
+                        <h3>Pilar Fernandez</h3>
+                        <p class="comentario-texto">Excelente version del clasico 4 en linea. Muy bueno para jugar con
+                            amigos.</p>
+                    </div>
+                </div>
+                <div class="linea-separadora-comentarios"></div>
+            </div>
         </section>
     </main>
     <footer>
@@ -131,5 +210,6 @@
         </div>
     </footer>
 </body>
+<script src="js/4enlinea.js" type="text/javascript"></script>
 
 </html>
