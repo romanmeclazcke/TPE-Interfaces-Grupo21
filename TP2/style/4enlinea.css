@@ -78,13 +78,6 @@ main {
     flex-direction: column;
 }
 
-.start-button {
-    padding: 1rem;
-    background-color: orange;
-    color: black;
-    border-radius: 20px;
-}
-
 .game-description {
     background-color: var(--color-primario-sombra2);
     border-radius: 20px;
@@ -101,6 +94,18 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+}
+
+.connect-four-image {
+    margin: 1.5em 1em 1.5em 1em;
+}
+
+.start-button {
+    transition: transform 0.3s ease-in-out;
+}
+
+.start-button:hover {
+    transform: scale(1.2);
 }
 
 .game-description-title-and-text {
@@ -190,6 +195,16 @@ main {
     margin-right: 1em;
     background-color: var(--color-primario-sombra2);
     color: var(--color-secundario-luz1);
+}
+
+.comentar-button:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+.cancelar-button:hover {
+    background-color: var(--color-primario-sombra1);
+    color: var(--color-blanco);
 }
 
 .box-comentarios {
