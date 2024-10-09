@@ -314,10 +314,12 @@ body {
 
 .container-card:hover .container-icono-jugar {
     opacity: 1;
+    cursor: pointer;
 }
 
 .container-card-especial:hover .container-icono-jugar {
     opacity: 1;
+    cursor: pointer;
 }
 
 .container-card:hover .container-btn-comprar {
