@@ -133,3 +133,15 @@ body {
     font-size: 1.5em;
 }
   
+
+
+@media only screen and (min-width: 1024px) {
+    #login-character1{
+        bottom: 20em;
+        left: 70em;
+    }
+
+    #login-character2{
+        left: 23em;
+    }
+}   
