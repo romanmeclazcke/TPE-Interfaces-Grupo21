@@ -438,5 +438,12 @@ body {
 
 .icono-jugar:hover {
     scale: 1.2;
-    /*Cambiar el color del elemento*/
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .container-card-especial{
+        width: 370px;
+        height: 230px;
+    }
 }
