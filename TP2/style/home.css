@@ -72,21 +72,26 @@ body {
     content: "";
     width: 60px;
     height: 60px;
-    border: 6px solid white; 
-    border-top: 6px solid var(--color-primario-luz2); 
+    border: 6px solid white;
+    border-top: 6px solid var(--color-primario-luz2);
     border-radius: 50%;
     animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .container-barra-carga {
     width: 80%;
     height: 20px;
-    background-color:  white;
+    background-color: white;
     border-radius: 10px;
     margin-top: 20px;
     overflow: hidden;
@@ -95,12 +100,13 @@ body {
 .barra-carga {
     width: 0%;
     height: 100%;
-    background-color:var(--color-primario-luz2); /* Azul claro */
+    background-color: var(--color-primario-luz2);
+    /* Azul claro */
     border-radius: 10px;
     transition: width 0.4s ease;
 }
 
-.porcentaje-carga{
+.porcentaje-carga {
     margin-top: 10px;
     color: white;
     font-size: 25px;
@@ -308,15 +314,18 @@ body {
 
 .container-card:hover .container-icono-jugar {
     opacity: 1;
+    cursor: pointer;
 }
 
 .container-card-especial:hover .container-icono-jugar {
     opacity: 1;
+    cursor: pointer;
 }
 
 .container-card:hover .container-btn-comprar {
     opacity: 1;
 }
+
 .container-card-especial:hover .container-btn-comprar {
     opacity: 1;
 }
@@ -351,19 +360,70 @@ body {
 }
 
 .btn-comprar {
+    height: 40px;
+    width: 158px;
+    background-color:var(--color-acento);
+    border: 2px solid var(--color-acento-luz1);
+    color: #eee;
+    transition: .6s;
+    font-size: 15px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.btn-comprar span {
+    transform: translateX(10px);
+    transition: .5s ease-in-out;
+}
+
+.btn-comprar svg {
+    transform: translateX(-300px);
+    transition: .6s ease-in-out;
+    z-index: 3;
+    height: 20px;
+}
+
+.btn-comprar:hover {
+    width: 60px;
+    background-color: var(--color-acento-sombra1);
+    box-shadow: 20px 20px 96px #bebebe, -20px -20px 96px white;
+    cursor: pointer;
+}
+.btn-comprar:active{
+    transform: scale(1.2);
+}
+
+.btn-comprar:hover svg {
+    transform: translateX(-5px);
+}
+
+.btn-comprar:hover span {
+    transform: translateY(70px);
+    font-size: .1rem;
+}
+
+/* .btn-comprar {
     width: 158px;
     height: 31px;
     background-color: var(--color-acento);
     padding: 5px;
     border-radius: 10px;
-    transition: scale 0.3s ease;
-    
-}
-
+    transition: background-color 0.3s ease, transform 0.2s ease;
+} */
+/* 
 .btn-comprar:hover {
     background-color: var(--color-acento-luz2);
-    scale: 1.1;
+    transform: scale(1.10);
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
+
+.btn-comprar:active {
+    transform: scale(0.95);
+} */
 
 .icono-jugar {
     width: 65px;
@@ -378,5 +438,12 @@ body {
 
 .icono-jugar:hover {
     scale: 1.2;
-    /*Cambiar el color del elemento*/
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .container-card-especial{
+        width: 370px;
+        height: 230px;
+    }
 }

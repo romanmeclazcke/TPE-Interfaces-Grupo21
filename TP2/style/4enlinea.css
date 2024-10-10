@@ -226,6 +226,16 @@ main {
     color: var(--color-blanco);
 }
 
+.comentar-button:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+.cancelar-button:hover {
+    background-color: var(--color-primario-sombra1);
+    color: var(--color-blanco);
+}
+
 .box-comentarios {
     padding: 2em;
 }
