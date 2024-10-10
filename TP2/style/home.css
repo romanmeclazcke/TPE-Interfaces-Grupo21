@@ -386,7 +386,7 @@ body {
     height: 20px;
 }
 
-.btn-comprar:hover {
+.btn-comprar:active {
     width: 60px;
     background-color: var(--color-acento-sombra1);
     box-shadow: 20px 20px 96px #bebebe, -20px -20px 96px white;
@@ -396,34 +396,16 @@ body {
     transform: scale(1.2);
 }
 
-.btn-comprar:hover svg {
+.btn-comprar:active svg {
     transform: translateX(-5px);
 }
 
-.btn-comprar:hover span {
+.btn-comprar:active span {
     transform: translateY(70px);
     font-size: .1rem;
 }
 
-/* .btn-comprar {
-    width: 158px;
-    height: 31px;
-    background-color: var(--color-acento);
-    padding: 5px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-} */
-/* 
-.btn-comprar:hover {
-    background-color: var(--color-acento-luz2);
-    transform: scale(1.10);
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-}
 
-.btn-comprar:active {
-    transform: scale(0.95);
-} */
 
 .icono-jugar {
     width: 65px;

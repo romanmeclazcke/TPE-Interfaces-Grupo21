@@ -181,7 +181,7 @@ body {
 
 
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1440px) {
     #login-character1{
         bottom: -15em;
         left: 70em;
