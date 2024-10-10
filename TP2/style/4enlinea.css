@@ -56,6 +56,11 @@ main {
     grid-column: 1;
 }
 
+.bart-images{
+    margin: 1.5;
+    width: 100%;
+}
+
 .social-media-bar {
     margin-top: 1rem;
     background-color: var(--color-primario-sombra2);
@@ -78,11 +83,8 @@ main {
     flex-direction: column;
 }
 
-.start-button {
-    padding: 1rem;
-    background-color: orange;
-    color: black;
-    border-radius: 20px;
+.bart-image{
+    width: 100%;
 }
 
 .game-description {
@@ -101,6 +103,20 @@ main {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+}
+
+.connect-four-image {
+    margin: 1.5em 1em 1.5em 1em;
+    width: 100%;
+    height: 100%;
+}
+
+.start-button {
+    transition: transform 0.3s ease-in-out;
+}
+
+.start-button:hover {
+    transform: scale(1.2);
 }
 
 .game-description-title-and-text {
@@ -143,7 +159,7 @@ main {
 }
 
 .horizontal-line-input {
-    width: 65rem;
+    width: 100%;
     height: 2px;
     background-color: var(--color-gris-oscuro);
     margin-top: 0.5em;
@@ -152,6 +168,7 @@ main {
 
 .input-and-profile-pic-container {
     padding: 1em;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -159,7 +176,14 @@ main {
 }
 
 .input-container {
+    width: 100%;
     margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar{
+    width: 13%;
 }
 
 .input-placeholder {
@@ -192,6 +216,16 @@ main {
     color: var(--color-secundario-luz1);
 }
 
+.comentar-button:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+.cancelar-button:hover {
+    background-color: var(--color-primario-sombra1);
+    color: var(--color-blanco);
+}
+
 .box-comentarios {
     padding: 2em;
 }
@@ -216,7 +250,7 @@ main {
 }
 
 .linea-separadora-comentarios {
-    width: 80rem;
+    width: 100%;
     height: 2px;
     background-color: var(--color-gris-oscuro);
     margin-bottom: 0.5em;
