@@ -1,0 +1,193 @@
+:root {
+    --color-primario: #0D609F;
+    --color-primario-luz1: #2E71A5;
+    --color-primario-luz2: #508BB8;
+    --color-primario-luz3: #98C8ED;
+    --color-primario-sombra1: #084A7C;
+    --color-primario-sombra2: #053961;
+    --color-primario-sombra3: #022B49;
+    --color-secundario: #89E3E3;
+    --color-secundario-luz1: #BDF4F4;
+    --color-secundario-luz2: #D3FFFF;
+    --color-secundario-luz3: #E2FFFF;
+    --color-secundario-sombra1: #009797;
+    --color-secundario-sombra2: #007575;
+    --color-secundario-sombra3: #014B4B;
+    --color-acento: #FA7800;
+    --color-acento-luz1: #FF8C22;
+    --color-acento-luz2: #FFA552;
+    --color-acento-luz3: #FFA552;
+    --color-acento-sombra1: #C65F00;
+    --color-acento-sombra2: #9A4A00;
+    --color-acento-sombra3: #793A00;
+    --color-blanco: #ffffff;
+}
+
+body {
+    background-color: var(--color-primario);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registro {
+    width: 45%;
+    margin: 50px;
+    color: white;
+    background-color: var(--color-primario-sombra2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#login-character1, #login-character2 {
+    position: absolute;
+    width: 239px;
+    height: 243px;
+}
+
+#login-character1 {
+    left: 50em;
+    bottom: -42em;
+}
+#login-character2 {
+    left: 15em;
+    top: 3em;
+}
+
+.registro .divisor {
+    font-size: x-large;
+    margin: 15px;
+}
+
+.div-registro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.social-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    color: black;
+}
+
+.social-btn img {
+    width: 19.6px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.social-btn:hover {
+    transform: scale(1.10);
+}
+
+.registro .tit {
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+.registro input {
+    border: 2px solid transparent;
+    height: 41px;
+    width: 200px;
+    border-radius: 5px;
+    color: grey;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.form-registro {
+    text-align: left;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;  
+}
+
+.registro p a {
+    color: var(--color-acento);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.btn-registro {
+    padding: 18px;
+    margin-top: 20px;
+    font-size: large;
+    width: 158px;
+    height: 61.93px;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    background: var(--color-acento);
+    box-shadow: 0 0 25px var(--color-acento-luz1);
+    cursor: pointer;
+    position: relative;
+}
+  
+.btn-registro:hover {
+    box-shadow: 0 0 5px var(--color-acento-luz3),
+                0 0 25px var(--color-acento-luz3),
+                0 0 50px var(--color-acento-luz3),
+                0 0 100px var(--color-acento-luz3);
+}
+
+.spinner {
+    border: 4px solid white;
+    border-top: 4px solid var(--color-acento-sombra2);
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+    display: none; /*Inicialmente oculto*/
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+  
+.btn-registro.cargando .spinner {
+    display: inline-block; /*Lo muestra cuando se le agrega la clase cargando*/
+}
+
+.btn-registro.cargando span {
+    display: none; /*Oculta el texto del botón cuando aparece el spinner*/
+}
+
+.btn-registro.exito span {
+    display: inline-block;
+    font-size: large;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 55%;
+    font-weight: bolder;
+}
+
+
+
+@media only screen and (min-width: 1024px) {
+    #login-character1{
+        bottom: -15em;
+        left: 70em;
+    }
+
+    #login-character2{
+        left: 23em;
+    }
+}   

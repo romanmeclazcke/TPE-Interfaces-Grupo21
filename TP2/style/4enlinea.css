@@ -1,0 +1,267 @@
+:root {
+    --color-primario: #0D609F;
+    --color-primario-luz1: #2E71A5;
+    --color-primario-luz2: #508BB8;
+    --color-primario-luz3: #98C8ED;
+    --color-primario-sombra1: #084A7C;
+    --color-primario-sombra2: #053961;
+    --color-primario-sombra3: #022B49;
+    --color-secundario: #89E3E3;
+    --color-secundario-luz1: #BDF4F4;
+    --color-secundario-luz2: #D3FFFF;
+    --color-secundario-luz3: #E2FFFF;
+    --color-secundario-sombra1: #009797;
+    --color-secundario-sombra2: #007575;
+    --color-secundario-sombra3: #014B4B;
+    --color-acento: #FA7800;
+    --color-acento-luz1: #FF8C22;
+    --color-acento-luz2: #FFA552;
+    --color-acento-luz3: #FFA552;
+    --color-acento-sombra1: #C65F00;
+    --color-acento-sombra2: #9A4A00;
+    --color-acento-sombra3: #793A00;
+    --color-blanco: #ffffff;
+    --color-gris-oscuro: #808080
+}
+
+main {
+    background-color: var(--color-primario);
+    padding: 1rem;
+}
+
+.connect-four {
+    padding: 2rem;
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 60% 30%;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.breadcrumbs {
+    font-size: 1em;
+}
+
+.game-box {
+    background-color: var(--color-primario-sombra2);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.game-and-media-container {
+    grid-column: 1;
+}
+
+.bart-images{
+    margin: 1.5;
+    width: 100%;
+}
+
+.social-media-bar {
+    margin-top: 1rem;
+    background-color: var(--color-primario-sombra2);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.instructions {
+    background-color: var(--color-primario-luz2);
+    padding: 0.5rem 0.5rem 0rem 0.5rem;
+    grid-column: 2;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bart-image{
+    width: 100%;
+}
+
+.game-description {
+    background-color: var(--color-primario-sombra2);
+    border-radius: 20px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 7rem 2rem 7rem;
+}
+
+.game-description-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.connect-four-image {
+    margin: 1.5em 1em 1.5em 1em;
+    width: 100%;
+    height: 100%;
+}
+
+.start-button {
+    transition: transform 0.3s ease-in-out;
+}
+
+.start-button:hover {
+    transform: scale(1.2);
+}
+
+.game-description-title-and-text {
+    width: 18%;
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.game-description-image {
+    grid-column: 2;
+    width: 45%;
+}
+
+.game-description-title {
+    padding-bottom: 1em;
+}
+
+.game-description-options {
+    margin-top: 4em;
+    color: #B7B6B6;
+}
+
+.game-description-text {
+    font-weight: normal;
+}
+
+.game-description-tutoriales-button:hover,
+.game-description-ranking-button:hover,
+.game-description-estrategias-button:hover {
+    color: var(--color-acento-luz2);
+}
+
+.comentarios-container {
+    background-color: var(--color-primario-sombra2);
+    border-radius: 20px;
+    margin: 3em 6em 3em 6em;
+    padding-bottom: 6em;
+}
+
+.horizontal-line-input {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-gris-oscuro);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.input-and-profile-pic-container {
+    padding: 1em;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.input-container {
+    width: 100%;
+    margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar{
+    width: 13%;
+}
+
+.input-placeholder {
+    color: var(--color-gris-oscuro);
+}
+
+.input-buttons-container {
+    display: flex;
+    justify-content: end;
+}
+
+.cancelar-button,
+.comentar-button {
+    border-radius: 10px;
+    padding: 0.5em 1em 0.5em 1em;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.comentar-button {
+    background-color: var(--color-secundario-luz3);
+    color: var(--color-primario-sombra2);
+    border-color: var(--color-secundario-luz3);
+}
+
+.cancelar-button {
+    border-color: var(--color-secundario-luz1);
+    margin-right: 1em;
+    background-color: var(--color-primario-sombra2);
+    color: var(--color-secundario-luz1);
+}
+
+.comentar-button:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+.cancelar-button:hover {
+    background-color: var(--color-primario-sombra1);
+    color: var(--color-blanco);
+}
+
+.comentar-button:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+}
+
+.cancelar-button:hover {
+    background-color: var(--color-primario-sombra1);
+    color: var(--color-blanco);
+}
+
+.box-comentarios {
+    padding: 2em;
+}
+
+.comentario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.comentarios-title {
+    margin-bottom: 1.4em;
+}
+
+.info-comentario {
+    margin-left: 2em;
+}
+
+.comentario-texto {
+    margin-top: 0.8em;
+}
+
+.linea-separadora-comentarios {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-gris-oscuro);
+    margin-bottom: 0.5em;
+}
