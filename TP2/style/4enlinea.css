@@ -56,7 +56,7 @@ main {
     grid-column: 1;
 }
 
-.bart-images{
+.bart-images {
     margin: 1.5;
     width: 100%;
 }
@@ -83,7 +83,7 @@ main {
     flex-direction: column;
 }
 
-.bart-image{
+.bart-image {
     width: 100%;
 }
 
@@ -182,7 +182,7 @@ main {
     flex-direction: column;
 }
 
-.avatar{
+.avatar {
     width: 13%;
 }
 
