@@ -14,11 +14,10 @@ btnCerrarMenu.addEventListener("click", (e) => {
 
 let canvas = document.getElementById('canva')
 let ctx = canvas.getContext('2d')
-let tablero  = new Tablero(4,ctx);
+
+let tablero= new Tablero(4,ctx)
 
 drawCanvas();
-
-
 
 function drawCanvas(){
     ctx.fillStyle = 'red';
