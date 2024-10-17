@@ -2,18 +2,18 @@ class Tablero {
     constructor(tamanioJuego,ctx) {
         this.tablero = this.crearTableroJuego(tamanioJuego);
         this.ctx = ctx;
+        this.columnas=tamanioJuego + 3
+        this.filas=tamanioJuego + 2
+        this.tamanioCelda=100;//chequear como hacemos esto dinamico
     }
 
     
-    crearTableroJuego(tamanioJuego) {//metodo para crear el tablero apartir de la modalidad del juego
-        let filas = tamanioJuego + 2;  //revisar cuanto agrandar
-        let columnas = tamanioJuego + 3; //revisar cuanto agrandar
+    crearTableroJuego(){//metodo para crear el tablero apartir de la modalidad del juego
         let tablero = [];
-
         // Crear la matriz
-        for (let i = 0; i < filas; i++) { 
+        for (let i = 0; i < this.filas; i++) { 
             tablero[i] = [];
-            for (let j = 0; j < columnas; j++) {
+            for (let j = 0; j < this.columnas; j++) {
                 tablero[i][j] = this.obtenerAleatorio();  //crear la instancia de casillero y poner que su estado es false (no ocupado)
             }
         }
@@ -26,8 +26,8 @@ class Tablero {
     
 
     obtenerCasilleroPorColumna(numeroColumna) { //metodo para decidir en que lugar vamos a poner la pieza (de la columna que quiere el lugar mas abajo posible)
-        let posFila = this.tablero.length - 1; // Comenzar desde la última fila
-        let asignada = false;
+        let posFila = this.tablero.length - 1; // Empiezo desde la ultima fila
+        let asignada = false; //variable para cortar la ejeuucion
     
         while (!asignada) {
             if (this.tablero[posFila][numeroColumna] == 1) { //aca se validara si el estado del casillero es disponible
@@ -40,17 +40,18 @@ class Tablero {
             
             if (posFila < 0) {
                 console.log("Columna llena");
-                break; // Salir del bucle si no hay más espacio
+                break; // Salir del bucle si no hay más espacio, avisar, o hacer algo
             }
         }
     }
 
     draw(){ //metodo para dibujar el tablero en el canvas
-
+        ctx.strokeStyle = 'black';
+        for (let fila = 0; fila < this.filas; fila++) { //recorro todas las filas
+            for (let columna = 0; columna < this.columnas; columna++) { //recorro las columnas
+                ctx.strokeRect(columna * this.tamanioCelda, fila * this.tamanioCelda, this.tamanioCelda, this.tamanioCelda);//dibujo la linea
+            }
+        }
     }
 
 }
-
-
-let t = new Tablero(4);
-t.obtenerCasilleroPorColumna(3);
