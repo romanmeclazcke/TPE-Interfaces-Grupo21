@@ -59,7 +59,7 @@ function crearFichas() {
     for (let i = 0; i < 10; i++) {
         let x = Math.random() * 100 + 50; // Ubico las fichas en un cuadrado de 100 *100
         let y = Math.random() * 100 + (canvas.height - 125); // Posicion y abajo a la izquierda
-        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, x, y, 25,''));
+        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, x, y, 25,'./images/batman.jpg')); //revisar tema imagen
     }
 
     // Crear fichas para el jugador 2 (dispersas en un cuadrado abajo a la derecha)
