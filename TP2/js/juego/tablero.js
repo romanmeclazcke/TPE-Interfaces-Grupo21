@@ -1,5 +1,5 @@
 class Tablero {
-    constructor(tamanioJuego,ctx) {
+    constructor(tamanioJuego, ctx) {
         this.columnas = tamanioJuego + 3; // Definición de columnas
         this.filas = tamanioJuego + 2; // Definición de filas
         this.tamanioCelda = 100; // Chequear como hacemos esto dinámico
@@ -8,14 +8,13 @@ class Tablero {
         console.log(this.tablero);
     }
 
-
     crearTableroJuego() {//metodo para crear el tablero apartir de la modalidad del juego
         let tablero = [];
         // Crear la matriz
         for (let i = 0; i < this.filas; i++) {
             tablero[i] = [];
             for (let j = 0; j < this.columnas; j++) {
-                tablero[i][j] = this.obtenerAleatorio();  //crear la instancia de casillero y poner que su estado es false (no ocupado)
+                tablero[i][j] = new Casillero(this.ctx, false);
             }
         }
         return tablero;
@@ -29,11 +28,11 @@ class Tablero {
         let asignada = false; //variable para cortar la ejeuucion
 
         while (!asignada) {
-            if (this.tablero[posFila][numeroColumna] == 1) { //aca se validara si el estado del casillero es disponible
+            if (this.tablero[posFila][numeroColumna].isOcupado()) { //aca se validara si el estado del casillero es disponible
                 posFila--; // muevo hacia arriba
             } else {
                 asignada = true;
-                this.tablero[posFila][numeroColumna] = "x"; // Asignar 'x' al primer espacio disponible (asiganar la ficha al casillero)
+                this.tablero[posFila][numeroColumna].isOcupado = true; // Asignar 'x' al primer espacio disponible (asiganar la ficha al casillero)
                 console.log("tablero", this.tablero);
             }
 
@@ -53,7 +52,7 @@ class Tablero {
         }
     }
 
-    getTablero(){
+    getTablero() {
         return this.tablero
     }
 }
