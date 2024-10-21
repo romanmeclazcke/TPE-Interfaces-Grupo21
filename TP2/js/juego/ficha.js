@@ -8,17 +8,21 @@ class Ficha {
         this.radio = radio;
         this.img = new Image();
         this.img.src = imgSrc;
+
+        this.img.onload = () => {
+            this.draw(); 
+        };
     }
 
     draw() {
         // Dibujar el círculo
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI);
-        this.ctx.fillStyle = this.color;
+        let image = this.ctx.createPattern(this.img, 'repeat');
+        this.ctx.fillStyle = image;
         this.ctx.fill();
         this.ctx.stroke();
         this.ctx.closePath();
-        this.ctx.drawImage(this.img, this.x - this.radio, this.y - this.radio, this.radio * 2, this.radio * 2); //revisar el dibujar la imagen
     }
 
     estaSeleccionada(posicionXMouse, posicionYMouse) {

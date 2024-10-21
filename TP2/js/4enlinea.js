@@ -20,7 +20,7 @@ canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mousemove', onMouseMove);
 
 
-let tablero = new Tablero(4, ctx)
+let tablero = new Tablero(4, ctx, canvas.width, canvas.height)
 let jugador1 = "j1"
 let jugador2 = "j2"
 let fichasJugador1 = []
@@ -30,13 +30,13 @@ let turno = ""
 
 start();
 
-function start(){
+function start() {
     turno = "j1"
     drawCanvas();
 }
 
 function drawCanvas() {
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     tablero.draw();
     crearFichas();
@@ -56,17 +56,17 @@ function dibujarFichas() {
 
 function crearFichas() {
     // Crear fichas para el jugador 1 (dispersas en un cuadrado abajo a la izquierda)
-    for (let i = 0; i < 10; i++) {
-        let x = Math.random() * 100 + 50; // Ubico las fichas en un cuadrado de 100 *100
-        let y = Math.random() * 100 + (canvas.height - 125); // Posicion y abajo a la izquierda
-        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, x, y, 25,'./images/batman.jpg')); //revisar tema imagen
+    for (let i = 0; i < 3; i++) {
+        let x = Math.random() * 100 + 25; // Ubico las fichas en un cuadrado de 100 *100
+        let y = Math.random() * 100 + (canvas.height - 150); // Posicion y abajo a la izquierda
+        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, x, y, 25, './images/batman.jpg')); //revisar tema imagen
     }
 
     // Crear fichas para el jugador 2 (dispersas en un cuadrado abajo a la derecha)
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 3; i++) {
         let x = Math.random() * 100 + (canvas.width - 125); // Cerca del  borde derecho del canvas
         let y = Math.random() * 100 + (canvas.height - 125); // Cerca del borde inferior
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, x, y, 25,''));
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, x, y, 25, './images/joker.webp'));
     }
 }
 
@@ -74,8 +74,6 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);//borra todo del canvas
     drawCanvas(); //redibujo todo el canvas
 }
-
-
 
 function onMouseDown(e) {
     const rect = canvas.getBoundingClientRect();
@@ -103,7 +101,7 @@ function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
 }
 
 
-function onMouseMove(e){
+function onMouseMove(e) {
 
 }
 
