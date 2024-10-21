@@ -27,6 +27,7 @@ let fichasJugador1 = []
 let fichasJugador2 = []
 let turno = ""
 let ultimaFichaClikeada = null;
+let tiempoLimite= 180; //segundos
 
 
 start();
@@ -42,6 +43,7 @@ function drawCanvas() {
     tablero.draw();
     crearFichas();
     dibujarFichas();
+    iniciarTimer();
 }
 
 function redibujar() {
@@ -53,7 +55,7 @@ function redibujar() {
 }
 
 
-function dibujarFichas() {
+function dibujarFichas() { //dibujo todas las fichas
     for (ficha of fichasJugador1) {
         ficha.draw();
     }
@@ -135,4 +137,26 @@ function cambiarTurno(){
     }else{
         turno="j1"
     }
+}
+
+function reiniciarJuego(){ //reinicio el juego
+    fichasJugador1=[]
+    fichasJugador2=[]
+    ultimaFichaClikeada=null;
+    tablero = new Tablero(4)
+
+    start();
+}
+
+function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo en caso de que el tiempo haya llegado a su limite
+    tiempoLimite=180; //reseteo el tiempo limite
+    let intervalo = setInterval(() => {
+        tiempoLimite--;
+        console.log("Tiempo restante: " + tiempoLimite)
+        if (tiempoLimite <= 0) {
+            clearInterval(intervalo);
+            reiniciarJuego();
+            alert("¡Tiempo agotado! El juego ha terminado.");
+        }
+    }, 1000);
 }
