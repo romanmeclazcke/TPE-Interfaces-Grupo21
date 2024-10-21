@@ -19,8 +19,9 @@ canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mousemove', onMouseMove);
 
-
-let tablero = new Tablero(4, ctx)
+let dimensionTablero = 4//revisir desde un input 
+let totalFichasPorJugador = (dimensionTablero+2)*( dimensionTablero+3)/2
+let tablero = new Tablero(dimensionTablero, ctx)
 let jugador1 = "j1"
 let jugador2 = "j2"
 let fichasJugador1 = []
@@ -28,6 +29,8 @@ let fichasJugador2 = []
 let turno = ""
 let ultimaFichaClikeada = null;
 let tiempoLimite= 180; //segundos
+
+console.log(totalFichasPorJugador)
 
 
 start();
@@ -67,14 +70,14 @@ function dibujarFichas() { //dibujo todas las fichas
 
 function crearFichas() {
     // Crear fichas para el jugador 1 (dispersas en un cuadrado abajo a la izquierda)
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < totalFichasPorJugador; i++) {
         let x = Math.random() * 100 + 50; // Ubico las fichas en un cuadrado de 100 *100
         let y = Math.random() * 100 + (canvas.height - 125); // Posicion y abajo a la izquierda
         fichasJugador1.push(new Ficha(ctx, 'red', jugador1, x, y, 25,'./images/batman.jpg')); //revisar tema imagen
     }
 
     // Crear fichas para el jugador 2 (dispersas en un cuadrado abajo a la derecha)
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < totalFichasPorJugador; i++) {
         let x = Math.random() * 100 + (canvas.width - 125); // Cerca del  borde derecho del canvas
         let y = Math.random() * 100 + (canvas.height - 125); // Cerca del borde inferior
         fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, x, y, 25,'./images/joker.webp'));
@@ -143,7 +146,7 @@ function reiniciarJuego(){ //reinicio el juego
     fichasJugador1=[]
     fichasJugador2=[]
     ultimaFichaClikeada=null;
-    tablero = new Tablero(4)
+    tablero = new Tablero(dimensionTablero)
 
     start();
 }
