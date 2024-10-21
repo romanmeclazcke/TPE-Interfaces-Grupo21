@@ -26,6 +26,7 @@ let jugador2 = "j2"
 let fichasJugador1 = []
 let fichasJugador2 = []
 let turno = ""
+let ultimaFichaClikeada = null;
 
 
 start();
@@ -41,6 +42,14 @@ function drawCanvas() {
     tablero.draw();
     crearFichas();
     dibujarFichas();
+}
+
+function redibujar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); //borro todo el canvas
+    ctx.fillStyle = 'red';
+    ctx.fillRect(0, 0, canvas.width, canvas.height); //pinto todo el fondo de rojo
+    tablero.draw(); // vuelvo a dibujar el tablero
+    dibujarFichas(); // vuelvo a dibujar todas las fichas
 }
 
 
@@ -66,7 +75,7 @@ function crearFichas() {
     for (let i = 0; i < 10; i++) {
         let x = Math.random() * 100 + (canvas.width - 125); // Cerca del  borde derecho del canvas
         let y = Math.random() * 100 + (canvas.height - 125); // Cerca del borde inferior
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, x, y, 25,''));
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, x, y, 25,'./images/joker.webp'));
     }
 }
 
@@ -84,30 +93,46 @@ function onMouseDown(e) {
     
     let fichaClikeada = obtenerFichaSeleccionada(x, y);
     if (fichaClikeada) {
-        console.log("Ficha seleccionada:", fichaClikeada);
+       ultimaFichaClikeada= fichaClikeada
     } else {
-        console.log("No se seleccionó ninguna ficha.");
+       ultimaFichaClikeada=null;
     }
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
-    let fichas = turno === "j1" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
+    let fichas = turno === "j2" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
 
     for (let ficha of fichas) { //recorro sus fichas y miro si alguna de las suyas esta selecionada
         if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse)) {
+            console.log(ficha)
             return ficha;
         }
     }
-
     return null; // Si no encontre ninguna ficha retorno null
 }
 
 
 function onMouseMove(e){
+    if(ultimaFichaClikeada!=null){
+        const rect = canvas.getBoundingClientRect(); // Obtener la posición del canvas
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;  
+        ultimaFichaClikeada.setearPosicion(mouseX,mouseY);
+        redibujar();
 
+    }
 }
 
 
 function onMouseUp(e){
+    ultimaFichaClikeada = null;
+    cambiarTurno(); //verificar que la ficha se haya seteado en un lugar y recien ahi cambiar el turno
+}
 
+function cambiarTurno(){
+    if(turno=="j1"){
+        turno= "j2"
+    }else{
+        turno="j1"
+    }
 }
