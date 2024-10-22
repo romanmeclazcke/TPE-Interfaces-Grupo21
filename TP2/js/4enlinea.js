@@ -30,9 +30,6 @@ let turno = ""
 let ultimaFichaClikeada = null;
 let tiempoLimite= 180; //segundos
 
-console.log(totalFichasPorJugador)
-
-
 start();
 
 function start(){

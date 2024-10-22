@@ -2,7 +2,7 @@ class Tablero {
     constructor(tamanioJuego, ctx) {
         this.columnas = tamanioJuego + 3; // Definición de columnas
         this.filas = tamanioJuego + 2; // Definición de filas
-        this.tamanioCelda = 100; // Chequear como hacemos esto dinámico
+        this.tamanioCelda = 80; // Chequear como hacemos esto dinámico
         this.ctx = ctx;
         this.tablero = this.crearTableroJuego(); // Crear el tablero después de definir filas y columnas
         console.log(this.tablero);
@@ -10,11 +10,25 @@ class Tablero {
 
     crearTableroJuego() {//metodo para crear el tablero apartir de la modalidad del juego
         let tablero = [];
+        // Obtener tamaño del canvas
+        const canvasWidth = this.ctx.canvas.width;
+        const canvasHeight = this.ctx.canvas.height;
+
+        // Calcular el tamaño total del tablero
+        const tableroWidth = this.columnas * this.tamanioCelda;
+        const tableroHeight = this.filas * this.tamanioCelda;
+
+        // Calcular el desplazamiento para centrar el tablero
+        const desplazamientoX = (canvasWidth - tableroWidth) / 2; 
+        const desplazamientoY = (canvasHeight - tableroHeight) / 2;
+
         // Crear la matriz
         for (let i = 0; i < this.filas; i++) {
             tablero[i] = [];
             for (let j = 0; j < this.columnas; j++) {
-                tablero[i][j] = new Casillero(this.ctx, false);
+                const x = desplazamientoX + j * this.tamanioCelda; // Calculo posición x de la ceda
+                const y = desplazamientoY + i * this.tamanioCelda; // Calculo posición y de la cedla
+                tablero[i][j] = new Casillero(this.ctx, false, '././images/casilla-imagen.png', x, y, this.tamanioCelda);
             }
         }
         return tablero;
@@ -43,14 +57,14 @@ class Tablero {
         }
     }
 
-    draw() { //metodo para dibujar el tablero en el canvas
-        ctx.strokeStyle = 'black';
-        for (let fila = 0; fila < this.filas; fila++) { //recorro todas las filas
-            for (let columna = 0; columna < this.columnas; columna++) { //recorro las columnas
-                ctx.strokeRect(columna * this.tamanioCelda, fila * this.tamanioCelda, this.tamanioCelda, this.tamanioCelda);//dibujo la linea
+    draw() {//metodo para dibujar el tablero en el canvas
+        for (let fila = 0; fila < this.filas; fila++) {
+            for (let columna = 0; columna < this.columnas; columna++) {
+                this.tablero[fila][columna].draw();//dibujo el casillero
             }
         }
     }
+    
 
     getTablero() {
         return this.tablero
