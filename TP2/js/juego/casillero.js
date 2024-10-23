@@ -20,6 +20,8 @@ class Casillero {
 
     async draw() {
         await this.imagenCargada; 
+        this.ctx.fillStyle='rgba(209, 209, 209, 0.8)'
+        this.ctx.fillRect(this.x,this.y,this.tamanioCelda,this.tamanioCelda)//color del fondo de la casilla
         this.ctx.drawImage(this.img, this.x, this.y, this.tamanioCelda, this.tamanioCelda); 
     }
     
