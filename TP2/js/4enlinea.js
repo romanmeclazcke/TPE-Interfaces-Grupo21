@@ -48,7 +48,7 @@ function drawCanvas() {
 
 function redibujar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); //borro todo el canvas
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height); //pinto todo el fondo de rojo
     tablero.draw(); // vuelvo a dibujar el tablero
     dibujarFichas(); // vuelvo a dibujar todas las fichas
@@ -107,7 +107,7 @@ function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
     let fichas = turno === "j2" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
 
     for (let ficha of fichas) { //recorro sus fichas y miro si alguna de las suyas esta selecionada
-        if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse)) {
+        if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse)&& ficha.getFueMovida()==false) { //revisar que error hay (l;a fiucha se movio pero deja moverla igual)
             console.log(ficha)
             return ficha;
         }
@@ -130,6 +130,9 @@ function onMouseMove(e){
 
 function onMouseUp(e){
     ultimaFichaClikeada = null;
+    if(ultimaFichaClikeada!=null){
+        this.ultimaFichaClikeada.setFueMovida(); //revisar esto, cuando la ficha se seteo en un lugar no permitir volver a moverla
+    }
     cambiarTurno(); //verificar que la ficha se haya seteado en un lugar y recien ahi cambiar el turno
 }
 

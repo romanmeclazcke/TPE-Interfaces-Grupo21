@@ -28,6 +28,9 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 const x = desplazamientoX + j * this.tamanioCelda; // Calculo posición x de la ceda
                 const y = desplazamientoY + i * this.tamanioCelda; // Calculo posición y de la cedla
+                if (i == 0) { // Si está en la primera fila
+                    //TODO:aca creo que deberiamos crear los hits
+                }
                 tablero[i][j] = new Casillero(this.ctx, false, '././images/casilla-imagen.png', x, y, this.tamanioCelda);
             }
         }
@@ -39,7 +42,7 @@ class Tablero {
     }
     obtenerCasilleroPorColumna(numeroColumna) { //metodo para decidir en que lugar vamos a poner la pieza (de la columna que quiere el lugar mas abajo posible)
         let posFila = this.tablero.length - 1; // Empiezo desde la ultima fila
-        let asignada = false; //variable para cortar la ejeuucion
+        let asignada = false; //variable para cortar la ejecucion
 
         while (!asignada) {
             if (this.tablero[posFila][numeroColumna].isOcupado()) { //aca se validara si el estado del casillero es disponible
@@ -48,6 +51,7 @@ class Tablero {
                 asignada = true;
                 this.tablero[posFila][numeroColumna].isOcupado = true; // Asignar 'x' al primer espacio disponible (asiganar la ficha al casillero)
                 console.log("tablero", this.tablero);
+                return this.tablero[posFila][numeroColumna]
             }
 
             if (posFila < 0) {
@@ -64,10 +68,14 @@ class Tablero {
             }
         }
     }
-    
+
 
     getTablero() {
         return this.tablero
+    }
+
+    existeGanador() {
+
     }
 }
 
