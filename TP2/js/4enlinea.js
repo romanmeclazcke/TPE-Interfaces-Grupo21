@@ -72,13 +72,13 @@ function crearFichas() {
     
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador1 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, xJugador1, yJugador1, 25, './images/batman.jpg'));
+        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, xJugador1, yJugador1, 20, './images/batman.jpg'));
     }
 
 
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador2 = canvas.height -(50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, xJugador2, yJugador2, 25, './images/joker.webp'));
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, xJugador2, yJugador2, 20, './images/joker.webp'));
     }
 }
 
@@ -99,7 +99,7 @@ function onMouseDown(e) {
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
-    let fichas = turno === "j2" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
+    let fichas = turno == "j2" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
 
     for (let ficha of fichas) { //recorro sus fichas y miro si alguna de las suyas esta selecionada
         if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse)&& ficha.getFueMovida()==false) { //revisar que error hay (l;a fiucha se movio pero deja moverla igual)
@@ -118,16 +118,21 @@ function onMouseMove(e){
             const mouseY = e.clientY - rect.top;  
         ultimaFichaClikeada.setearPosicion(mouseX,mouseY);
         redibujar();
-
     }
 }
 
 
 function onMouseUp(e){
-    ultimaFichaClikeada = null;
+    let ultimaMovida =ultimaFichaClikeada
     if(ultimaFichaClikeada!=null){
-        this.ultimaFichaClikeada.setFueMovida(); //revisar esto, cuando la ficha se seteo en un lugar no permitir volver a moverla
+        //obtener columna aparitir de la posicion
+        //si me da una casilla seteo la ficha
+        //setear fue movida solo si LA FICHA DE SETEO EN UN LUGAR 
+        //si no hay una casilla disponible volver la ficha a su posicion anterior (tenemos que guardarla)
+        ultimaMovida.setFueMovida(); //revisar esto, cuando la ficha se seteo en un lugar no permitir volver a moverla
     }
+    ultimaFichaClikeada = null;
+    ultimaMovida=null
     cambiarTurno(); //verificar que la ficha se haya seteado en un lugar y recien ahi cambiar el turno
 }
 

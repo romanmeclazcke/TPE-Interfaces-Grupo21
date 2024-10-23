@@ -6,6 +6,7 @@ class Casillero {
         this.img.src = imgSrc;
         this.x=x
         this.y=y
+        this.fichaSeteada=null
         this.tamanioCelda=tamanio;
         this.imagenCargada = new Promise((resolve) => {
             this.img.onload = () => {
@@ -16,6 +17,10 @@ class Casillero {
 
     isOcupado() {
         return this.isOcupado;
+    }
+
+    setearFicha(ficha){
+        this.fichaSeteada=ficha;
     }
 
     async draw() {

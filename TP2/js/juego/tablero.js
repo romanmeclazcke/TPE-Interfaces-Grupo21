@@ -2,7 +2,7 @@ class Tablero {
     constructor(tamanioJuego, ctx) {
         this.columnas = tamanioJuego + 3; // Definición de columnas
         this.filas = tamanioJuego + 2; // Definición de filas
-        this.tamanioCelda = 80; // Chequear como hacemos esto dinámico
+        this.tamanioCelda = 60; // Chequear como hacemos esto dinámico
         this.ctx = ctx;
         this.tablero = this.crearTableroJuego(); // Crear el tablero después de definir filas y columnas
         console.log(this.tablero);
