@@ -6,6 +6,7 @@ class Ficha {
         this.x = x;
         this.y = y;
         this.radio = radio;
+        this.fueMovida=false;
         this.img = new Image();
         this.img.src = imgSrc;
         this.imagenCargada = new Promise((resolve) => {
@@ -46,4 +47,19 @@ class Ficha {
         this.x = x;
         this.y = y;
     }
+
+    getPosicion(){
+        return {
+            x: this.x, y: this.y
+        };
+    }
+
+    setFueMovida(){
+        this.fueMovida=true;
+    }
+
+    getFueMovida(){
+        return this.fueMovida;
+    }
+
 }

@@ -22,4 +22,10 @@ class Casillero {
         await this.imagenCargada; 
         this.ctx.drawImage(this.img, this.x, this.y, this.tamanioCelda, this.tamanioCelda); 
     }
+    
+    getPosicion(){
+        return {
+            x:this.x,y:this.y
+        }
+    }
 }
