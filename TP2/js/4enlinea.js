@@ -66,20 +66,22 @@ function dibujarFichas() { //dibujo todas las fichas
 }
 
 function crearFichas() {
-    // Crear fichas para el jugador 1 (dispersas en un cuadrado abajo a la izquierda)
+    let espacioEntreFichas = 10; // Espacio entre cada ficha en la columna
+    let xJugador1 = 60; // Posición x fija para el jugador 1 (a la izquierda)
+    let xJugador2 = canvas.width - 60; // Posición x fija para el jugador 2 (a la derecha)
+    
     for (let i = 0; i < totalFichasPorJugador; i++) {
-        let x = Math.random() * 100 + 50; // Ubico las fichas en un cuadrado de 100 *100
-        let y = Math.random() * 100 + (canvas.height - 125); // Posicion y abajo a la izquierda
-        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, x, y, 25,'./images/batman.jpg'));
+        let yJugador1 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
+        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, xJugador1, yJugador1, 25, './images/batman.jpg'));
     }
 
-    // Crear fichas para el jugador 2 (dispersas en un cuadrado abajo a la derecha)
+
     for (let i = 0; i < totalFichasPorJugador; i++) {
-        let x = Math.random() * 100 + (canvas.width - 125); // Cerca del  borde derecho del canvas
-        let y = Math.random() * 100 + (canvas.height - 125); // Cerca del borde inferior
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, x, y, 25,'./images/joker.webp'));
+        let yJugador2 = canvas.height -(50 + i * espacioEntreFichas); // Espacio entre cada ficha
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, xJugador2, yJugador2, 25, './images/joker.webp'));
     }
 }
+
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);//borra todo del canvas
