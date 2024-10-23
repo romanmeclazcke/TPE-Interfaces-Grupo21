@@ -40,9 +40,10 @@ function start(){
 function drawCanvas() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    tablero.draw();
     crearFichas();
+    tablero.drawFondo();
     dibujarFichas();
+    tablero.draw();
     iniciarTimer();
 }
 
@@ -50,8 +51,9 @@ function redibujar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); //borro todo el canvas
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height); //pinto todo el fondo de rojo
-    tablero.draw(); // vuelvo a dibujar el tablero
+    tablero.drawFondo();
     dibujarFichas(); // vuelvo a dibujar todas las fichas
+    tablero.draw(); // vuelvo a dibujar el tablero
 }
 
 

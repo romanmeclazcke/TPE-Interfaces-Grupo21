@@ -24,12 +24,14 @@ class Casillero {
     }
 
     async draw() {
-        await this.imagenCargada; 
-        this.ctx.fillStyle='rgba(209, 209, 209, 0.8)'
-        this.ctx.fillRect(this.x,this.y,this.tamanioCelda,this.tamanioCelda)//color del fondo de la casilla
+        await this.imagenCargada;
         this.ctx.drawImage(this.img, this.x, this.y, this.tamanioCelda, this.tamanioCelda); 
     }
     
+    drawFondo(){
+        this.ctx.fillStyle='rgba(209, 209, 209, 0.8)'
+        this.ctx.fillRect(this.x,this.y,this.tamanioCelda,this.tamanioCelda)//color del fondo de la casilla
+    }
     getPosicion(){
         return {
             x:this.x,y:this.y

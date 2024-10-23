@@ -69,6 +69,14 @@ class Tablero {
         }
     }
 
+    drawFondo(){
+        for (let fila = 0; fila < this.filas; fila++) {
+            for (let columna = 0; columna < this.columnas; columna++) {
+                this.tablero[fila][columna].drawFondo();//dibujo el casillero
+            }
+        }
+    }
+
 
     getTablero() {
         return this.tablero
