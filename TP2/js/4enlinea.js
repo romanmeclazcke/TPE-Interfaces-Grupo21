@@ -95,12 +95,7 @@ function onMouseDown(e) {
     const x = e.clientX - rect.left; 
     const y = e.clientY - rect.top; 
     
-    let fichaClikeada = obtenerFichaSeleccionada(x, y);
-    if (fichaClikeada) {
-       ultimaFichaClikeada= fichaClikeada
-    } else {
-       ultimaFichaClikeada=null;
-    }
+    ultimaFichaClikeada = obtenerFichaSeleccionada(x, y);
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
