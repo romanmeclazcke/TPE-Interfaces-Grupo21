@@ -143,8 +143,7 @@ function reiniciarJuego(){ //reinicio el juego
     fichasJugador1=[]
     fichasJugador2=[]
     ultimaFichaClikeada=null;
-    tablero = new Tablero(dimensionTablero)
-
+    tablero = new Tablero(dimensionTablero,ctx)
     start();
 }
 
