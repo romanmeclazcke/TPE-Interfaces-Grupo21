@@ -38,7 +38,7 @@ function start(){
 }
 
 function drawCanvas() {
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     tablero.draw();
     crearFichas();
