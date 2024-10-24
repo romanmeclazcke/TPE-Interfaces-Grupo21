@@ -19,7 +19,7 @@ canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mousemove', onMouseMove);
 
-let dimensionTablero = 4//revisir desde un input 
+let dimensionTablero = 5//revisir desde un input 
 let totalFichasPorJugador = (dimensionTablero+2)*( dimensionTablero+3)/2
 let tablero = new Tablero(dimensionTablero, ctx)
 let jugador1 = "j1"
@@ -127,11 +127,18 @@ function onMouseMove(e){
 function onMouseUp(e){
     let ultimaMovida =ultimaFichaClikeada
     if(ultimaFichaClikeada!=null){
+        let cordenadasUltimaFicha =  ultimaFichaClikeada.getPosicion();
+        if(tablero.esPosicionValida(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y)){
+            ultimaMovida.setFueMovida(); //revisar esto, cuando la ficha se seteo en un lugar no permitir volver a moverla
+            console.log("Valida Pos")
+            //aca se
+        }else{
+            console.log("Invalida pos")
+        }
         //obtener columna aparitir de la posicion
         //si me da una casilla seteo la ficha
         //setear fue movida solo si LA FICHA DE SETEO EN UN LUGAR 
         //si no hay una casilla disponible volver la ficha a su posicion anterior (tenemos que guardarla)
-        ultimaMovida.setFueMovida(); //revisar esto, cuando la ficha se seteo en un lugar no permitir volver a moverla
     }
     ultimaFichaClikeada = null;
     ultimaMovida=null
