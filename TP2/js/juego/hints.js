@@ -11,13 +11,16 @@ class Hints{
                 resolve();
             };
         });
+        this.visible = false;
     }
-
-
 
     async draw(){//dibujo la imagen del hint
         await this.imagenCargada;
-        this.ctx.drawImage(this.img, this.x, this.y, this.tamanio, this.tamanio);
+        
+        if (this.visible) {
+            this.ctx.drawImage(this.img, this.x, this.y, this.tamanio, this.tamanio);
+        }
+        
     }
 
     estaDentro(fichaX, fichaY) {//verifico si la posicion donde solte la ficha esta dentro del area del hint
@@ -25,6 +28,14 @@ class Hints{
             return true; //retorno true si esta dentro
         }
         return false; //retorno false si esta afuera
+    }
+
+    mostrar() {
+        this.visible = true;
+    }
+
+    ocultar() {
+        this.visible = false;
     }
     
 }

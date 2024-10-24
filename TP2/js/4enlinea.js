@@ -22,19 +22,23 @@ canvas.addEventListener('mousemove', onMouseMove);
 let dimensionTablero = 5//revisir desde un input 
 let totalFichasPorJugador = (dimensionTablero + 2) * (dimensionTablero + 3) / 2
 let tablero = new Tablero(dimensionTablero, ctx)
-let jugador1 = "j1"
-let jugador2 = "j2"
+const jugadores = {
+    j1: "Jugador 1",
+    j2: "Jugador 2"
+};
 let fichasJugador1 = []
 let fichasJugador2 = []
 let turno = ""
 let ultimaFichaClikeada = null;
 let tiempoLimite = 180; //segundos
 let cordenadasUltimaFichaSeleccionada = null;
+let hints = [];
 
 start();
 
 function start() {
-    turno = "j1"
+    turno = Math.random() < 0.5 ? "j1" : "j2";
+    hints = tablero.crearHints();
     drawCanvas();
 }
 
@@ -43,6 +47,7 @@ function drawCanvas() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     crearFichas();
     tablero.drawFondo();
+    dibujarTurno();
     dibujarFichas();
     tablero.draw();
     iniciarTimer();
@@ -53,10 +58,11 @@ function redibujar() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height); //pinto todo el fondo de rojo
     tablero.drawFondo();
+    dibujarTurno();
     dibujarFichas(); // vuelvo a dibujar todas las fichas
     tablero.draw(); // vuelvo a dibujar el tablero
+    hints.forEach(hint => hint.draw());
 }
-
 
 function dibujarFichas() { //dibujo todas las fichas
     for (ficha of fichasJugador1) {
@@ -75,13 +81,13 @@ function crearFichas() {
     
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador1 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador1.push(new Ficha(ctx, 'red', jugador1, xJugador1, yJugador1, 20, './images/batman.jpg'));
+        fichasJugador1.push(new Ficha(ctx, 'red', jugadores.j1, xJugador1, yJugador1, 20, './images/batman.jpg'));
     }
 
 
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador2 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugador2, xJugador2, yJugador2, 20, './images/joker.webp'));
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugadores.j2, xJugador2, yJugador2, 20, './images/joker.webp'));
     }
 }
 
@@ -101,6 +107,9 @@ function onMouseDown(e) {
     ultimaFichaClikeada = obtenerFichaSeleccionada(x, y);
     if (ultimaFichaClikeada != null) {
         cordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
+
+        hints.forEach(hint => hint.mostrar());
+        redibujar();
     }
 }
 
@@ -132,14 +141,16 @@ function onMouseUp(e) {
     let ultimaMovida = ultimaFichaClikeada;
     if (ultimaFichaClikeada != null) {
         let cordenadasUltimaFicha = ultimaFichaClikeada.getPosicion();
+        hints.forEach(hint => hint.ocultar());
+        redibujar();
 
-        
         if (tablero.esPosicionValida(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y)) {
             ultimaMovida.setFueMovida(); //Si se movio y la posicion es valida marco para que no se pueda volver a mover
             //obtener columna aparitir de la posicion
             //si me da una casilla seteo la ficha
             //si no hay una casilla disponible volver la ficha a su posicion anterior (tenemos que guardarla)
             console.log("Posición válida");
+            cambiarTurno();
         } else {
             // Si la posición no es válida, restaura la ficha a su posición anterior
             ultimaMovida.setearPosicion(cordenadasUltimaFichaSeleccionada.x, cordenadasUltimaFichaSeleccionada.y);
@@ -147,16 +158,19 @@ function onMouseUp(e) {
         }
     }
     ultimaFichaClikeada = null;
-    cambiarTurno();
 }
 
+function dibujarTurno() { // TODO -> Estetizarlo mejor
+    const texto = `Turno de: ${jugadores[turno]}`;
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(texto, canvas.width / 2, 30);
+}
 
 function cambiarTurno() {
-    if (turno == "j1") {
-        turno = "j2"
-    } else {
-        turno = "j1"
-    }
+    turno = (turno === "j1") ? "j2" : "j1";
+    redibujar();
 }
 
 function reiniciarJuego() { //reinicio el juego
