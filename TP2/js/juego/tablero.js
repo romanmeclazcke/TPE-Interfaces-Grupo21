@@ -28,9 +28,6 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 const x = desplazamientoX + j * this.tamanioCelda; // Calculo posición x de la ceda
                 const y = desplazamientoY + i * this.tamanioCelda; // Calculo posición y de la cedla
-                if (i == 0) { // Si está en la primera fila
-                    //TODO:aca creo que deberiamos crear los hits
-                }
                 tablero[i][j] = new Casillero(this.ctx, false, '././images/casilla-imagen.png', x, y, this.tamanioCelda);
             }
         }
