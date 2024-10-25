@@ -142,14 +142,13 @@ function onMouseUp(e) {
     if (ultimaFichaClikeada != null) {
         let cordenadasUltimaFicha = ultimaFichaClikeada.getPosicion();
         hints.forEach(hint => hint.ocultar());//oculto las hists cuando solte la ficha
+
         if (tablero.esPosicionValida(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y)) {//verifico que solte la ficha en una hit valida
             let numeroColumna = tablero.obtenerColumna(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y);//obtengo el numero de columna donde solte la ficha
             if(numeroColumna!=null){
                 let casilla =tablero.obtenerCasilleroPorColumna(numeroColumna); //si obtuve un numero de columna  valido, obtengo la casilla donde puedo va a ir a parar la ficha
                 if(casilla!=null){
-                    casilla.setearFicha(ultimaFichaClikeada) //seteo la ficha en la casilla
-                    let cordenadasCasilla= casilla.getPosicion(); //obtengo las cordenadas de la casilla para mover la ficha a esa posicion
-                    ultimaFichaClikeada.setearPosicion(cordenadasCasilla.x+casilla.getTamanio()/2,cordenadasCasilla.y+casilla.getTamanio()/2) //seteo la ficha en la posicion de la casilla, sumo el tamanio /2 para centarla vertical y horizontalmente
+                    animarCaida(ultimaFichaClikeada, casilla);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
                     redibujar();
                     cambiarTurno();
@@ -165,6 +164,42 @@ function onMouseUp(e) {
         canvas.style.cursor = "default";
     }
     ultimaFichaClikeada = null;
+}
+
+function animarCaida(ficha, casilla) {
+    const { x: xFinal, y: yFinal } = casilla.getPosicion(); //Posición destino
+    const xInicial = ficha.getPosicion().x;
+
+    let velocidadY = 0;
+    const gravedad = 0.6; //Aceleración hacia abajo
+    const duracionRebote = 0.4;
+
+    function mover() {
+        //Calculo nueva posición en Y
+        velocidadY += gravedad;
+        let yActual = ficha.getPosicion().y + velocidadY;
+
+        //Rebotar si alcanzó la casilla
+        if (yActual >= yFinal) {
+            velocidadY *= -duracionRebote; //Invierte la velocidad y reduce para el rebote
+            yActual = yFinal; //Para que la ficha no se pase
+        }
+
+        ficha.setearPosicion(xInicial, yActual);
+        redibujar();
+
+        //Sigue moviendo si no se llegó a la posición final
+        if (Math.abs(velocidadY) > 0.1 || yActual < yFinal) {
+            requestAnimationFrame(mover);
+        } else {
+            // Termina animación y seteo correctamente la posición
+            casilla.setearFicha(ultimaFichaClikeada) //seteo la ficha en la casilla
+            let cordenadasCasilla= casilla.getPosicion(); //obtengo las cordenadas de la casilla para mover la ficha a esa posicion
+            ultimaFichaClikeada.setearPosicion(cordenadasCasilla.x+casilla.getTamanio()/2,cordenadasCasilla.y+casilla.getTamanio()/2) //seteo la ficha en la posicion de la casilla, sumo el tamanio /2 para centarla vertical y horizontalmente
+        }
+    }
+
+    mover();
 }
 
 function dibujarTurno() { // TODO -> Estetizarlo mejor
