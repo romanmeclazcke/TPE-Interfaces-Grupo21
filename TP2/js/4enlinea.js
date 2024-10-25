@@ -114,7 +114,7 @@ function onMouseDown(e) {
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
-    let fichas = turno == "j2" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
+    let fichas = turno == "j1" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
 
     for (let ficha of fichas) { //recorro sus fichas y miro si alguna de las suyas esta selecionada
         if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse) && ficha.getFueMovida() == false) { //revisar que error hay (l;a fiucha se movio pero deja moverla igual)
