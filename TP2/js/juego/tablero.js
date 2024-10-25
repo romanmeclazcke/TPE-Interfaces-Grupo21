@@ -19,7 +19,7 @@ class Tablero {
         const tableroHeight = this.filas * this.tamanioCelda;
 
         // Calcular el desplazamiento para centrar el tablero
-        const desplazamientoX = (canvasWidth - tableroWidth) / 2; 
+        const desplazamientoX = (canvasWidth - tableroWidth) / 2;
         const desplazamientoY = (canvasHeight - tableroHeight) / 2;
 
         // Crear la matriz
@@ -38,13 +38,13 @@ class Tablero {
         let hints = [];
         const canvasWidth = this.ctx.canvas.width;
         const tableroWidth = this.columnas * this.tamanioCelda;
-        const desplazamientoX = (canvasWidth - tableroWidth) / 2; 
-        const posicionY = (this.ctx.canvas.height - this.filas * this.tamanioCelda) / 2 -30; //calculo donde ira las hinst en el eje y, las situo 30px por encima del tablero
+        const desplazamientoX = (canvasWidth - tableroWidth) / 2;
+        const posicionY = (this.ctx.canvas.height - this.filas * this.tamanioCelda) / 2 - 30; //calculo donde ira las hinst en el eje y, las situo 30px por encima del tablero
         for (let i = 0; i < this.columnas; i++) {
-            const x = (desplazamientoX + i * this.tamanioCelda)+this.tamanioCelda/2; 
-            hints.push(new Hints(this.ctx, x, posicionY, this.tamanioCelda,20));
+            const x = (desplazamientoX + i * this.tamanioCelda) + this.tamanioCelda / 2;
+            hints.push(new Hints(this.ctx, x, posicionY, this.tamanioCelda, 20));
         }
-    
+
         return hints;
     } //revisar tema hinst (Es responsabilidad del tablero??)
 
@@ -57,7 +57,7 @@ class Tablero {
         this.drawHinsts(); //dibujo las hints
     }
 
-    drawFondo(){
+    drawFondo() {
         for (let fila = 0; fila < this.filas; fila++) {
             for (let columna = 0; columna < this.columnas; columna++) {
                 this.tablero[fila][columna].drawFondo();//dibujo el casillero
@@ -65,15 +65,15 @@ class Tablero {
         }
     }
 
-    drawHinsts(){
-        for(let hint of this.hints){
+    drawHinsts() {
+        for (let hint of this.hints) {
             hint.draw();
         }
     }
 
     obtenerCasilleroPorColumna(numeroColumna) {
         let posFila = this.tablero.length - 1; // Empezamos desde la última fila
-        
+
         // Iteramos desde abajo hacia arriba hasta encontrar una casilla disponible
         while (posFila >= 0) {
             if (this.tablero[posFila][numeroColumna].estaLibre()) {
@@ -81,23 +81,23 @@ class Tablero {
             }
             posFila--;
         }
-        
+
         // Si llegamos aquí, significa que la columna está llena
         return null;
     }
 
-    esPosicionValida(fichaX,fichaY){ //pregunto a mis hints si la posocion donde se solto la ficha es valida
-        for(let hint of this.hints){
-            if(hint.estaDentro(fichaX,fichaY)){
+    esPosicionValida(fichaX, fichaY) { //pregunto a mis hints si la posocion donde se solto la ficha es valida
+        for (let hint of this.hints) {
+            if (hint.estaDentro(fichaX, fichaY)) {
                 return true
             }
         }
         return false
     }
 
-    obtenerColumna(fichaX,fichaY){
-        for(let i=0;i<this.hints.length;i++){
-            if(this.hints[i].estaDentro(fichaX,fichaY)){
+    obtenerColumna(fichaX, fichaY) {
+        for (let i = 0; i < this.hints.length; i++) {
+            if (this.hints[i].estaDentro(fichaX, fichaY)) {
                 return i;
             }
         }
@@ -111,6 +111,25 @@ class Tablero {
 
     existeGanador() {
 
+    }
+
+    esZonaProhibida(x, y) { //checkea si el mouse esta dentro del area del tablero
+        const canvasWidth = this.ctx.canvas.width;
+        const canvasHeight = this.ctx.canvas.height;
+
+        const tableroWidth = this.columnas * this.tamanioCelda;
+        const tableroHeight = this.filas * this.tamanioCelda;
+
+        const desplazamientoX = (canvasWidth - tableroWidth) / 2;
+        const desplazamientoY = (canvasHeight - tableroHeight) / 2;
+
+        // Verifica si x e y están dentro de los límites del tablero
+        return (
+            x >= desplazamientoX &&
+            x <= desplazamientoX + tableroWidth &&
+            y >= desplazamientoY &&
+            y <= desplazamientoY + tableroHeight
+        );
     }
 }
 

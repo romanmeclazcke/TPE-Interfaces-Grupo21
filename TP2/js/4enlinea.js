@@ -131,6 +131,7 @@ function onMouseMove(e) {
         const rect = canvas.getBoundingClientRect(); // Obtener la posición del canvas
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
+        checkearZonaProhibida(mouseX,mouseY)
         ultimaFichaClikeada.setearPosicion(mouseX, mouseY);
         redibujar();
     }
@@ -161,6 +162,7 @@ function onMouseUp(e) {
             ultimaFichaClikeada.setearPosicion(cordenadasUltimaFichaSeleccionada.x, cordenadasUltimaFichaSeleccionada.y);// Si la posición no es válida, restaura la ficha a su posición anterior
             redibujar(); // Redibuja el canvas
         }
+        canvas.style.cursor = "default";
     }
     ultimaFichaClikeada = null;
 }
@@ -197,4 +199,13 @@ function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo 
             alert("¡Tiempo agotado! El juego ha terminado.");
         }
     }, 1000);
+}
+
+
+function checkearZonaProhibida(x,y){ //checkea si esta en zona de tablero
+    if(tablero.esZonaProhibida(x,y)){ // si esta dentro pongo el cursor en not-allowed 
+        canvas.style.cursor = "not-allowed";
+    }else{
+        canvas.style.cursor = "pointer"; //si esta fuera lo dejo en pointer(agarrando ficha)
+    }
 }
