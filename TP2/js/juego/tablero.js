@@ -28,7 +28,7 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 const x = desplazamientoX + j * this.tamanioCelda; // Calculo posición x de la ceda
                 const y = desplazamientoY + i * this.tamanioCelda; // Calculo posición y de la cedla
-                tablero[i][j] = new Casillero(this.ctx, false, '././images/casilla-imagen.png', x, y, this.tamanioCelda);
+                tablero[i][j] = new Casillero(this.ctx, '././images/casilla-imagen.png', x, y, this.tamanioCelda);
             }
         }
         return tablero;
@@ -41,9 +41,8 @@ class Tablero {
         const desplazamientoX = (canvasWidth - tableroWidth) / 2; 
     
         for (let i = 0; i < this.columnas; i++) {
-            const x = (desplazamientoX + i * this.tamanioCelda)+this.tamanioCelda/4; 
-            const y = this.tamanioCelda; 
-            hints.push(new Hints(this.ctx, x, this.tamanioCelda, this.tamanioCelda/2, '././images/hint.png'));
+            const x = (desplazamientoX + i * this.tamanioCelda)+this.tamanioCelda/2; 
+            hints.push(new Hints(this.ctx, x, this.tamanioCelda, this.tamanioCelda,20));
         }
     
         return hints;
@@ -72,25 +71,19 @@ class Tablero {
         }
     }
 
-    obtenerCasilleroPorColumna(numeroColumna) { //metodo para decidir en que lugar vamos a poner la pieza (de la columna que quiere el lugar mas abajo posible)
-        let posFila = this.tablero.length - 1; // Empiezo desde la ultima fila
-        let asignada = false; //variable para cortar la ejecucion
-
-        while (!asignada) {
-            if (this.tablero[posFila][numeroColumna].isOcupado()) { //aca se validara si el estado del casillero es disponible
-                posFila--; // muevo hacia arriba
-            } else {
-                asignada = true;
-                this.tablero[posFila][numeroColumna].isOcupado = true; // Asignar 'x' al primer espacio disponible (asiganar la ficha al casillero)
-                console.log("tablero", this.tablero);
-                return this.tablero[posFila][numeroColumna]
+    obtenerCasilleroPorColumna(numeroColumna) {
+        let posFila = this.tablero.length - 1; // Empezamos desde la última fila
+        
+        // Iteramos desde abajo hacia arriba hasta encontrar una casilla disponible
+        while (posFila >= 0) {
+            if (this.tablero[posFila][numeroColumna].estaLibre()) {
+                return this.tablero[posFila][numeroColumna];
             }
-
-            if (posFila < 0) {
-                console.log("Columna llena");
-                break; // Salir del bucle si no hay más espacio, avisar, o hacer algo
-            }
+            posFila--;
         }
+        
+        // Si llegamos aquí, significa que la columna está llena
+        return null;
     }
 
     esPosicionValida(fichaX,fichaY){ //pregunto a mis hints si la posocion donde se solto la ficha es valida
@@ -100,6 +93,15 @@ class Tablero {
             }
         }
         return false
+    }
+
+    obtenerColumna(fichaX,fichaY){
+        for(let i=0;i<this.hints.length;i++){
+            if(this.hints[i].estaDentro(fichaX,fichaY)){
+                return i;
+            }
+        }
+        return null
     }
 
 

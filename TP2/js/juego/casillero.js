@@ -1,7 +1,6 @@
 class Casillero {
-    constructor(ctx, isOcupado, imgSrc,x,y,tamanio) {
+    constructor(ctx, imgSrc,x,y,tamanio) {
         this.ctx = ctx;
-        this.isOcupado = isOcupado;
         this.img = new Image();
         this.img.src = imgSrc;
         this.x=x
@@ -15,8 +14,8 @@ class Casillero {
         });
     }
 
-    isOcupado() {
-        return this.isOcupado;
+    estaLibre() {
+        return this.fichaSeteada==null;
     }
 
     setearFicha(ficha){
@@ -36,5 +35,9 @@ class Casillero {
         return {
             x:this.x,y:this.y
         }
+    }
+
+    getTamanio(){
+        return this.tamanioCelda
     }
 }

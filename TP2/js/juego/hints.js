@@ -1,33 +1,27 @@
-class Hints{
-    constructor(ctx,x,y,tamanio,imgSrc){
-        this.ctx=ctx
-        this.x=x
-        this.y=y
-        this.tamanio=tamanio
-        this.img = new Image();
-        this.img.src = imgSrc;
-        this.imagenCargada = new Promise((resolve) => {
-            this.img.onload = () => {
-                resolve();
-            };
-        });
+class Hints {
+    constructor(ctx, x, y, tamanio, radio) {
+        this.ctx = ctx
+        this.x = x
+        this.y = y
+        this.tamanio = tamanio
         this.visible = false;
+        this.radio=radio
     }
 
-    async draw(){//dibujo la imagen del hint
-        await this.imagenCargada;
-        
+    draw() {
         if (this.visible) {
-            this.ctx.drawImage(this.img, this.x, this.y, this.tamanio, this.tamanio);
+            this.ctx.beginPath();
+            this.ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI);
+            this.ctx.closePath();
+            this.ctx.strokeStyle = 'red'; // Establece el color rojo para el borde
+            this.ctx.stroke(); // Dibuja solo el borde del círculo
         }
-        
     }
 
     estaDentro(fichaX, fichaY) {//verifico si la posicion donde solte la ficha esta dentro del area del hint
-        if (fichaX >= this.x && fichaX <= this.x + this.tamanio && fichaY >= this.y &&fichaY <= this.y + this.tamanio ) {
-            return true; //retorno true si esta dentro
-        }
-        return false; //retorno false si esta afuera
+        let _x = this.x - fichaX;
+        let _y = this.y - fichaY;
+        return Math.sqrt(_x * _x + _y * _y) < this.radio;
     }
 
     mostrar() {
@@ -37,5 +31,5 @@ class Hints{
     ocultar() {
         this.visible = false;
     }
-    
+
 }
