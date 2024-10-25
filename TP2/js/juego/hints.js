@@ -5,7 +5,7 @@ class Hints {
         this.y = y
         this.tamanio = tamanio
         this.visible = false;
-        this.radio=radio
+        this.radio = radio
     }
 
     draw() {
@@ -30,6 +30,10 @@ class Hints {
 
     ocultar() {
         this.visible = false;
+    }
+
+    getPosicion() {
+        return { x: this.x, y: this.y }
     }
 
 }

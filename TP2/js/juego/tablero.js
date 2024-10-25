@@ -95,6 +95,10 @@ class Tablero {
         return false
     }
 
+    obtenerHint(numeroHint){
+        return this.hints[numeroHint]
+    }
+
     obtenerColumna(fichaX, fichaY) {
         for (let i = 0; i < this.hints.length; i++) {
             if (this.hints[i].estaDentro(fichaX, fichaY)) {

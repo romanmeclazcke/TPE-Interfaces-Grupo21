@@ -149,6 +149,8 @@ function onMouseUp(e) {
             if(numeroColumna!=null){
                 let casilla =tablero.obtenerCasilleroPorColumna(numeroColumna); //si obtuve un numero de columna  valido, obtengo la casilla donde puedo va a ir a parar la ficha
                 if(casilla!=null){
+                    let cordenadasHint = tablero.obtenerHint(numeroColumna).getPosicion(); //obtengo las cordenadas de la hint donde solte la ficha
+                    ultimaFichaClikeada.setearPosicion(cordenadasHint.x,cordenadasHint.y); //seteo a la ficha en las cordenadas de la hint para comenzar su animacion
                     animarCaida(ultimaFichaClikeada, casilla);
                     casilla.setearFicha(ultimaFichaClikeada);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
