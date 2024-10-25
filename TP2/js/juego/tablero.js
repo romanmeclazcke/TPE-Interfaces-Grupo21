@@ -35,18 +35,18 @@ class Tablero {
     }
 
     crearHints() { //metodo para crear las hinst donde se podra soltar las fichas
-        const hints = [];
+        let hints = [];
         const canvasWidth = this.ctx.canvas.width;
         const tableroWidth = this.columnas * this.tamanioCelda;
         const desplazamientoX = (canvasWidth - tableroWidth) / 2; 
-    
+        const posicionY = (this.ctx.canvas.height - this.filas * this.tamanioCelda) / 2 -30; //calculo donde ira las hinst en el eje y, las situo 30px por encima del tablero
         for (let i = 0; i < this.columnas; i++) {
             const x = (desplazamientoX + i * this.tamanioCelda)+this.tamanioCelda/2; 
-            hints.push(new Hints(this.ctx, x, this.tamanioCelda, this.tamanioCelda,20));
+            hints.push(new Hints(this.ctx, x, posicionY, this.tamanioCelda,20));
         }
     
         return hints;
-    }
+    } //revisar tema hinst (Es responsabilidad del tablero??)
 
     draw() {//metodo para dibujar el tablero en el canvas
         for (let fila = 0; fila < this.filas; fila++) {

@@ -62,4 +62,8 @@ class Ficha {
         return this.fueMovida;
     }
 
+    getJugador(){
+        return this.jugador
+    }
+
 }

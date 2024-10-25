@@ -78,16 +78,17 @@ function crearFichas() {
     let espacioEntreFichas = 10; // Espacio entre cada ficha en la columna
     let xJugador1 = 60; // Posición x fija para el jugador 1 (a la izquierda)
     let xJugador2 = canvas.width - 60; // Posición x fija para el jugador 2 (a la derecha)
+    let radioFichas =20
     
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador1 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador1.push(new Ficha(ctx, 'red', jugadores.j1, xJugador1, yJugador1, 20, './images/batman.jpg'));
+        fichasJugador1.push(new Ficha(ctx, 'red', jugadores.j1, xJugador1, yJugador1, radioFichas, './images/batman.jpg'));
     }
 
 
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador2 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugadores.j2, xJugador2, yJugador2, 20, './images/joker.webp'));
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugadores.j2, xJugador2, yJugador2, radioFichas, './images/joker.webp'));
     }
 }
 

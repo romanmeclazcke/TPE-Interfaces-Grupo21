@@ -40,4 +40,8 @@ class Casillero {
     getTamanio(){
         return this.tamanioCelda
     }
+
+    getFicha(){
+        
+    }
 }
