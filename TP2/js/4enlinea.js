@@ -33,13 +33,11 @@ let ultimaFichaClikeada = null;
 let tiempoLimite = 180; //segundos
 let intervalo = 0;
 let cordenadasUltimaFichaSeleccionada = null;
-let hints = [];
 
 start();
 
 function start() {
     turno = Math.random() < 0.5 ? "j1" : "j2";
-    hints = tablero.crearHints();
     drawCanvas();
 }
 
@@ -62,7 +60,7 @@ function redibujar() {
     dibujarTurno();
     dibujarFichas(); // vuelvo a dibujar todas las fichas
     tablero.draw(); // vuelvo a dibujar el tablero
-    hints.forEach(hint => hint.draw());
+    tablero.drawHinsts();
 }
 
 function dibujarFichas() { //dibujo todas las fichas
@@ -110,7 +108,7 @@ function onMouseDown(e) {
     if (ultimaFichaClikeada != null) {
         cordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
 
-        hints.forEach(hint => hint.mostrar());
+        tablero.mostrarHints();
         redibujar();
     }
 }
@@ -142,7 +140,7 @@ function onMouseMove(e) {
 function onMouseUp(e) {
     if (ultimaFichaClikeada != null) {
         let cordenadasUltimaFicha = ultimaFichaClikeada.getPosicion();
-        hints.forEach(hint => hint.ocultar());//oculto las hists cuando solte la ficha
+        tablero.ocultarHints();//oculto las hists cuando solte la ficha
 
         if (tablero.esPosicionValida(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y)) {//verifico que solte la ficha en una hit valida
             let numeroColumna = tablero.obtenerColumna(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y);//obtengo el numero de columna donde solte la ficha

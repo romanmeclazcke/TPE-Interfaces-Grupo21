@@ -135,6 +135,15 @@ class Tablero {
             y <= desplazamientoY + tableroHeight
         );
     }
+
+    mostrarHints(){
+        this.hints.forEach(hint => hint.mostrar());
+    }
+
+    ocultarHints(){
+        this.hints.forEach(hint => hint.ocultar());
+
+    }
 }
 
 
