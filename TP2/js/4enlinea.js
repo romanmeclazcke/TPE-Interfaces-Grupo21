@@ -19,7 +19,7 @@ canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mousemove', onMouseMove);
 
-let dimensionTablero = 5//revisir desde un input 
+let dimensionTablero = 6//revisir desde un input 
 let totalFichasPorJugador = (dimensionTablero + 2) * (dimensionTablero + 3) / 2
 let tablero = new Tablero(dimensionTablero, ctx)
 const jugadores = {
@@ -39,6 +39,8 @@ start();
 function start() {
     turno = Math.random() < 0.5 ? "j1" : "j2";
     drawCanvas();
+    iniciarTimer();
+
 }
 
 function drawCanvas() {
@@ -49,7 +51,6 @@ function drawCanvas() {
     dibujarTurno();
     dibujarFichas();
     tablero.draw();
-    iniciarTimer();
 }
 
 function redibujar() {
@@ -222,7 +223,6 @@ function dibujarTurno() { // TODO -> Estetizarlo mejor
 
 function cambiarTurno() {
     turno = (turno === "j1") ? "j2" : "j1";
-    iniciarTimer();
     redibujar();
 }
 
