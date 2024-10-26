@@ -1,3 +1,4 @@
+//Menu hamburguesa
 let menu = document.getElementById("menu-hamburguesa");
 let btnCerrarMenu = document.getElementById("btn-cerrar-menu");
 let btnAbrirMenu = document.getElementById("btn-abrir-menu");
@@ -12,6 +13,9 @@ btnCerrarMenu.addEventListener("click", (e) => {
     menu.style.display = "none";
 });
 
+//Juego
+document.querySelector("#start-button").addEventListener("click", start);
+
 let canvas = document.getElementById('canva')
 let ctx = canvas.getContext('2d')
 
@@ -19,28 +23,52 @@ canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mousemove', onMouseMove);
 
-let dimensionTablero = 6//revisir desde un input 
-let totalFichasPorJugador = (dimensionTablero + 2) * (dimensionTablero + 3) / 2
-let tablero = new Tablero(dimensionTablero, ctx)
 const jugadores = {
     j1: "Jugador 1",
     j2: "Jugador 2"
 };
-let fichasJugador1 = []
-let fichasJugador2 = []
-let turno = ""
-let ultimaFichaClikeada = null;
-let tiempoLimite = 180; //segundos
-let intervalo = 0;
-let cordenadasUltimaFichaSeleccionada = null;
 
-start();
+let dimensionTablero;
+let totalFichasPorJugador;
+let tablero;
+let rutaImagenFichaJugador1;
+let rutaImagenFichaJugador2;
+let fichasJugador1;
+let fichasJugador2;
+let turno;
+let ultimaFichaClikeada;
+let tiempoLimite;
+let intervalo;
+let coordenadasUltimaFichaSeleccionada;
+
+
+function initializeGameVariables() {
+    const tamanioTablero = document.querySelector('input[name="tamanioTablero"]:checked');
+    const rutaImagenFichaJugador1FromDom = document.querySelector('input[name="tipoFichaJugador1"]:checked');
+    const rutaImagenFichaJugador2FromDom = document.querySelector('input[name="tipoFichaJugador2"]:checked');
+
+    dimensionTablero = Number(tamanioTablero.value) ?? 4;
+    rutaImagenFichaJugador1 = rutaImagenFichaJugador1FromDom.value;
+    rutaImagenFichaJugador2 = rutaImagenFichaJugador2FromDom.value;
+
+    totalFichasPorJugador = (dimensionTablero + 2) * (dimensionTablero + 3) / 2;
+    tablero = new Tablero(dimensionTablero, ctx);
+    fichasJugador1 = [];
+    fichasJugador2 = [];
+    turno = "";
+    ultimaFichaClikeada = null;
+    tiempoLimite = 180; //segundos
+    intervalo = 0;
+    coordenadasUltimaFichaSeleccionada = null;
+}
 
 function start() {
+    initializeGameVariables();
+    canvas.style.display = "block";
+    document.querySelector(".connect-four-options").style.display = "none";
     turno = Math.random() < 0.5 ? "j1" : "j2";
     drawCanvas();
     iniciarTimer();
-
 }
 
 function drawCanvas() {
@@ -78,17 +106,16 @@ function crearFichas() {
     let espacioEntreFichas = 10; // Espacio entre cada ficha en la columna
     let xJugador1 = 60; // Posición x fija para el jugador 1 (a la izquierda)
     let xJugador2 = canvas.width - 60; // Posición x fija para el jugador 2 (a la derecha)
-    let radioFichas =20
-    
+    let radioFichas = 20
+
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador1 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador1.push(new Ficha(ctx, 'red', jugadores.j1, xJugador1, yJugador1, radioFichas, './images/batman.jpg'));
+        fichasJugador1.push(new Ficha(ctx, 'red', jugadores.j1, xJugador1, yJugador1, radioFichas, rutaImagenFichaJugador1));
     }
-
 
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador2 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
-        fichasJugador2.push(new Ficha(ctx, 'blue', jugadores.j2, xJugador2, yJugador2, radioFichas, './images/joker.webp'));
+        fichasJugador2.push(new Ficha(ctx, 'blue', jugadores.j2, xJugador2, yJugador2, radioFichas, rutaImagenFichaJugador2));
     }
 }
 
@@ -98,8 +125,6 @@ function clearCanvas() {
     drawCanvas(); //redibujo todo el canvas
 }
 
-
-
 function onMouseDown(e) {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -107,7 +132,7 @@ function onMouseDown(e) {
 
     ultimaFichaClikeada = obtenerFichaSeleccionada(x, y);
     if (ultimaFichaClikeada != null) {
-        cordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
+        coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
 
         tablero.mostrarHints();
         redibujar();
@@ -131,7 +156,7 @@ function onMouseMove(e) {
         const rect = canvas.getBoundingClientRect(); // Obtener la posición del canvas
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
-        checkearZonaProhibida(mouseX,mouseY)
+        checkearZonaProhibida(mouseX, mouseY)
         ultimaFichaClikeada.setearPosicion(mouseX, mouseY);
         redibujar();
     }
@@ -145,23 +170,23 @@ function onMouseUp(e) {
 
         if (tablero.esPosicionValida(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y)) {//verifico que solte la ficha en una hit valida
             let numeroColumna = tablero.obtenerColumna(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y);//obtengo el numero de columna donde solte la ficha
-            if(numeroColumna!=null){
-                let casilla =tablero.obtenerCasilleroPorColumna(numeroColumna); //si obtuve un numero de columna  valido, obtengo la casilla donde puedo va a ir a parar la ficha
-                if(casilla!=null){
+            if (numeroColumna != null) {
+                let casilla = tablero.obtenerCasilleroPorColumna(numeroColumna); //si obtuve un numero de columna  valido, obtengo la casilla donde puedo va a ir a parar la ficha
+                if (casilla != null) {
                     let cordenadasHint = tablero.obtenerHint(numeroColumna).getPosicion(); //obtengo las cordenadas de la hint donde solte la ficha
-                    ultimaFichaClikeada.setearPosicion(cordenadasHint.x,cordenadasHint.y); //seteo a la ficha en las cordenadas de la hint para comenzar su animacion
+                    ultimaFichaClikeada.setearPosicion(cordenadasHint.x, cordenadasHint.y); //seteo a la ficha en las cordenadas de la hint para comenzar su animacion
                     animarCaida(ultimaFichaClikeada, casilla);
                     casilla.setearFicha(ultimaFichaClikeada);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
                     redibujar();
                     cambiarTurno();
-                }else{
-                    ultimaFichaClikeada.setearPosicion(cordenadasUltimaFichaSeleccionada.x, cordenadasUltimaFichaSeleccionada.y);//si no existe una casilla en la columna vuelvo la ficha a su posicion original (pila)
+                } else {
+                    ultimaFichaClikeada.setearPosicion(coordenadasUltimaFichaSeleccionada.x, coordenadasUltimaFichaSeleccionada.y);//si no existe una casilla en la columna vuelvo la ficha a su posicion original (pila)
                     redibujar();
                 }
             }
         } else {
-            ultimaFichaClikeada.setearPosicion(cordenadasUltimaFichaSeleccionada.x, cordenadasUltimaFichaSeleccionada.y);// Si la posición no es válida, restaura la ficha a su posición anterior
+            ultimaFichaClikeada.setearPosicion(coordenadasUltimaFichaSeleccionada.x, coordenadasUltimaFichaSeleccionada.y);// Si la posición no es válida, restaura la ficha a su posición anterior
             redibujar(); // Redibuja el canvas
         }
         canvas.style.cursor = "default";
@@ -174,7 +199,7 @@ function animarCaida(ficha, casilla) {
     const xInicial = ficha.getPosicion().x; //Posición x de la ficha para mantenerla fija en el eje X mientras cae
 
     let velocidadY = 0;
-    const gravedad = 0.6; 
+    const gravedad = 0.6;
     const duracionRebote = 0.3;
 
     function mover() {
@@ -183,15 +208,15 @@ function animarCaida(ficha, casilla) {
         let yActual = ficha.getPosicion().y + velocidadY;
 
         //Rebotar si alcanzó la casilla
-        if (yActual >= yFinal+casilla.getTamanio()/2) {
-            yActual = yFinal+casilla.getTamanio()/2; //Para que la ficha no se pase
+        if (yActual >= yFinal + casilla.getTamanio() / 2) {
+            yActual = yFinal + casilla.getTamanio() / 2; //Para que la ficha no se pase
             velocidadY *= -duracionRebote; // Simula el rebote
-        
-            if (Math.abs(velocidadY) < 0.5) { //Si la velocidad es ínfima, la ficha se dejó de mover (llegó)
-                ficha.setearPosicion(xInicial, yFinal+casilla.getTamanio()/2); // Asegura la posición final exacta
 
-                let cordenadasCasilla= casilla.getPosicion(); //obtengo las cordenadas de la casilla para mover la ficha a esa posicion
-                ficha.setearPosicion(cordenadasCasilla.x+casilla.getTamanio()/2,cordenadasCasilla.y+casilla.getTamanio()/2) //seteo la ficha en la posicion de la casilla, sumo el tamanio /2 para centarla vertical y horizontalmente
+            if (Math.abs(velocidadY) < 0.5) { //Si la velocidad es ínfima, la ficha se dejó de mover (llegó)
+                ficha.setearPosicion(xInicial, yFinal + casilla.getTamanio() / 2); // Asegura la posición final exacta
+
+                let cordenadasCasilla = casilla.getPosicion(); //obtengo las cordenadas de la casilla para mover la ficha a esa posicion
+                ficha.setearPosicion(cordenadasCasilla.x + casilla.getTamanio() / 2, cordenadasCasilla.y + casilla.getTamanio() / 2) //seteo la ficha en la posicion de la casilla, sumo el tamanio /2 para centarla vertical y horizontalmente
 
                 redibujar(); // Redibuja para actualizar la vista final
                 return; // Termina la animación
@@ -211,11 +236,11 @@ function dibujarTurno() { // TODO -> Estetizarlo mejor
     const texto = `Turno de: ${jugadores[turno]}`;
     ctx.fillStyle = '#022B49';
     ctx.font = '20px "Inconsolata"';
-    
+
     //Sombra
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; 
-    ctx.shadowOffsetX = 2; 
-    ctx.shadowOffsetY = 2; 
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
     ctx.shadowBlur = 5;
 
     ctx.fillText(texto, canvas.width / 6, 30);
@@ -237,9 +262,9 @@ function reiniciarJuego() { //reinicio el juego
 function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo en caso de que el tiempo haya llegado a su limite
     if (intervalo) //Corta el intervalo anterior si existe
         clearInterval(intervalo);
-    
+
     tiempoLimite = 180; //reseteo el tiempo limite
-    
+
     intervalo = setInterval(() => {
         tiempoLimite--;
 
@@ -257,23 +282,23 @@ function mostrarTiempoRestante(tiempo) { //SOLUCIONAR QUE NO SE SUPERPONGA CON L
     const texto = `Tiempo restante: ${tiempo} segundos`;
     ctx.fillStyle = '#022B49';
     ctx.font = '20px "Inconsolata"';
-    
+
     //Sombra
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; 
-    ctx.shadowOffsetX = 2; 
-    ctx.shadowOffsetY = 2; 
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
     ctx.shadowBlur = 5;
 
     ctx.textAlign = 'center';
-    
+
     redibujar();
-    ctx.fillText(texto, canvas.width - 230, 30);
+    ctx.fillText(texto, canvas.width - 200, 30);
 }
 
-function checkearZonaProhibida(x,y){ //checkea si esta en zona de tablero
-    if(tablero.esZonaProhibida(x,y)){ // si esta dentro pongo el cursor en not-allowed 
+function checkearZonaProhibida(x, y) { //checkea si esta en zona de tablero
+    if (tablero.esZonaProhibida(x, y)) { // si esta dentro pongo el cursor en not-allowed 
         canvas.style.cursor = "not-allowed";
-    }else{
+    } else {
         canvas.style.cursor = "pointer"; //si esta fuera lo dejo en pointer(agarrando ficha)
     }
 }
