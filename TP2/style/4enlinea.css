@@ -40,6 +40,7 @@ main {
 
 .connect-four-options {
     /* padding: 100px 200px 100px 200px; */
+    padding: 0.3em;
     background-color: var(--color-primario-luz1);
     margin-top: 0.8em;
     margin-bottom: 0.8em;
