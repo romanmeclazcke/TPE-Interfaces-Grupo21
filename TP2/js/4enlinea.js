@@ -113,7 +113,6 @@ function crearFichas() {
         fichasJugador1.push(new Ficha(ctx, 'red', jugadores.j1, xJugador1, yJugador1, radioFichas, rutaImagenFichaJugador1));
     }
 
-
     for (let i = 0; i < totalFichasPorJugador; i++) {
         let yJugador2 = canvas.height - (50 + i * espacioEntreFichas); // Espacio entre cada ficha
         fichasJugador2.push(new Ficha(ctx, 'blue', jugadores.j2, xJugador2, yJugador2, radioFichas, rutaImagenFichaJugador2));
@@ -125,8 +124,6 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);//borra todo del canvas
     drawCanvas(); //redibujo todo el canvas
 }
-
-
 
 function onMouseDown(e) {
     const rect = canvas.getBoundingClientRect();

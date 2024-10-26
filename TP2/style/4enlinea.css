@@ -42,16 +42,16 @@ main {
     /* padding: 100px 200px 100px 200px; */
 }
 
-.connect-four-option-label{
+.connect-four-option-label {
     color: var(--color-primario-sombra2);
 }
 
-.connect-four-options-title{
+.connect-four-options-title {
     margin-bottom: 1em;
     font-size: 1.2rem;
 }
 
-.connect-four-option{
+.connect-four-option {
     width: 50%;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -74,8 +74,8 @@ main {
 }
 
 .ficha {
-    width: 3em;
-    height: 3em;
+    width: 3.5em;
+    height: 3.5em;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid white;
@@ -97,14 +97,14 @@ main {
     object-fit: cover;
 }
 
-.connect-four-options-radio-buttons-container{
+.connect-four-options-radio-buttons-container {
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 1em;
 }
 
-.connect-four-canvas{
+.connect-four-canvas {
     display: none;
 }
 
