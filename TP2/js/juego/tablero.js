@@ -2,51 +2,56 @@ class Tablero {
     constructor(tamanioJuego, ctx) {
         this.columnas = tamanioJuego + 3; // Definición de columnas
         this.filas = tamanioJuego + 2; // Definición de filas
-        this.tamanioCelda = 60; // Chequear como hacemos esto dinámico
+        this.tamanioCelda = tamanioJuego <= 5 ? 60 : 50;//En el 6 y 7 en linea achicamos las celdas para que entren en el canvas
         this.ctx = ctx;
         this.tablero = this.crearTableroJuego(); // Crear el tablero después de definir filas y columnas
         this.hints = this.crearHints();
     }
 
-    crearTableroJuego() {//metodo para crear el tablero apartir de la modalidad del juego
-        let tablero = [];
+    //metodo para crear el tablero a partir de la modalidad del juego
+    crearTableroJuego() {
+        const rutaImagenCasillero = '././images/casilla-imagen.png';
+        const cantPxEnYParaBajarTablero = 30;
         // Obtener tamaño del canvas
         const canvasWidth = this.ctx.canvas.width;
         const canvasHeight = this.ctx.canvas.height;
-
         // Calcular el tamaño total del tablero
         const tableroWidth = this.columnas * this.tamanioCelda;
         const tableroHeight = this.filas * this.tamanioCelda;
-
         // Calcular el desplazamiento para centrar el tablero
         const desplazamientoX = (canvasWidth - tableroWidth) / 2;
-        const desplazamientoY = (canvasHeight - tableroHeight) / 2;
+        //En vez de colocar el tablero en el medio, lo colocamos un poco mas abajo para que se renderize correctamente
+        const desplazamientoY =  (((canvasHeight - tableroHeight) / 2) + cantPxEnYParaBajarTablero);
+
+        let tablero = [];
 
         // Crear la matriz
         for (let i = 0; i < this.filas; i++) {
             tablero[i] = [];
             for (let j = 0; j < this.columnas; j++) {
-                const x = desplazamientoX + j * this.tamanioCelda; // Calculo posición x de la ceda
-                const y = desplazamientoY + i * this.tamanioCelda; // Calculo posición y de la cedla
-                tablero[i][j] = new Casillero(this.ctx, '././images/casilla-imagen.png', x, y, this.tamanioCelda);
+                const x = desplazamientoX + j * this.tamanioCelda; // Calculo posición x de la celda
+                const y = desplazamientoY + i * this.tamanioCelda; // Calculo posición y de la celda
+                tablero[i][j] = new Casillero(this.ctx, rutaImagenCasillero, x, y, this.tamanioCelda);
             }
         }
         return tablero;
     }
 
-    crearHints() { //metodo para crear las hinst donde se podra soltar las fichas
+    //metodo para crear las hints donde se podra soltar las fichas
+    crearHints() { 
         let hints = [];
         const canvasWidth = this.ctx.canvas.width;
         const tableroWidth = this.columnas * this.tamanioCelda;
         const desplazamientoX = (canvasWidth - tableroWidth) / 2;
-        const posicionY = (this.ctx.canvas.height - this.filas * this.tamanioCelda) / 2 - 30; //calculo donde ira las hinst en el eje y, las situo 30px por encima del tablero
+        const posicionY = ((this.ctx.canvas.height - this.filas * this.tamanioCelda) / 2);
+
         for (let i = 0; i < this.columnas; i++) {
             const x = (desplazamientoX + i * this.tamanioCelda) + this.tamanioCelda / 2;
             hints.push(new Hints(this.ctx, x, posicionY, this.tamanioCelda, 20));
         }
 
         return hints;
-    } //revisar tema hinst (Es responsabilidad del tablero??)
+    } //revisar tema hints (Es responsabilidad del tablero??)
 
     draw() {//metodo para dibujar el tablero en el canvas
         for (let fila = 0; fila < this.filas; fila++) {
@@ -54,7 +59,7 @@ class Tablero {
                 this.tablero[fila][columna].draw();//dibujo el casillero
             }
         }
-        this.drawHinsts(); //dibujo las hints
+        this.drawHints(); //dibujo las hints
     }
 
     drawFondo() {
@@ -65,7 +70,7 @@ class Tablero {
         }
     }
 
-    drawHinsts() {
+    drawHints() {
         for (let hint of this.hints) {
             hint.draw();
         }
@@ -95,7 +100,7 @@ class Tablero {
         return false
     }
 
-    obtenerHint(numeroHint){
+    obtenerHint(numeroHint) {
         return this.hints[numeroHint]
     }
 
@@ -136,11 +141,11 @@ class Tablero {
         );
     }
 
-    mostrarHints(){
+    mostrarHints() {
         this.hints.forEach(hint => hint.mostrar());
     }
 
-    ocultarHints(){
+    ocultarHints() {
         this.hints.forEach(hint => hint.ocultar());
 
     }

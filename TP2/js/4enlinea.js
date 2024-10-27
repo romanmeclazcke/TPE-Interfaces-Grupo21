@@ -89,7 +89,7 @@ function redibujar() {
     dibujarTurno();
     dibujarFichas(); // vuelvo a dibujar todas las fichas
     tablero.draw(); // vuelvo a dibujar el tablero
-    tablero.drawHinsts();
+    tablero.drawHints();
 }
 
 function dibujarFichas() { //dibujo todas las fichas
