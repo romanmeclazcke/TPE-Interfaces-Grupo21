@@ -21,7 +21,7 @@ class Tablero {
         // Calcular el desplazamiento para centrar el tablero
         const desplazamientoX = (canvasWidth - tableroWidth) / 2;
         //En vez de colocar el tablero en el medio, lo colocamos un poco mas abajo para que se renderize correctamente
-        const desplazamientoY =  (((canvasHeight - tableroHeight) / 2) + cantPxEnYParaBajarTablero);
+        const desplazamientoY = (((canvasHeight - tableroHeight) / 2) + cantPxEnYParaBajarTablero);
 
         let tablero = [];
 
@@ -38,7 +38,7 @@ class Tablero {
     }
 
     //metodo para crear las hints donde se podra soltar las fichas
-    crearHints() { 
+    crearHints() {
         let hints = [];
         const canvasWidth = this.ctx.canvas.width;
         const tableroWidth = this.columnas * this.tamanioCelda;
