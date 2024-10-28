@@ -14,7 +14,18 @@ btnCerrarMenu.addEventListener("click", (e) => {
 });
 
 //Juego
-document.querySelector("#start-button").addEventListener("click", start);
+const fontToLoad = '20px "Press Start 2P"';
+//Promesa para que la fuente del timer cargue correctamente
+document.fonts.load(fontToLoad)
+    .then(() => {
+        console.log('Fuente cargada correctamente');
+    })
+    .catch((error) => {
+        console.error('Error al cargar la fuente:', error);
+    })
+    .finally(() => {
+        document.querySelector("#start-button").addEventListener("click", start);
+    });
 
 let canvas = document.getElementById('canva')
 let ctx = canvas.getContext('2d')
@@ -27,6 +38,10 @@ const jugadores = {
     j1: "Jugador 1",
     j2: "Jugador 2"
 };
+const posBotonRestartX = canvas.width / 2 + 65;
+const posBotonRestartY = 15;
+const botonRestartWidth = 30;
+const botonRestartHeight = 30;
 
 let dimensionTablero;
 let totalFichasPorJugador;
@@ -40,7 +55,6 @@ let ultimaFichaClikeada;
 let tiempoLimite;
 let intervalo;
 let coordenadasUltimaFichaSeleccionada;
-
 
 function initializeGameVariables() {
     const tamanioTablero = document.querySelector('input[name="tamanioTablero"]:checked');
@@ -58,7 +72,6 @@ function initializeGameVariables() {
     turno = "";
     ultimaFichaClikeada = null;
     tiempoLimite = 180; //segundos
-    intervalo = 0;
     coordenadasUltimaFichaSeleccionada = null;
 }
 
@@ -66,6 +79,7 @@ function start() {
     initializeGameVariables();
     canvas.style.display = "block";
     document.querySelector(".connect-four-options").style.display = "none";
+    document.querySelector(".start-button").style.visibility = "hidden";
     turno = Math.random() < 0.5 ? "j1" : "j2";
     drawCanvas();
     iniciarTimer();
@@ -77,6 +91,7 @@ function drawCanvas() {
     crearFichas();
     tablero.drawFondo();
     dibujarTurno();
+    dibujarBotonRestart();
     dibujarFichas();
     tablero.draw();
 }
@@ -87,9 +102,11 @@ function redibujar() {
     ctx.fillRect(0, 0, canvas.width, canvas.height); //pinto todo el fondo de rojo
     tablero.drawFondo();
     dibujarTurno();
+    dibujarBotonRestart();
+    mostrarTiempoRestante(tiempoLimite)
     dibujarFichas(); // vuelvo a dibujar todas las fichas
     tablero.draw(); // vuelvo a dibujar el tablero
-    tablero.drawHinsts();
+    tablero.drawHints();
 }
 
 function dibujarFichas() { //dibujo todas las fichas
@@ -119,24 +136,9 @@ function crearFichas() {
     }
 }
 
-
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);//borra todo del canvas
     drawCanvas(); //redibujo todo el canvas
-}
-
-function onMouseDown(e) {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    ultimaFichaClikeada = obtenerFichaSeleccionada(x, y);
-    if (ultimaFichaClikeada != null) {
-        coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
-
-        tablero.mostrarHints();
-        redibujar();
-    }
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
@@ -150,6 +152,24 @@ function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
     return null; // Si no encontre ninguna ficha retorno null
 }
 
+function onMouseDown(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    if (isMouseEnBotonReiniciar(x, y)) {
+        reiniciarJuego();
+        return;
+    }
+
+    ultimaFichaClikeada = obtenerFichaSeleccionada(x, y);
+    if (ultimaFichaClikeada != null) {
+        coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
+
+        tablero.mostrarHints();
+        redibujar();
+    }
+}
 
 function onMouseMove(e) {
     if (ultimaFichaClikeada != null) {
@@ -161,7 +181,6 @@ function onMouseMove(e) {
         redibujar();
     }
 }
-
 
 function onMouseUp(e) {
     if (ultimaFichaClikeada != null) {
@@ -192,6 +211,13 @@ function onMouseUp(e) {
         canvas.style.cursor = "default";
     }
     ultimaFichaClikeada = null;
+}
+
+function isMouseEnBotonReiniciar(mouseX, mouseY) {
+    return mouseX >= posBotonRestartX &&
+        mouseX <= posBotonRestartX + botonRestartWidth &&
+        mouseY >= posBotonRestartY &&
+        mouseY <= posBotonRestartY + botonRestartHeight;
 }
 
 function animarCaida(ficha, casilla) {
@@ -232,20 +258,6 @@ function animarCaida(ficha, casilla) {
     mover();
 }
 
-function dibujarTurno() { // TODO -> Estetizarlo mejor
-    const texto = `Turno de: ${jugadores[turno]}`;
-    ctx.fillStyle = '#022B49';
-    ctx.font = '20px "Inconsolata"';
-
-    //Sombra
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
-    ctx.shadowBlur = 5;
-
-    ctx.fillText(texto, canvas.width / 6, 30);
-}
-
 function cambiarTurno() {
     turno = (turno === "j1") ? "j2" : "j1";
     redibujar();
@@ -268,7 +280,7 @@ function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo 
     intervalo = setInterval(() => {
         tiempoLimite--;
 
-        mostrarTiempoRestante(tiempoLimite);
+        redibujar();
 
         if (tiempoLimite <= 0) {
             clearInterval(intervalo);
@@ -278,21 +290,43 @@ function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo 
     }, 1000);
 }
 
-function mostrarTiempoRestante(tiempo) { //SOLUCIONAR QUE NO SE SUPERPONGA CON LAS HINTS
-    const texto = `Tiempo restante: ${tiempo} segundos`;
+function dibujarTurno() {
+    // Determina la posicion en funcion del jugador
+    const esJugador1 = (turno === "j1");
+    const tamanioTablero = dimensionTablero;
+    const flechaX = esJugador1 ? 60 : canvas.width - 60; // Posicion de la flecha en x
+    const flechaY = tamanioTablero <= 5 ? 160 : 40; // Posicion de la flecha en y
+
+    // Dibujar flecha
+    ctx.beginPath();
+    ctx.moveTo(flechaX - 15, flechaY);
+    ctx.lineTo(flechaX + 15, flechaY);
+    ctx.lineTo(flechaX, flechaY + 30);
+    ctx.closePath();
+    ctx.fillStyle = '#FA7800'; //Color acento
+    ctx.fill();
+}
+
+//Funcion que dibuja icono del boton restart
+function dibujarBotonRestart() {
+    ctx.save();
+
+    let restartIcon = new Image();
+    restartIcon.src = './images/restart-icon.png';
+
+    ctx.drawImage(restartIcon, posBotonRestartX, posBotonRestartY, 30, 30);
+}
+
+function mostrarTiempoRestante(tiempo) {
+    const texto = `${tiempo}`;
     ctx.fillStyle = '#022B49';
-    ctx.font = '20px "Inconsolata"';
-
-    //Sombra
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
-    ctx.shadowBlur = 5;
-
+    ctx.font = fontToLoad;
     ctx.textAlign = 'center';
 
-    redibujar();
-    ctx.fillText(texto, canvas.width - 200, 30);
+    const centerX = canvas.width / 2;
+    const centerY = 40;
+
+    ctx.fillText(texto, centerX, centerY);
 }
 
 function checkearZonaProhibida(x, y) { //checkea si esta en zona de tablero
