@@ -65,5 +65,41 @@ class Ficha {
     getJugador(){
         return this.jugador
     }
+    
 
+    animarCaida(casilla) {
+        const { x: xFinal, y: yFinal } = casilla.getPosicion(); //Posición destino
+        const xInicial = this.getPosicion().x; //Posición x de la ficha para mantenerla fija en el eje X mientras cae
+    
+        let velocidadY = 0;
+        const gravedad = 0.6;
+        const duracionRebote = 0.3;
+    
+        const mover = () => {
+            //Calculo nueva posición en Y
+            velocidadY += gravedad;
+            let yActual = this.getPosicion().y + velocidadY;
+    
+            //Rebotar si alcanzó la casilla
+            if (yActual >= yFinal + casilla.getTamanio() / 2) {
+                yActual = yFinal + casilla.getTamanio() / 2; //Para que la ficha no se pase
+                velocidadY *= -duracionRebote; // Simula el rebote
+    
+                if (Math.abs(velocidadY) < 0.5) { //Si la velocidad es ínfima, la ficha se dejó de mover (llegó)
+                    this.setearPosicion(xInicial, yFinal + casilla.getTamanio() / 2); // Asegura la posición final exacta
+    
+                    let cordenadasCasilla = casilla.getPosicion(); //obtengo las cordenadas de la casilla para mover la ficha a esa posicion
+                    this.setearPosicion(cordenadasCasilla.x + casilla.getTamanio() / 2, cordenadasCasilla.y + casilla.getTamanio() / 2) //seteo la ficha en la posicion de la casilla, sumo el tamanio /2 para centarla vertical y horizontalmente
+    
+                    return; // Termina la animación
+                }
+            }
+    
+            this.setearPosicion(xInicial, yActual); //Ubica la ficha en la casilla
+            redibujar();
+            requestAnimationFrame(mover); //Llamado recursivo a la animación hasta que la ficha llegue al destino
+        }
+    
+        mover();
+    }   
 }

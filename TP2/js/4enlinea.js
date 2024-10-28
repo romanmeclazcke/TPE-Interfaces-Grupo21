@@ -194,7 +194,7 @@ function onMouseUp(e) {
                 if (casilla != null) {
                     let cordenadasHint = tablero.obtenerHint(numeroColumna).getPosicion(); //obtengo las cordenadas de la hint donde solte la ficha
                     ultimaFichaClikeada.setearPosicion(cordenadasHint.x, cordenadasHint.y); //seteo a la ficha en las cordenadas de la hint para comenzar su animacion
-                    animarCaida(ultimaFichaClikeada, casilla);
+                    ultimaFichaClikeada.animarCaida(casilla);
                     casilla.setearFicha(ultimaFichaClikeada);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
                     redibujar();
@@ -220,43 +220,6 @@ function isMouseEnBotonReiniciar(mouseX, mouseY) {
         mouseY <= posBotonRestartY + botonRestartHeight;
 }
 
-function animarCaida(ficha, casilla) {
-    const { x: xFinal, y: yFinal } = casilla.getPosicion(); //Posición destino
-    const xInicial = ficha.getPosicion().x; //Posición x de la ficha para mantenerla fija en el eje X mientras cae
-
-    let velocidadY = 0;
-    const gravedad = 0.6;
-    const duracionRebote = 0.3;
-
-    function mover() {
-        //Calculo nueva posición en Y
-        velocidadY += gravedad;
-        let yActual = ficha.getPosicion().y + velocidadY;
-
-        //Rebotar si alcanzó la casilla
-        if (yActual >= yFinal + casilla.getTamanio() / 2) {
-            yActual = yFinal + casilla.getTamanio() / 2; //Para que la ficha no se pase
-            velocidadY *= -duracionRebote; // Simula el rebote
-
-            if (Math.abs(velocidadY) < 0.5) { //Si la velocidad es ínfima, la ficha se dejó de mover (llegó)
-                ficha.setearPosicion(xInicial, yFinal + casilla.getTamanio() / 2); // Asegura la posición final exacta
-
-                let cordenadasCasilla = casilla.getPosicion(); //obtengo las cordenadas de la casilla para mover la ficha a esa posicion
-                ficha.setearPosicion(cordenadasCasilla.x + casilla.getTamanio() / 2, cordenadasCasilla.y + casilla.getTamanio() / 2) //seteo la ficha en la posicion de la casilla, sumo el tamanio /2 para centarla vertical y horizontalmente
-
-                redibujar(); // Redibuja para actualizar la vista final
-                return; // Termina la animación
-            }
-        }
-
-        ficha.setearPosicion(xInicial, yActual); //Ubica la ficha en la casilla
-        redibujar();
-
-        requestAnimationFrame(mover); //Llamado recursivo a la animación hasta que la ficha llegue al destino
-    }
-
-    mover();
-}
 
 function cambiarTurno() {
     turno = (turno === "j1") ? "j2" : "j1";
