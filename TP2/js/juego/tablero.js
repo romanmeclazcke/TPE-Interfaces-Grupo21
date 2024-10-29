@@ -1,5 +1,6 @@
 class Tablero {
     constructor(tamanioJuego, ctx) {
+        this.enLinea = tamanioJuego;
         this.columnas = tamanioJuego + 3; // Definición de columnas
         this.filas = tamanioJuego + 2; // Definición de filas
         this.tamanioCelda = tamanioJuego <= 5 ? 60 : 50;//En el 6 y 7 en linea achicamos las celdas para que entren en el canvas
@@ -118,8 +119,50 @@ class Tablero {
         return this.tablero
     }
 
-    existeGanador() {
+    existeGanador(jugador) {
+        for (let f = 0; f < this.filas; f++) {
+            for (let c = 0; c < this.columnas; c++) {
+                let casillero = this.tablero[f][c];
 
+                if (!casillero.estaLibre()) { //Si tiene una ficha
+                    let ficha = casillero.getFicha();
+
+                    console.log(`Comparando ficha.getJugador(): ${ficha.getJugador()} con jugador: ${jugador}`);
+                    if (ficha.getJugador() === jugador) {
+                        console.log(`Ficha del jugador ${jugador} encontrada en [${f}, ${c}]`);
+                        //Verifico horizontal, vertical, y ambas diagonales
+                        if (this.contarFichasConsecutivas(f, c, 1, 0, ficha) >= this.enLinea || //Horizontal
+                            this.contarFichasConsecutivas(f, c, 0, 1, ficha) >= this.enLinea || //Vertical
+                            this.contarFichasConsecutivas(f, c, 1, 1, ficha) >= this.enLinea || //Diagonal /
+                            this.contarFichasConsecutivas(f, c, 1, -1, ficha) >= this.enLinea) //Diagonal \
+                                return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    contarFichasConsecutivas(fila, columna, direccionFila, direccionColumna, ficha) {
+        let contador = 0;
+        console.log(`Contando fichas desde [${fila}, ${columna}] en dirección [${direccionFila}, ${direccionColumna}]`);
+
+        while (fila >= 0 && fila < this.filas && //Para que el recorrido se mantenga adentro del tablero
+                columna >= 0 && columna < this.columnas && //Para que el recorrido se mantenga adentro del tablero
+                this.tablero[fila][columna].getFicha() === ficha) { //Si el casillero actual tiene una ficha del mismo tipo que la original (es del mismo equipo)
+                    contador++;
+                    console.log(`Contador incrementado a ${contador} en [${fila}, ${columna}]`);
+
+                    if (contador >= this.enLinea) {
+                        console.log(`Contador: ${contador}, Ficha: ${ficha.getJugador()}`); 
+                        return contador;
+                    }
+                        
+                    fila += direccionFila;
+                    columna += direccionColumna;
+            }
+        console.log(`Contador final desde [${fila}, ${columna}]: ${contador}`);
+        return contador;
     }
 
     esZonaProhibida(x, y) { //checkea si el mouse esta dentro del area del tablero

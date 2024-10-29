@@ -198,6 +198,14 @@ function onMouseUp(e) {
                     casilla.setearFicha(ultimaFichaClikeada);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
                     redibujar();
+
+                    if (tablero.existeGanador(turno)) {
+                        console.log("HAY GANADOR");
+                        mostrarGanador(turno);
+                        reiniciarJuego();
+                        return;
+                    }
+
                     cambiarTurno();
                 } else {
                     ultimaFichaClikeada.setearPosicion(coordenadasUltimaFichaSeleccionada.x, coordenadasUltimaFichaSeleccionada.y);//si no existe una casilla en la columna vuelvo la ficha a su posicion original (pila)
@@ -278,6 +286,20 @@ function dibujarBotonRestart() {
     restartIcon.src = './images/restart-icon.png';
 
     ctx.drawImage(restartIcon, posBotonRestartX, posBotonRestartY, 30, 30);
+}
+
+function mostrarGanador(jugador) {
+    const texto = `Ganador: Jugador ${jugador}!`;
+    ctx.fillStyle('#022B49');
+    ctx.font = fontToLoad;
+    ctx.textAlign = 'center';
+
+    const centerX = canvas.width / 2;
+    const centerY = 40;
+
+    redibujar();
+
+    ctx.fillText(texto, centerX, centerY);
 }
 
 function mostrarTiempoRestante(tiempo) {
