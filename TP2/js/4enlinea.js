@@ -292,8 +292,8 @@ function dibujarBotonRestart() {
 }
 
 function mostrarGanador() {
-    clearInterval(intervalo);
     if (existeGanador != null) {
+        clearInterval(intervalo);
         const texto = `Ganador: ${existeGanador}!`;
         const bannerHeight = 50; 
         ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
