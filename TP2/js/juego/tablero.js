@@ -114,55 +114,20 @@ class Tablero {
         return null
     }
 
+    obtenerFilaDisponibleEnColumna(numeroColumna) {
+        for (let fila = this.filas - 1; fila >= 0; fila--) { // Empieza desde la última fila hacia arriba
+            if (this.tablero[fila][numeroColumna].estaLibre()) { // Verifica si el casillero está libre
+                return fila; // Devuelve el número de la fila disponible
+            }
+        }
+        // Si no hay filas disponibles en la columna, retorna null
+        return null;
+    }
+
+
 
     getTablero() {
         return this.tablero
-    }
-
-    existeGanador(jugador) {
-        for (let f = 0; f < this.filas; f++) {
-            for (let c = 0; c < this.columnas; c++) {
-                let casillero = this.tablero[f][c];
-
-                if (!casillero.estaLibre()) { //Si tiene una ficha
-                    let ficha = casillero.getFicha();
-
-                    console.log(`Comparando ficha.getJugador(): ${ficha.getJugador()} con jugador: ${jugador}`);
-                    if (ficha.getJugador() === jugador) {
-                        console.log(`Ficha del jugador ${jugador} encontrada en [${f}, ${c}]`);
-                        //Verifico horizontal, vertical, y ambas diagonales
-                        if (this.contarFichasConsecutivas(f, c, 1, 0, ficha) >= this.enLinea || //Horizontal
-                            this.contarFichasConsecutivas(f, c, 0, 1, ficha) >= this.enLinea || //Vertical
-                            this.contarFichasConsecutivas(f, c, 1, 1, ficha) >= this.enLinea || //Diagonal /
-                            this.contarFichasConsecutivas(f, c, 1, -1, ficha) >= this.enLinea) //Diagonal \
-                                return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    contarFichasConsecutivas(fila, columna, direccionFila, direccionColumna, ficha) {
-        let contador = 0;
-        console.log(`Contando fichas desde [${fila}, ${columna}] en dirección [${direccionFila}, ${direccionColumna}]`);
-
-        while (fila >= 0 && fila < this.filas && //Para que el recorrido se mantenga adentro del tablero
-                columna >= 0 && columna < this.columnas && //Para que el recorrido se mantenga adentro del tablero
-                this.tablero[fila][columna].getFicha() === ficha) { //Si el casillero actual tiene una ficha del mismo tipo que la original (es del mismo equipo)
-                    contador++;
-                    console.log(`Contador incrementado a ${contador} en [${fila}, ${columna}]`);
-
-                    if (contador >= this.enLinea) {
-                        console.log(`Contador: ${contador}, Ficha: ${ficha.getJugador()}`); 
-                        return contador;
-                    }
-                        
-                    fila += direccionFila;
-                    columna += direccionColumna;
-            }
-        console.log(`Contador final desde [${fila}, ${columna}]: ${contador}`);
-        return contador;
     }
 
     esZonaProhibida(x, y) { //checkea si el mouse esta dentro del area del tablero
@@ -192,6 +157,90 @@ class Tablero {
         this.hints.forEach(hint => hint.ocultar());
 
     }
+
+    existeGanador(numeroColumna, numeroFila, jugador) {
+        console.log("Método existeGanador invocado");
+        
+        let contadorHorizontal = 0;
+        let contadorVertical = 0;
+        let contadorDiagonal1 = 0; // Diagonal de arriba a la izquierda a abajo a la derecha
+        let contadorDiagonal2 = 0; // Diagonal de arriba a la derecha a abajo a la izquierda
+    
+        // Verificar horizontalmente (en la fila)
+        for (let columna = 0; columna < this.columnas; columna++) {
+            let ficha = this.tablero[numeroFila][columna].getFicha();
+            console.log('Ficha en posición horizontal', numeroFila, columna, ficha);
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorHorizontal++;
+                console.log('Contador Horizontal:', contadorHorizontal);
+                if (contadorHorizontal >= this.enLinea) {
+                    console.log("Ganador encontrado horizontalmente");
+                    return true;
+                }
+            } else {
+                contadorHorizontal = 0;
+            }
+        }
+    
+        // Verificar verticalmente (en la columna) 
+        for (let fila = 0; fila < this.filas; fila++) {
+            let ficha = this.tablero[fila][numeroColumna].getFicha();
+            console.log('Ficha en posición vertical', fila, numeroColumna, ficha);
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorVertical++;
+                console.log('Contador Vertical:', contadorVertical);
+                if (contadorVertical >= this.enLinea) {
+                    console.log("Ganador encontrado verticalmente");
+                    return true;
+                }
+            } else {
+                contadorVertical = 0;
+            }
+        }
+    
+        // Verificar diagonal (de arriba a la izquierda a abajo a la derecha)
+        let startCol = Math.max(0, numeroColumna - numeroFila);//calcula que no se salga del limite izquierdo, si numerocolumna es menor  que numerofila se asigna 0
+        let startRow = Math.max(0, numeroFila - numeroColumna);
+        for (let i = 0; startRow + i < this.filas && startCol + i < this.columnas; i++) { //itero sobre el tablero
+            let ficha = this.tablero[startRow + i][startCol + i].getFicha(); //agarro la ficha de la posicon
+            console.log('Ficha en diagonal 1', startRow + i, startCol + i, ficha);
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorDiagonal1++; //si la ficha es igual al jugador que dejo caer la ultima, sumo el contador
+                console.log('Contador Diagonal 1:', contadorDiagonal1);
+                if (contadorDiagonal1 >= this.enLinea) { //si llegue el limite de juego hay ganador
+                    console.log("Ganador encontrado en diagonal 1");
+                    return true;
+                }
+            } else {
+                contadorDiagonal1 = 0;
+            }
+        }
+    
+        // Verificar diagonal (de arriba a la derecha a abajo a la izquierda)
+        startCol = Math.min(this.columnas - 1, numeroColumna + numeroFila);
+        startRow = Math.max(0, numeroFila - (this.columnas - 1 - numeroColumna));
+        for (let i = 0; startRow + i < this.filas && startCol - i >= 0; i++) {
+            let ficha = this.tablero[startRow + i][startCol - i].getFicha();
+            console.log('Ficha en diagonal 2', startRow + i, startCol - i, ficha);
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorDiagonal2++;
+                console.log('Contador Diagonal 2:', contadorDiagonal2);
+                if (contadorDiagonal2 >= this.enLinea) {
+                    console.log("Ganador encontrado en diagonal 2");
+                    return true;
+                }
+            } else {
+                contadorDiagonal2 = 0;
+            }
+        }
+    
+        console.log("No se encontró ganador en esta posición");
+        return false;
+    }
+    
+    
+    
+    
 }
 
 
