@@ -156,16 +156,15 @@ function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
 }
 
 function onMouseDown(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    if (isMouseEnBotonReiniciar(x, y)) { //si esta dentro del boton reiniciar reinicio el juego
+        reiniciarJuego();
+        return;
+    }
     if (existeGanador == null) { //solo  se puede mover fichas si no hay ganador
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        if (isMouseEnBotonReiniciar(x, y)) { //si esta dentro del boton reiniciar reinicio el juego
-            reiniciarJuego();
-            return;
-        }
-
         ultimaFichaClikeada = obtenerFichaSeleccionada(x, y); //obtengo la ficha seleccionada
         if (ultimaFichaClikeada != null) {
             coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
@@ -297,14 +296,12 @@ function mostrarGanador() {
     if (existeGanador != null) {
         const texto = `Ganador: ${existeGanador}!`;
         const bannerHeight = 50; 
-        ctx.clearRect(0, 0, canvas.width, bannerHeight); // Limpia el área superior del canvas
-        
         ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
         ctx.font = fontToLoad;
         ctx.textAlign = 'center';
         
         const centerX = canvas.width / 2;
-        const centerY = bannerHeight * 2; // Centra el texto verticalmente en el área del banner
+        const centerY = bannerHeight*1.5; // Centra el texto verticalmente en el área del banner
         ctx.fillText(texto, centerX, centerY);
     }
 }
