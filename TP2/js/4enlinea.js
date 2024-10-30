@@ -293,16 +293,18 @@ function dibujarBotonRestart() {
 }
 
 function mostrarGanador() {
-    clearInterval(intervalo)
+    clearInterval(intervalo);
     if (existeGanador != null) {
         const texto = `Ganador: ${existeGanador}!`;
-        const bannerHeight = 40; 
+        const bannerHeight = 50; 
         ctx.clearRect(0, 0, canvas.width, bannerHeight); // Limpia el área superior del canvas
-        ctx.fillStyle = 'white'; // Cambia el color del texto a blanco
+        
+        ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
         ctx.font = fontToLoad;
         ctx.textAlign = 'center';
+        
         const centerX = canvas.width / 2;
-        const centerY = bannerHeight / 2; // Centra el texto verticalmente en el área del banner
+        const centerY = bannerHeight * 2; // Centra el texto verticalmente en el área del banner
         ctx.fillText(texto, centerX, centerY);
     }
 }
