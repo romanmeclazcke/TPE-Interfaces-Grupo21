@@ -159,88 +159,69 @@ class Tablero {
     }
 
     existeGanador(numeroColumna, numeroFila, jugador) {
-        console.log("Método existeGanador invocado");
-        
         let contadorHorizontal = 0;
         let contadorVertical = 0;
         let contadorDiagonal1 = 0; // Diagonal de arriba a la izquierda a abajo a la derecha
         let contadorDiagonal2 = 0; // Diagonal de arriba a la derecha a abajo a la izquierda
-    
+
         // Verificar horizontalmente (en la fila)
         for (let columna = 0; columna < this.columnas; columna++) {
             let ficha = this.tablero[numeroFila][columna].getFicha();
-            console.log('Ficha en posición horizontal', numeroFila, columna, ficha);
             if (ficha && ficha.getJugador() === jugador) {
                 contadorHorizontal++;
-                console.log('Contador Horizontal:', contadorHorizontal);
                 if (contadorHorizontal >= this.enLinea) {
-                    console.log("Ganador encontrado horizontalmente");
                     return true;
                 }
             } else {
                 contadorHorizontal = 0;
             }
         }
-    
+
         // Verificar verticalmente (en la columna) 
         for (let fila = 0; fila < this.filas; fila++) {
             let ficha = this.tablero[fila][numeroColumna].getFicha();
-            console.log('Ficha en posición vertical', fila, numeroColumna, ficha);
             if (ficha && ficha.getJugador() === jugador) {
                 contadorVertical++;
-                console.log('Contador Vertical:', contadorVertical);
                 if (contadorVertical >= this.enLinea) {
-                    console.log("Ganador encontrado verticalmente");
                     return true;
                 }
             } else {
                 contadorVertical = 0;
             }
         }
-    
+
         // Verificar diagonal (de arriba a la izquierda a abajo a la derecha)
         let startCol = Math.max(0, numeroColumna - numeroFila);//calcula que no se salga del limite izquierdo, si numerocolumna es menor  que numerofila se asigna 0
         let startRow = Math.max(0, numeroFila - numeroColumna);
         for (let i = 0; startRow + i < this.filas && startCol + i < this.columnas; i++) { //itero sobre el tablero
             let ficha = this.tablero[startRow + i][startCol + i].getFicha(); //agarro la ficha de la posicon
-            console.log('Ficha en diagonal 1', startRow + i, startCol + i, ficha);
             if (ficha && ficha.getJugador() === jugador) {
                 contadorDiagonal1++; //si la ficha es igual al jugador que dejo caer la ultima, sumo el contador
-                console.log('Contador Diagonal 1:', contadorDiagonal1);
                 if (contadorDiagonal1 >= this.enLinea) { //si llegue el limite de juego hay ganador
-                    console.log("Ganador encontrado en diagonal 1");
                     return true;
                 }
             } else {
                 contadorDiagonal1 = 0;
             }
         }
-    
+
         // Verificar diagonal (de arriba a la derecha a abajo a la izquierda)
         startCol = Math.min(this.columnas - 1, numeroColumna + numeroFila);
         startRow = Math.max(0, numeroFila - (this.columnas - 1 - numeroColumna));
         for (let i = 0; startRow + i < this.filas && startCol - i >= 0; i++) {
             let ficha = this.tablero[startRow + i][startCol - i].getFicha();
-            console.log('Ficha en diagonal 2', startRow + i, startCol - i, ficha);
             if (ficha && ficha.getJugador() === jugador) {
                 contadorDiagonal2++;
-                console.log('Contador Diagonal 2:', contadorDiagonal2);
                 if (contadorDiagonal2 >= this.enLinea) {
-                    console.log("Ganador encontrado en diagonal 2");
                     return true;
                 }
             } else {
                 contadorDiagonal2 = 0;
             }
         }
-    
-        console.log("No se encontró ganador en esta posición");
+
         return false;
     }
-    
-    
-    
-    
 }
 
 

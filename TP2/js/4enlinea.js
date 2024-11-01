@@ -56,6 +56,8 @@ let tiempoLimite;
 let intervalo;
 let coordenadasUltimaFichaSeleccionada;
 let existeGanador = null; //variable para verificar si existe un ganador
+let contadorFichasSoltadas=0
+let empate=false;
 
 function initializeGameVariables() {
     const tamanioTablero = document.querySelector('input[name="tamanioTablero"]:checked');
@@ -96,6 +98,7 @@ function drawCanvas() {
     dibujarFichas();
     tablero.draw();
     mostrarGanador();
+    mostrarEmpate();
 }
 
 function redibujar() {
@@ -110,6 +113,7 @@ function redibujar() {
     tablero.draw(); // vuelvo a dibujar el tablero
     tablero.drawHints();
     mostrarGanador();
+    mostrarEmpate();
 }
 
 function dibujarFichas() { //dibujo todas las fichas
@@ -164,7 +168,7 @@ function onMouseDown(e) {
         reiniciarJuego();
         return;
     }
-    if (existeGanador == null) { //solo  se puede mover fichas si no hay ganador
+    if (existeGanador == null && empate==false) { //solo  se puede mover fichas si no hay ganador
         ultimaFichaClikeada = obtenerFichaSeleccionada(x, y); //obtengo la ficha seleccionada
         if (ultimaFichaClikeada != null) {
             coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
@@ -203,9 +207,15 @@ function onMouseUp(e) {
                     casilla.setearFicha(ultimaFichaClikeada);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
                     redibujar();
-                    if (tablero.existeGanador(numeroColumna, numeroFila, turno)) {//verifico si existe un ganador
+                    if (tablero.existeGanador(numeroColumna, numeroFila, turno)) {
                         existeGanador = turno;
                         mostrarGanador();
+                    } else {
+                        contadorFichasSoltadas++;  // Incrementar el contador después de verificar al ganador
+                        if (contadorFichasSoltadas === totalFichasPorJugador * 2) { // Revisar si se alcanzó el límite de fichas
+                            empate = true;
+                            mostrarEmpate();
+                        }
                     }
                     cambiarTurno();
                 } else {
@@ -237,6 +247,7 @@ function cambiarTurno() {
 
 function reiniciarJuego() { //reinicio el juego
     existeGanador = null
+    empate = false
     fichasJugador1 = []
     fichasJugador2 = []
     ultimaFichaClikeada = null;
@@ -299,9 +310,23 @@ function mostrarGanador() {
         ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
         ctx.font = fontToLoad;
         ctx.textAlign = 'center';
-        
         const centerX = canvas.width / 2;
-        const centerY = bannerHeight*1.5; // Centra el texto verticalmente en el área del banner
+        const centerY = bannerHeight * 1.5; // Centra el texto verticalmente en el área del banner
+        ctx.fillText(texto, centerX, centerY);
+    }
+}
+
+function mostrarEmpate() {
+    if(empate==true){
+        clearInterval(intervalo);
+        const texto = `Empate!`;
+        const bannerHeight = 50;
+        ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
+        ctx.font = fontToLoad;
+        ctx.textAlign = 'center';
+    
+        const centerX = canvas.width / 2;
+        const centerY = bannerHeight * 1.5; // Centra el texto verticalmente en el área del banner
         ctx.fillText(texto, centerX, centerY);
     }
 }
