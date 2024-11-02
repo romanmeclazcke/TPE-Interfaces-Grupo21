@@ -120,8 +120,8 @@ function redibujar() {
     dibujarTurno();
     dibujarBotonRestart();
     mostrarTiempoRestante(tiempoLimite);
-    dibujarFichas();
-    tablero.draw();
+    dibujarFichas(); //Se vuelven a dibujar las fichas
+    tablero.draw(); //Se vuelve a dibujar el tablero
     tablero.drawHints();
     mostrarGanador();
     mostrarEmpate();
