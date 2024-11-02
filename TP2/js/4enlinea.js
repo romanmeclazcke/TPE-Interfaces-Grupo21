@@ -15,6 +15,7 @@ btnCerrarMenu.addEventListener("click", (e) => {
 
 //Juego
 const fontToLoad = '20px "Press Start 2P"';
+
 //Promesa para que la fuente del timer cargue correctamente
 document.fonts.load(fontToLoad)
     .then(() => {
@@ -58,7 +59,7 @@ let ultimaFichaClikeada;
 let tiempoLimite;
 let intervalo;
 let coordenadasUltimaFichaSeleccionada;
-let existeGanador = null; //variable para verificar si existe un ganador
+let existeGanador = null; //Variable para verificar si existe un ganador
 let contadorFichasSoltadas = 0
 let empate = false;
 
@@ -127,7 +128,7 @@ function redibujar() {
     mostrarEmpate();
 }
 
-function dibujarFichas() { //dibujo todas las fichas
+function dibujarFichas() { //Dibuja todas las fichas
     for (ficha of fichasJugador1) {
         ficha.draw();
     }
@@ -139,8 +140,8 @@ function dibujarFichas() { //dibujo todas las fichas
 
 function crearFichas() {
     let espacioEntreFichas = 10; // Espacio entre cada ficha en la columna
-    let xJugador1 = 60; // Posición x fija para el jugador 1 (a la izquierda)
-    let xJugador2 = canvas.width - 60; // Posición x fija para el jugador 2 (a la derecha)
+    let xJugador1 = 60; // Posicion x fija para el jugador 1 (a la izquierda)
+    let xJugador2 = canvas.width - 60; // Posicion x fija para el jugador 2 (a la derecha)
     let radioFichas = 20
 
     for (let i = 0; i < totalFichasPorJugador; i++) {
@@ -155,14 +156,14 @@ function crearFichas() {
 }
 
 function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);//borra todo del canvas
-    drawCanvas(); //redibujo todo el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);//Borra todo del canvas
+    drawCanvas(); //Redibujo todo el canvas
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
-    let fichas = turno == jugadores.j1 ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
+    let fichas = turno == jugadores.j1 ? fichasJugador1 : fichasJugador2;//Retorna las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
 
-    for (let ficha of fichas) { //recorro sus fichas y miro si alguna de las suyas esta selecionada
+    for (let ficha of fichas) { //Recorro sus fichas y miro si alguna de las suyas esta selecionada
         if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse) && ficha.getFueMovida() == false) { //revisar que error hay (l;a fiucha se movio pero deja moverla igual)
             return ficha;
         }
@@ -175,12 +176,12 @@ function onMouseDown(e) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    if (isMouseEnBotonReiniciar(x, y)) { //si esta dentro del boton reiniciar reinicio el juego
+    if (isMouseEnBotonReiniciar(x, y)) { //Si esta dentro del boton reiniciar, reinicio el juego
         reiniciarJuego();
         return;
     }
-    if (existeGanador == null && empate == false) { //solo  se puede mover fichas si no hay ganador
-        ultimaFichaClikeada = obtenerFichaSeleccionada(x, y); //obtengo la ficha seleccionada
+    if (existeGanador == null && empate == false) { //Solo se puede mover fichas si no hay ganador
+        ultimaFichaClikeada = obtenerFichaSeleccionada(x, y); //Obtengo la ficha seleccionada
         if (ultimaFichaClikeada != null) {
             coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
 
@@ -195,8 +196,8 @@ function onMouseMove(e) {
         const rect = canvas.getBoundingClientRect(); // Obtener la posición del canvas
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
-        checkearZonaProhibida(mouseX, mouseY) //si esta en zona de tablero pongo el cursor en forma de cruz
-        ultimaFichaClikeada.setearPosicion(mouseX, mouseY); //voy moviendo la posicion de la ficha
+        checkearZonaProhibida(mouseX, mouseY) //Si esta en zona de tablero pongo el cursor en forma de cruz
+        ultimaFichaClikeada.setearPosicion(mouseX, mouseY); //Voy moviendo la posicion de la ficha
         redibujar();
     }
 }
@@ -204,7 +205,7 @@ function onMouseMove(e) {
 function onMouseUp(e) {
     if (ultimaFichaClikeada != null) {
         let cordenadasUltimaFicha = ultimaFichaClikeada.getPosicion();
-        tablero.ocultarHints();//oculto las hists cuando solte la ficha
+        tablero.ocultarHints();//Oculto las hists cuando solte la ficha
 
         if (tablero.esPosicionValida(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y)) {//verifico que solte la ficha en una hit valida
             let numeroColumna = tablero.obtenerColumna(cordenadasUltimaFicha.x, cordenadasUltimaFicha.y);//obtengo el numero de columna donde solte la ficha
@@ -216,7 +217,7 @@ function onMouseUp(e) {
                     ultimaFichaClikeada.setearPosicion(cordenadasHint.x, cordenadasHint.y); //seteo a la ficha en las cordenadas de la hint para comenzar su animacion
                     ultimaFichaClikeada.animarCaida(casilla);
                     casilla.setearFicha(ultimaFichaClikeada);
-                    ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
+                    ultimaFichaClikeada.setFueMovida(); //Seteo que fue movida para no permitir volver a usarla
                     redibujar();
                     if (tablero.existeGanador(numeroColumna, numeroFila, turno)) {
                         existeGanador = turno;
@@ -249,7 +250,6 @@ function isMouseEnBotonReiniciar(mouseX, mouseY) {
         mouseY >= posBotonRestartY &&
         mouseY <= posBotonRestartY + botonRestartHeight;
 }
-
 
 function cambiarTurno() {
     turno = (turno === jugadores.j1) ? jugadores.j2 : jugadores.j1
@@ -285,7 +285,7 @@ function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo 
     }, 1000);
 }
 
-function dibujarTurno() { //dibuho el turno solo si no hay ganador
+function dibujarTurno() { //dibujo el turno solo si no hay ganador
     if (existeGanador == null) {
         const esJugador1 = (turno === jugadores.j1);// Determina la posicion en funcion del jugador
         const tamanioTablero = dimensionTablero;
