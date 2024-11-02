@@ -1,0 +1,431 @@
+:root {
+    --color-primario: #0D609F;
+    --color-primario-luz1: #2E71A5;
+    --color-primario-luz2: #508BB8;
+    --color-primario-luz3: #98C8ED;
+    --color-primario-sombra1: #084A7C;
+    --color-primario-sombra2: #053961;
+    --color-primario-sombra3: #022B49;
+    --color-secundario: #89E3E3;
+    --color-secundario-luz1: #BDF4F4;
+    --color-secundario-luz2: #D3FFFF;
+    --color-secundario-luz3: #E2FFFF;
+    --color-secundario-sombra1: #009797;
+    --color-secundario-sombra2: #007575;
+    --color-secundario-sombra3: #014B4B;
+    --color-acento: #FA7800;
+    --color-acento-luz1: #FF8C22;
+    --color-acento-luz2: #FFA552;
+    --color-acento-luz3: #FFA552;
+    --color-acento-sombra1: #C65F00;
+    --color-acento-sombra2: #9A4A00;
+    --color-acento-sombra3: #793A00;
+
+    --color-degrade-etiqueta-nombre-cards:
+        linear-gradient(to right,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(8, 86, 86, 0.6) 47%,
+            rgba(0, 151, 151, 1) 67%);
+
+    --color-degrade-rectangulo-flechas-carrusel-left:
+        linear-gradient(to right,
+            rgba(0, 0, 0, 0.8) 15%,
+            rgba(1, 25, 44, 0.71) 56%,
+            rgba(2, 43, 73, 0.43) 91%);
+
+    --color-degrade-rectangulo-flechas-carrusel-rigth:
+        linear-gradient(to left,
+            rgba(0, 0, 0, 0.8) 15%,
+            rgba(1, 25, 44, 0.71) 56%,
+            rgba(2, 43, 73, 0.43) 91%);
+
+}
+
+body {
+    background-color: var(--color-primario);
+}
+
+.container-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--color-primario);
+}
+
+.spinner {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.spinner p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.spinner::before {
+    content: "";
+    width: 60px;
+    height: 60px;
+    border: 6px solid white;
+    border-top: 6px solid var(--color-primario-luz2);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.container-barra-carga {
+    width: 80%;
+    height: 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.barra-carga {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-primario-luz2);
+    /* Azul claro */
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.porcentaje-carga {
+    margin-top: 10px;
+    color: white;
+    font-size: 25px;
+}
+
+
+
+
+/*CARRUSEL*/
+.container-titulo-categorias-carrusel>h2 {
+    display: flex;
+    justify-content: left;
+    padding-left: 21px;
+    padding-top: 12px;
+}
+
+.container-cards-carrusel {
+    display: flex;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+}
+
+/*comienza card especial*/
+.carrusel {
+    background-color: var(--color-primario-sombra2);
+    border-radius: 8px;
+    margin: 33px 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scrollbar-width: none;
+}
+
+.carrusel-especial {
+    background-color: var(--color-primario-sombra2);
+    border-radius: 8px;
+    margin: 33px 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    scrollbar-width: none;
+}
+
+.rectangulo-izq {
+    background: var(--color-degrade-rectangulo-flechas-carrusel-left);
+    width: 4%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.rectangulo-izq>button,
+.rectangulo-der>button {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.rectangulo-der {
+    background: var(--color-degrade-rectangulo-flechas-carrusel-rigth);
+    width: 4%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.flechas-carrusel {
+    height: 60px;
+}
+
+
+.container-titulo-categorias-carrusel>h2 {
+    display: flex;
+    justify-content: left;
+    padding-left: 21px;
+    padding-top: 12px;
+}
+
+
+/*CARD ESECIAl*/
+.container-card-especial {
+    display: flex;
+    width: 430px;
+    height: 244px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 5px 25px 5px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    /*esto evita que la card se "achiche" mientras mas cards hayan*/
+    transition: transform 0.3s ease;
+}
+
+.container-card-especial>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.2s;
+}
+
+.rotar-izquierda {
+    transform: rotate(-5deg);
+    /* Rotar ligeramente a la izquierda */
+}
+
+.rotar-derecha {
+    transform: rotate(5deg);
+    /* Rotar ligeramente a la derecha */
+}
+
+
+/*CARD NORMAL*/
+.container-card {
+    display: flex;
+    width: 300px;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 5px 25px 5px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    /*esto evita que la card se "achiche" mientras mas cards hayan*/
+}
+
+.container-card>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out
+}
+
+.container-seccion-nombre-juego {
+    background: var(--color-degrade-etiqueta-nombre-cards);
+    height: 29.77px;
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    z-index: 0;
+}
+
+.container-seccion-nombre-juego h3 {
+    margin: 0;
+    padding: 5px 10px;
+    color: var(--color-blanco);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+}
+
+.tag {
+    background-color: var(--color-acento-luz2);
+    position: absolute;
+    text-align: center;
+    align-content: center;
+}
+
+.tag-gratis {
+    width: 203px;
+    height: 30px;
+    right: -70px;
+    top: 10px;
+    transform: rotate(45deg);
+}
+
+.tag-agregado-al-carrito {
+    align-content: center;
+    width: 100%;
+    height: 29px;
+}
+
+.tag-precio {
+    width: 157px;
+    height: 26px;
+    bottom: 10px;
+    left: -50px;
+    transform: rotate(37deg);
+    z-index: 2;
+}
+
+.container-card:hover>img,
+.container-card-especial:hover>img {
+    filter: brightness(0.2);
+}
+
+.container-card:hover .container-icono-jugar {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.container-card-especial:hover .container-icono-jugar {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.container-card:hover .container-btn-comprar {
+    opacity: 1;
+}
+
+.container-card-especial:hover .container-btn-comprar {
+    opacity: 1;
+}
+
+.container-icono-jugar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.container-btn-comprar {
+    color: var(--color-acento-luz2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.btn-comprar {
+    height: 40px;
+    width: 158px;
+    background-color:var(--color-acento);
+    border: 2px solid var(--color-acento-luz1);
+    color: #eee;
+    transition: .6s;
+    font-size: 15px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.btn-comprar span {
+    transform: translateX(10px);
+    transition: .5s ease-in-out;
+}
+
+.btn-comprar svg {
+    transform: translateX(-300px);
+    transition: .6s ease-in-out;
+    z-index: 3;
+    height: 20px;
+}
+
+.btn-comprar:active {
+    width: 60px;
+    background-color: var(--color-acento-sombra1);
+    box-shadow: 20px 20px 96px #bebebe, -20px -20px 96px white;
+    cursor: pointer;
+}
+.btn-comprar:active{
+    transform: scale(1.2);
+}
+
+.btn-comprar:active svg {
+    transform: translateX(-5px);
+}
+
+.btn-comprar:active span {
+    transform: translateY(70px);
+    font-size: .1rem;
+}
+
+
+
+.icono-jugar {
+    width: 65px;
+    height: 60px;
+    transition: scale 0.35s ease-in-out;
+}
+
+.especial {
+    width: 85px;
+    height: 80px;
+}
+
+.icono-jugar:hover {
+    scale: 1.2;
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .container-card-especial{
+        width: 370px;
+        height: 230px;
+    }
+}
