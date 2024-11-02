@@ -14,6 +14,7 @@ class Hints {
             this.ctx.arc(this.x, this.y, this.radio, 0, 2 * Math.PI);
             this.ctx.closePath();
             this.ctx.strokeStyle = '#FA7800'; // Establece el color acento para el borde
+            this.ctx.lineWidth = 2;
             this.ctx.stroke(); // Dibuja solo el borde del círculo
         }
     }

@@ -30,6 +30,9 @@ document.fonts.load(fontToLoad)
 let canvas = document.getElementById('canva')
 let ctx = canvas.getContext('2d')
 
+const backgroundImage = new Image();
+backgroundImage.src = './images/miniblur.jpg';
+
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mousemove', onMouseMove);
@@ -56,8 +59,8 @@ let tiempoLimite;
 let intervalo;
 let coordenadasUltimaFichaSeleccionada;
 let existeGanador = null; //variable para verificar si existe un ganador
-let contadorFichasSoltadas=0
-let empate=false;
+let contadorFichasSoltadas = 0
+let empate = false;
 
 function initializeGameVariables() {
     const tamanioTablero = document.querySelector('input[name="tamanioTablero"]:checked');
@@ -89,28 +92,36 @@ function start() {
 }
 
 function drawCanvas() {
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    crearFichas();
-    tablero.drawFondo();
-    dibujarTurno();
-    dibujarBotonRestart();
-    dibujarFichas();
-    tablero.draw();
-    mostrarGanador();
-    mostrarEmpate();
+    //Utiliza un metodo que devuelve una promesa para devolver imagen de fondo
+    loadImage(backgroundImage.src)
+        .then((backgroundImage) => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+            crearFichas();
+            tablero.drawFondo();
+            dibujarTurno();
+            dibujarBotonRestart();
+            dibujarFichas();
+            tablero.draw();
+            mostrarGanador();
+            mostrarEmpate();
+        })
+        .catch((error) => {
+            console.error('Error loading image:', error);
+        });
 }
 
 function redibujar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); //borro todo el canvas
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height); //pinto todo el fondo de rojo
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     tablero.drawFondo();
     dibujarTurno();
     dibujarBotonRestart();
-    mostrarTiempoRestante(tiempoLimite)
-    dibujarFichas(); // vuelvo a dibujar todas las fichas
-    tablero.draw(); // vuelvo a dibujar el tablero
+    mostrarTiempoRestante(tiempoLimite);
+    dibujarFichas();
+    tablero.draw();
     tablero.drawHints();
     mostrarGanador();
     mostrarEmpate();
@@ -168,7 +179,7 @@ function onMouseDown(e) {
         reiniciarJuego();
         return;
     }
-    if (existeGanador == null && empate==false) { //solo  se puede mover fichas si no hay ganador
+    if (existeGanador == null && empate == false) { //solo  se puede mover fichas si no hay ganador
         ultimaFichaClikeada = obtenerFichaSeleccionada(x, y); //obtengo la ficha seleccionada
         if (ultimaFichaClikeada != null) {
             coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
@@ -297,7 +308,7 @@ function dibujarBotonRestart() {
     ctx.save();
 
     let restartIcon = new Image();
-    restartIcon.src = './images/restart-icon.png';
+    restartIcon.src = './images/white-restart-icon.png';
 
     ctx.drawImage(restartIcon, posBotonRestartX, posBotonRestartY, 30, 30);
 }
@@ -306,7 +317,7 @@ function mostrarGanador() {
     if (existeGanador != null) {
         clearInterval(intervalo);
         const texto = `Ganador: ${existeGanador}!`;
-        const bannerHeight = 50; 
+        const bannerHeight = 50;
         ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
         ctx.font = fontToLoad;
         ctx.textAlign = 'center';
@@ -317,14 +328,14 @@ function mostrarGanador() {
 }
 
 function mostrarEmpate() {
-    if(empate==true){
+    if (empate == true) {
         clearInterval(intervalo);
         const texto = `Empate!`;
         const bannerHeight = 50;
         ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
         ctx.font = fontToLoad;
         ctx.textAlign = 'center';
-    
+
         const centerX = canvas.width / 2;
         const centerY = bannerHeight * 1.5; // Centra el texto verticalmente en el área del banner
         ctx.fillText(texto, centerX, centerY);
@@ -333,7 +344,7 @@ function mostrarEmpate() {
 
 function mostrarTiempoRestante(tiempo) {
     const texto = `${tiempo}`;
-    ctx.fillStyle = '#022B49';
+    ctx.fillStyle = '#FA7800';
     ctx.font = fontToLoad;
     ctx.textAlign = 'center';
 
@@ -349,4 +360,13 @@ function checkearZonaProhibida(x, y) { //checkea si esta en zona de tablero
     } else {
         canvas.style.cursor = "pointer"; //si esta fuera lo dejo en pointer(agarrando ficha)
     }
+}
+
+// Funcion para cargar una imagen y retornar una promesa
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+        backgroundImage.onload = () => resolve(backgroundImage);
+        backgroundImage.onerror = reject;
+        backgroundImage.src = src;
+    });
 }
