@@ -31,7 +31,7 @@ let canvas = document.getElementById('canva')
 let ctx = canvas.getContext('2d')
 
 const backgroundImage = new Image();
-backgroundImage.src = './images/miniblur.jpg';
+backgroundImage.src = './images/gotham.jpg';
 
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
