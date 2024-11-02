@@ -55,6 +55,9 @@ let ultimaFichaClikeada;
 let tiempoLimite;
 let intervalo;
 let coordenadasUltimaFichaSeleccionada;
+let existeGanador = null; //variable para verificar si existe un ganador
+let contadorFichasSoltadas=0
+let empate=false;
 
 function initializeGameVariables() {
     const tamanioTablero = document.querySelector('input[name="tamanioTablero"]:checked');
@@ -80,7 +83,7 @@ function start() {
     canvas.style.display = "block";
     document.querySelector(".connect-four-options").style.display = "none";
     document.querySelector(".start-button").style.visibility = "hidden";
-    turno = Math.random() < 0.5 ? "j1" : "j2";
+    turno = Math.random() < 0.5 ? jugadores.j1 : jugadores.j2;
     drawCanvas();
     iniciarTimer();
 }
@@ -94,6 +97,8 @@ function drawCanvas() {
     dibujarBotonRestart();
     dibujarFichas();
     tablero.draw();
+    mostrarGanador();
+    mostrarEmpate();
 }
 
 function redibujar() {
@@ -107,6 +112,8 @@ function redibujar() {
     dibujarFichas(); // vuelvo a dibujar todas las fichas
     tablero.draw(); // vuelvo a dibujar el tablero
     tablero.drawHints();
+    mostrarGanador();
+    mostrarEmpate();
 }
 
 function dibujarFichas() { //dibujo todas las fichas
@@ -142,7 +149,7 @@ function clearCanvas() {
 }
 
 function obtenerFichaSeleccionada(posicionXMouse, posicionYMouse) {
-    let fichas = turno == "j1" ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
+    let fichas = turno == jugadores.j1 ? fichasJugador1 : fichasJugador2;//retorno las fichas del jugador de turno (si el jugador es j1, retorno sus fichas, sino retorno las de j2)
 
     for (let ficha of fichas) { //recorro sus fichas y miro si alguna de las suyas esta selecionada
         if (ficha.estaSeleccionada(posicionXMouse, posicionYMouse) && ficha.getFueMovida() == false) { //revisar que error hay (l;a fiucha se movio pero deja moverla igual)
@@ -157,17 +164,18 @@ function onMouseDown(e) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    if (isMouseEnBotonReiniciar(x, y)) {
+    if (isMouseEnBotonReiniciar(x, y)) { //si esta dentro del boton reiniciar reinicio el juego
         reiniciarJuego();
         return;
     }
+    if (existeGanador == null && empate==false) { //solo  se puede mover fichas si no hay ganador
+        ultimaFichaClikeada = obtenerFichaSeleccionada(x, y); //obtengo la ficha seleccionada
+        if (ultimaFichaClikeada != null) {
+            coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
 
-    ultimaFichaClikeada = obtenerFichaSeleccionada(x, y);
-    if (ultimaFichaClikeada != null) {
-        coordenadasUltimaFichaSeleccionada = ultimaFichaClikeada.getPosicion();
-
-        tablero.mostrarHints();
-        redibujar();
+            tablero.mostrarHints();
+            redibujar();
+        }
     }
 }
 
@@ -176,8 +184,8 @@ function onMouseMove(e) {
         const rect = canvas.getBoundingClientRect(); // Obtener la posición del canvas
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
-        checkearZonaProhibida(mouseX, mouseY)
-        ultimaFichaClikeada.setearPosicion(mouseX, mouseY);
+        checkearZonaProhibida(mouseX, mouseY) //si esta en zona de tablero pongo el cursor en forma de cruz
+        ultimaFichaClikeada.setearPosicion(mouseX, mouseY); //voy moviendo la posicion de la ficha
         redibujar();
     }
 }
@@ -192,12 +200,23 @@ function onMouseUp(e) {
             if (numeroColumna != null) {
                 let casilla = tablero.obtenerCasilleroPorColumna(numeroColumna); //si obtuve un numero de columna  valido, obtengo la casilla donde puedo va a ir a parar la ficha
                 if (casilla != null) {
+                    let numeroFila = tablero.obtenerFilaDisponibleEnColumna(numeroColumna);
                     let cordenadasHint = tablero.obtenerHint(numeroColumna).getPosicion(); //obtengo las cordenadas de la hint donde solte la ficha
                     ultimaFichaClikeada.setearPosicion(cordenadasHint.x, cordenadasHint.y); //seteo a la ficha en las cordenadas de la hint para comenzar su animacion
                     ultimaFichaClikeada.animarCaida(casilla);
                     casilla.setearFicha(ultimaFichaClikeada);
                     ultimaFichaClikeada.setFueMovida(); //seteo que fue movida para no permitir volver a usarla
                     redibujar();
+                    if (tablero.existeGanador(numeroColumna, numeroFila, turno)) {
+                        existeGanador = turno;
+                        mostrarGanador();
+                    } else {
+                        contadorFichasSoltadas++;  // Incrementar el contador después de verificar al ganador
+                        if (contadorFichasSoltadas === totalFichasPorJugador * 2) { // Revisar si se alcanzó el límite de fichas
+                            empate = true;
+                            mostrarEmpate();
+                        }
+                    }
                     cambiarTurno();
                 } else {
                     ultimaFichaClikeada.setearPosicion(coordenadasUltimaFichaSeleccionada.x, coordenadasUltimaFichaSeleccionada.y);//si no existe una casilla en la columna vuelvo la ficha a su posicion original (pila)
@@ -222,11 +241,13 @@ function isMouseEnBotonReiniciar(mouseX, mouseY) {
 
 
 function cambiarTurno() {
-    turno = (turno === "j1") ? "j2" : "j1";
+    turno = (turno === jugadores.j1) ? jugadores.j2 : jugadores.j1
     redibujar();
 }
 
 function reiniciarJuego() { //reinicio el juego
+    existeGanador = null
+    empate = false
     fichasJugador1 = []
     fichasJugador2 = []
     ultimaFichaClikeada = null;
@@ -253,21 +274,22 @@ function iniciarTimer() { //timer para ver cuando termina el juego y resetearlo 
     }, 1000);
 }
 
-function dibujarTurno() {
-    // Determina la posicion en funcion del jugador
-    const esJugador1 = (turno === "j1");
-    const tamanioTablero = dimensionTablero;
-    const flechaX = esJugador1 ? 60 : canvas.width - 60; // Posicion de la flecha en x
-    const flechaY = tamanioTablero <= 5 ? 160 : 40; // Posicion de la flecha en y
+function dibujarTurno() { //dibuho el turno solo si no hay ganador
+    if (existeGanador == null) {
+        const esJugador1 = (turno === jugadores.j1);// Determina la posicion en funcion del jugador
+        const tamanioTablero = dimensionTablero;
+        const flechaX = esJugador1 ? 60 : canvas.width - 60; // Posicion de la flecha en x
+        const flechaY = tamanioTablero <= 5 ? 160 : 40; // Posicion de la flecha en y
 
-    // Dibujar flecha
-    ctx.beginPath();
-    ctx.moveTo(flechaX - 15, flechaY);
-    ctx.lineTo(flechaX + 15, flechaY);
-    ctx.lineTo(flechaX, flechaY + 30);
-    ctx.closePath();
-    ctx.fillStyle = '#FA7800'; //Color acento
-    ctx.fill();
+        // Dibujar flecha
+        ctx.beginPath();
+        ctx.moveTo(flechaX - 15, flechaY);
+        ctx.lineTo(flechaX + 15, flechaY);
+        ctx.lineTo(flechaX, flechaY + 30);
+        ctx.closePath();
+        ctx.fillStyle = '#FA7800'; //Color acento
+        ctx.fill();
+    }
 }
 
 //Funcion que dibuja icono del boton restart
@@ -278,6 +300,35 @@ function dibujarBotonRestart() {
     restartIcon.src = './images/restart-icon.png';
 
     ctx.drawImage(restartIcon, posBotonRestartX, posBotonRestartY, 30, 30);
+}
+
+function mostrarGanador() {
+    if (existeGanador != null) {
+        clearInterval(intervalo);
+        const texto = `Ganador: ${existeGanador}!`;
+        const bannerHeight = 50; 
+        ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
+        ctx.font = fontToLoad;
+        ctx.textAlign = 'center';
+        const centerX = canvas.width / 2;
+        const centerY = bannerHeight * 1.5; // Centra el texto verticalmente en el área del banner
+        ctx.fillText(texto, centerX, centerY);
+    }
+}
+
+function mostrarEmpate() {
+    if(empate==true){
+        clearInterval(intervalo);
+        const texto = `Empate!`;
+        const bannerHeight = 50;
+        ctx.fillStyle = '#FA7800'; // Cambia el color del texto al acento
+        ctx.font = fontToLoad;
+        ctx.textAlign = 'center';
+    
+        const centerX = canvas.width / 2;
+        const centerY = bannerHeight * 1.5; // Centra el texto verticalmente en el área del banner
+        ctx.fillText(texto, centerX, centerY);
+    }
 }
 
 function mostrarTiempoRestante(tiempo) {

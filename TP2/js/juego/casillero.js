@@ -15,7 +15,7 @@ class Casillero {
     }
 
     estaLibre() {
-        return this.fichaSeteada==null;
+        return this.fichaSeteada===null;
     }
 
     setearFicha(ficha){
@@ -42,6 +42,6 @@ class Casillero {
     }
 
     getFicha(){
-        
+        return this.fichaSeteada;
     }
 }

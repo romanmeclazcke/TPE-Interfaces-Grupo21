@@ -1,5 +1,6 @@
 class Tablero {
     constructor(tamanioJuego, ctx) {
+        this.enLinea = tamanioJuego;
         this.columnas = tamanioJuego + 3; // Definición de columnas
         this.filas = tamanioJuego + 2; // Definición de filas
         this.tamanioCelda = tamanioJuego <= 5 ? 60 : 50;//En el 6 y 7 en linea achicamos las celdas para que entren en el canvas
@@ -113,13 +114,20 @@ class Tablero {
         return null
     }
 
+    obtenerFilaDisponibleEnColumna(numeroColumna) {
+        for (let fila = this.filas - 1; fila >= 0; fila--) { // Empieza desde la última fila hacia arriba
+            if (this.tablero[fila][numeroColumna].estaLibre()) { // Verifica si el casillero está libre
+                return fila; // Devuelve el número de la fila disponible
+            }
+        }
+        // Si no hay filas disponibles en la columna, retorna null
+        return null;
+    }
+
+
 
     getTablero() {
         return this.tablero
-    }
-
-    existeGanador() {
-
     }
 
     esZonaProhibida(x, y) { //checkea si el mouse esta dentro del area del tablero
@@ -148,6 +156,71 @@ class Tablero {
     ocultarHints() {
         this.hints.forEach(hint => hint.ocultar());
 
+    }
+
+    existeGanador(numeroColumna, numeroFila, jugador) {
+        let contadorHorizontal = 0;
+        let contadorVertical = 0;
+        let contadorDiagonal1 = 0; // Diagonal de arriba a la izquierda a abajo a la derecha
+        let contadorDiagonal2 = 0; // Diagonal de arriba a la derecha a abajo a la izquierda
+
+        // Verificar horizontalmente (en la fila)
+        for (let columna = 0; columna < this.columnas; columna++) {
+            let ficha = this.tablero[numeroFila][columna].getFicha();
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorHorizontal++;
+                if (contadorHorizontal >= this.enLinea) {
+                    return true;
+                }
+            } else {
+                contadorHorizontal = 0;
+            }
+        }
+
+        // Verificar verticalmente (en la columna) 
+        for (let fila = 0; fila < this.filas; fila++) {
+            let ficha = this.tablero[fila][numeroColumna].getFicha();
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorVertical++;
+                if (contadorVertical >= this.enLinea) {
+                    return true;
+                }
+            } else {
+                contadorVertical = 0;
+            }
+        }
+
+        // Verificar diagonal (de arriba a la izquierda a abajo a la derecha)
+        let startCol = Math.max(0, numeroColumna - numeroFila);//calcula que no se salga del limite izquierdo, si numerocolumna es menor  que numerofila se asigna 0
+        let startRow = Math.max(0, numeroFila - numeroColumna);
+        for (let i = 0; startRow + i < this.filas && startCol + i < this.columnas; i++) { //itero sobre el tablero
+            let ficha = this.tablero[startRow + i][startCol + i].getFicha(); //agarro la ficha de la posicon
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorDiagonal1++; //si la ficha es igual al jugador que dejo caer la ultima, sumo el contador
+                if (contadorDiagonal1 >= this.enLinea) { //si llegue el limite de juego hay ganador
+                    return true;
+                }
+            } else {
+                contadorDiagonal1 = 0;
+            }
+        }
+
+        // Verificar diagonal (de arriba a la derecha a abajo a la izquierda)
+        startCol = Math.min(this.columnas - 1, numeroColumna + numeroFila);
+        startRow = Math.max(0, numeroFila - (this.columnas - 1 - numeroColumna));
+        for (let i = 0; startRow + i < this.filas && startCol - i >= 0; i++) {
+            let ficha = this.tablero[startRow + i][startCol - i].getFicha();
+            if (ficha && ficha.getJugador() === jugador) {
+                contadorDiagonal2++;
+                if (contadorDiagonal2 >= this.enLinea) {
+                    return true;
+                }
+            } else {
+                contadorDiagonal2 = 0;
+            }
+        }
+
+        return false;
     }
 }
 
