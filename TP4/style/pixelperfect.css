@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+
+
+.container-fondo-seccion-1 {
+    position: relative;
+}
+
+.img-fondo-seccion-1 {
+    width: 1280px;
+    height: 959px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.container-pasto-1 {
+    position: relative;
+}
+
+.container-pasto-1 img {
+    position: absolute;
+    width: 191.19px;
+    height: 63.28px;
+    top: 630.46px;
+    left: 1028.46px;
+    animation: animarPasto 1s ease;
+}
+
+.container-arbol-3 {
+    position: relative;
+}
+
+.container-arbol-3 img {
+    position: absolute;
+    width: 278.03px;
+    height: 430.85px;
+    top: 278.38px;
+    left: 1080.97px;
+    animation: animarArbolDer 0.5s ease; 
+}
+
+.container-pasto-2 {
+    position: relative;
+}
+
+.container-pasto-2  img {
+    position: absolute;
+    width: 244.37px;
+    height: 107.71px;
+    top: 662.1px;
+    left: 1080.97px;
+    animation: animarPasto 1s ease; 
+}
+
+.container-arbol-2 {
+    position: relative;
+}
+
+.container-arbol-2 img {
+    position: absolute;
+    width: 434.21px;
+    height: 672.52px;
+    top: 106.71px;
+    left: 881.03px;
+    animation: animarArbolDer 1s ease; 
+}
+
+
+.container-piedra-3 {
+    position: relative;
+}
+
+.container-piedra-3 img {
+    position: absolute;
+    width: 66.65px;
+    height: 56.55px;
+    top: 737.5px;
+    left: 1040.84px;
+    gap: 0px;
+    opacity: 1; 
+    animation: animarPiedraDer 0.6s ease;  
+
+}
+.container-piedra-1 {
+    position: relative;
+}
+
+.container-piedra-1 img {
+    position: absolute;
+    width: 113.77px;
+    height: 74.05px;
+    top: 737.5px;
+    left: 1072.22px;
+    gap: 0px;
+    animation: animarPiedraDer 1s ease;  
+
+}
+
+.container-piedra-4 {
+    position: relative;
+}
+
+.container-piedra-4 img {
+    position: absolute;
+    width: 59.24px;
+    height: 35.01px;
+    top: 786.64px;
+    left: 1050.84px;
+    animation: animarPiedraDer 1.2s ease;  
+}
+
+.container-personaje-3 {
+    position: relative;
+}
+
+.container-personaje-3 img {
+    position: absolute;
+    width: 174px;
+    height: 384px;
+    top: 338px;
+    left: 752.25px;
+    gap: 0px;
+    transform: rotate(-8.73deg);
+    animation: animarPersonajes 1s ease;
+}
+.container-personaje-2 {
+    position: relative;
+}
+
+.container-personaje-2 img {
+    position: absolute;
+    width: 197px;
+    height: 270px;
+    top: 426.04px;
+    left: 536px;
+    gap: 0px;
+    animation: animarPersonajes 0.8s ease;
+}
+.container-personaje-1 {
+    position: relative;
+}
+
+.container-personaje-1 img {
+    position: absolute;
+    width: 240.4px;
+    height: 314.48px;
+    top: 527.28px;
+    left: 411px;
+    gap: 0px;
+    animation: animarPersonajes 3s ease;
+}
+
+
+.container-pasto-4 {
+    position: relative;
+}
+
+.container-pasto-4 img {
+    position: absolute;
+    width: 249.76px;
+    height: 114.44px;
+    top: 717.97px;
+    left: 161.38px;
+    animation: animarPasto 1.5s ease;
+}
+
+.cotainer-arbol-1 {
+    position: relative;
+}
+
+.container-arbol-1 img {
+    position: absolute;
+    width: 560.1px;
+    height: 867.75px;
+    top: -1px;
+    left: -153px;
+    animation: animarArbolIzq 1s ease; 
+}
+
+.container-piedra-2 {
+    position: relative;
+}
+
+.container-piedra-2 img {
+    position: absolute;
+    width: 145.41px;
+    height: 78.09px;
+    top: 793.37px;
+    left: 129.07px;  
+    animation: animarPiedraIzq 0.8s;  
+}
+
+
+.container-pasto-3 {
+    position: relative;
+}
+
+.container-pasto-3 img {
+    position: absolute;
+    width: 155.51px;
+    height: 102.33px;
+    top: 821.65px;
+    left: 197.06px;
+    animation: animarPasto 0.5s ease;
+}
+.container-logo{
+    position: absolute;
+}
+
+.container-logo img {
+    position: relative;
+    width: 560px;
+    height: 320px;
+    top: 55px;
+    left: 360px;
+    animation: animarLogo 2s ease;
+}
+
+@keyframes animarPasto {
+    from{
+        transform: translateY(460px);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+@keyframes animarArbolIzq {
+    from{
+        transform: translateX(-460px);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes animarArbolDer {
+    from{
+        transform: translateX(460px);
+        
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+@keyframes animarPersonajes {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes animarPiedraIzq{
+    from{
+        transform: translateX(-460px);
+        
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+@keyframes animarPiedraDer{
+    from{
+        transform: translateX(460px);
+        
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+@keyframes animarLogo{
+    0% {
+        transform: rotateX(-200deg); 
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0deg); 
+        opacity: 1;
+    }
+}
