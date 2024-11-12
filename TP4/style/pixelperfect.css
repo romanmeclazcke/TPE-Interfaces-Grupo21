@@ -364,6 +364,7 @@ nav ul li:nth-child(5) {
     opacity: 0px;
     animation: animarLogo 2s ease;
     transition: all 0.5s ease-in-out;
+    z-index: 100000;
 }
 
 .container-fondo-seccion-2 {

@@ -1,10 +1,31 @@
 let btnMenu = document.getElementById('btn-menu');
+let lin1 = document.getElementById('lin1');
+let lin2 = document.getElementById('lin2');
+let lin3 = document.getElementById('lin3');
+let nav = document.getElementById('nav')
+
+
+
+//elementos seccion
+let pasto1 = document.querySelector('.container-pasto-1');
+let arbol3 = document.querySelector('.container-arbol-3');
+let pasto2 = document.querySelector('.container-pasto-2');
+let arbol2 = document.querySelector('.container-arbol-2');
+let piedra3 = document.querySelector('.container-piedra-3');
+let piedra1 = document.querySelector('.container-piedra-1');
+let piedra4 = document.querySelector('.container-piedra-4');
+let personaje3 = document.querySelector('.container-personaje-3');
+let personaje2 = document.querySelector('.container-personaje-2');
+let personaje1 = document.querySelector('.container-personaje-1');
+let pasto4 = document.querySelector('.container-pasto-4');
+let arbol1 = document.querySelector('.container-arbol-1');
+let piedra2 = document.querySelector('.container-piedra-2');
+let pasto3 = document.querySelector('.container-pasto-3');
+let logo = document.querySelector('.logo');
+
 
 btnMenu.addEventListener('click', () => {
-  let lin1 = document.getElementById('lin1');
-  let lin2 = document.getElementById('lin2');
-  let lin3 = document.getElementById('lin3');
-  let nav = document.getElementById('nav')
+
 
   if (lin1.classList.contains('active')) {
     lin1.classList.remove('active');
@@ -23,41 +44,55 @@ btnMenu.addEventListener('click', () => {
 
 document.addEventListener('scroll', function() {
   const scrollTop = window.scrollY; //cantidad de pixeles que se scrollearon
-  let logo = document.getElementById('logo')
 
-  const elements = [
-    { selector: '.container-pasto-1', speed: 0.1 },
-    { selector: '.container-arbol-3', speed: 0.2 },
-    { selector: '.container-pasto-2', speed: 0.3 },
-    { selector: '.container-arbol-2', speed: 0.4 },
-    { selector: '.container-piedra-3', speed: 0.5 },
-    { selector: '.container-piedra-1', speed: 0.6 },
-    { selector: '.container-piedra-4', speed: 0.7 },
-    { selector: '.container-personaje-3', speed: 0.80 },
-    { selector: '.container-personaje-2', speed: 0.80 },
-    { selector: '.container-personaje-1', speed: 0.80 },
-    { selector: '.container-pasto-4', speed: 0.92 },
-    { selector: '.container-arbol-1', speed: 0.93 },
-    { selector: '.container-piedra-2', speed: 0.94 },
-    { selector: '.container-pasto-3', speed: 0.95 },
-    { selector: '.container-logo', speed: 0.99 }
-  ];
-
-  if (scrollTop > 150) {
-    logo.style.height = "86px"
-    logo.style.width = "150px"
-    logo.style.left="45%"
-    logo.style.top="36px";
-  } else {
-    logo.style.height = "320px"
-    logo.style.width = "560px"
-    logo.style.top="55px";
-    logo.style.left="360px";
-  }
-  elements.forEach(element => {
-      const el = document.querySelector(element.selector); 
-      if (el) { 
-          el.style.transform = `translateY(${scrollTop * element.speed}px)`;
-      }
+  document.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY; // Cantidad de píxeles que se scrollearon
+  
+    if (scrollTop > 15) {
+      logo.style.height = "86px";
+      logo.style.width = "150px";
+      logo.style.top = "20px";  
+      logo.style.left="600px"
+      logo.style.position = "fixed"; 
+    } else {
+      logo.style.height = "320px";
+      logo.style.width = "560px";
+      logo.style.top = "55px"; 
+      logo.style.left="360px"
+      logo.style.position = "absolute"; 
+    }
   });
+  
+  
+  pasto1.style.top= 1- scrollTop*0.12 + "px";
+  pasto1.style.right= 1- scrollTop*0.09 + "px";
+  pasto2.style.top= 2- scrollTop*0.12 + "px";
+  pasto2.style.right = 2-scrollTop*0.12 + "px"
+  pasto3.style.top = 3-scrollTop*0.30 + "px"
+  pasto3.style.left = 3-scrollTop*1 + "px"
+  pasto4.style.top = 3-scrollTop*0.12 + "px"
+  pasto4.style.left = 3-scrollTop*0.12 + "px"
+
+  arbol1.style.top = 1-scrollTop*0.12 + "px"
+  arbol1.style.left = 1-scrollTop*0.12 + "px"
+  arbol2.style.top = 2-scrollTop*0.12 + "px"
+  arbol2.style.right = 2-scrollTop*0.12 + "px"
+  arbol3.style.top = 3-scrollTop*0.12 + "px"
+  arbol3.style.right = 3-scrollTop*0.12 + "px"
+
+  piedra1.style.top = 1-scrollTop*0.2 + "px"
+  piedra1.style.right = 1-scrollTop*0.2 + "px"
+  piedra2.style.top = 2-scrollTop*0.2 + "px"
+  piedra2.style.left = 2-scrollTop*0.5 + "px"
+  piedra3.style.top = 3-scrollTop*0.10 + "px"
+  piedra3.style.right = 3-scrollTop*0.10 + "px"
+  piedra4.style.top = 3-scrollTop*0.25 + "px"
+  piedra4.style.right = 3-scrollTop*0.25 + "px"
+
+ personaje1.style.top=3-scrollTop*0.25 + "px"
+ personaje2.style.top=3-scrollTop*0.25 + "px"
+ personaje3.style.top=3-scrollTop*0.25 + "px"
+
+
+  
 });
