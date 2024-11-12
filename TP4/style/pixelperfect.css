@@ -9,16 +9,71 @@
     color: white;
 }
 
-.seccion-1, .seccion-2 {
+main{
+    position: absolute;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+header>button {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    left: 980px;
+    top: 20px;
+    background: #83C252;
+    border: 8px solid #FFFFFF;
+    box-shadow: 4px 5px 0px #02187E;
+    border-radius: 111px;
+}
+
+
+header #btn-menu {
+    position: relative;
+    width: 34px;
+    height: 26px;
+    top: 20px;
+    left: 100px;
+    filter: drop-shadow(4px 5px 0px #02187E);
+    cursor: pointer;
+    border-radius: 111px 0px 0px 0px;
+    border: 4px 0px 0px 0px;
+}
+
+header #btn-menu .barras{
+    box-sizing: content-box;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #F39E46;
+    border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    transition: transform 0.3s ease, top 0.3s ease;
+    position: relative;     
+}
+
+.seccion-1,
+.seccion-2 {
     position: relative;
     width: 1280px;
     height: 959px;
-    margin: 0 auto; 
+    margin: 0 auto;
     overflow: hidden;
 }
 
+.seccion-1{
+    margin-top: -90px;
+}
+
 .container-fondo-seccion-1 {
-    position: absolute; 
+    position: absolute;
     width: 100%;
     height: 100%;
 }
@@ -68,7 +123,7 @@
     height: 430.85px;
     top: 278.38px;
     left: 1080.97px;
-    animation: animarArbolDer 0.5s ease; 
+    animation: animarArbolDer 0.5s ease;
 }
 
 .container-pasto-2 img {
@@ -77,7 +132,7 @@
     height: 107.71px;
     top: 662.1px;
     left: 1080.97px;
-    animation: animarPasto 1s ease; 
+    animation: animarPasto 1s ease;
 }
 
 .container-arbol-2 img {
@@ -86,7 +141,7 @@
     height: 672.52px;
     top: 106.71px;
     left: 881.03px;
-    animation: animarArbolDer 1s ease; 
+    animation: animarArbolDer 1s ease;
 }
 
 .container-piedra-3 img {
@@ -96,8 +151,8 @@
     top: 737.5px;
     left: 1040.84px;
     gap: 0px;
-    opacity: 1; 
-    animation: animarPiedraDer 0.6s ease;  
+    opacity: 1;
+    animation: animarPiedraDer 0.6s ease;
 }
 
 .container-piedra-1 img {
@@ -107,7 +162,7 @@
     top: 737.5px;
     left: 1072.22px;
     gap: 0px;
-    animation: animarPiedraDer 1s ease;  
+    animation: animarPiedraDer 1s ease;
 }
 
 .container-piedra-4 img {
@@ -116,20 +171,35 @@
     height: 35.01px;
     top: 786.64px;
     left: 1050.84px;
-    animation: animarPiedraDer 1.2s ease;  
+    animation: animarPiedraDer 1.2s ease;
 }
 
-.container-personaje-3 img {
+.container-personaje-3>img {
+    z-index: 10;
     position: absolute;
     width: 174px;
     height: 384px;
-    top: 338px;
-    left: 752.25px;
+    top: 360px;
+    left:680.25px;
     gap: 0px;
-    transform: rotate(-8.73deg);
     animation: animarPersonajes 1s ease;
 }
-.container-personaje-2 img {
+
+.sombra-personaje-3 {
+    z-index: 1;
+    position: absolute;
+    width: 140px;
+    height: 33px;
+    left: 724px;
+    top: 697px;
+    background: rgba(68, 104, 63, 0.61);
+    filter: blur(13.5px);
+
+}
+
+
+.container-personaje-2>img {
+    z-index: 10;
     position: absolute;
     width: 197px;
     height: 270px;
@@ -139,7 +209,19 @@
     animation: animarPersonajes 0.8s ease;
 }
 
-.container-personaje-1 img {
+.sombra-personaje-2 {
+    z-index: 1;
+    position: absolute;
+    width: 140px;
+    height: 33px;
+    top: 727px;
+    left: 608px;
+    background: rgba(68, 104, 63, 0.61);
+    filter: blur(13.5px);
+}
+
+.container-personaje-1>img {
+    z-index: 10;
     position: absolute;
     width: 240.4px;
     height: 314.48px;
@@ -147,6 +229,17 @@
     left: 411px;
     gap: 0px;
     animation: animarPersonajes 3s ease;
+}
+
+.sombra-personaje-1 {
+    z-index: 1;
+    position: absolute;
+    width: 140px;
+    height: 33px;
+    top: 762px;
+    left: 494px;
+    background: rgba(68, 104, 63, 0.61);
+    filter: blur(13.5px);
 }
 
 .container-pasto-4 img {
@@ -164,7 +257,7 @@
     height: 867.75px;
     top: -1px;
     left: -153px;
-    animation: animarArbolIzq 1s ease; 
+    animation: animarArbolIzq 1s ease;
 }
 
 .container-piedra-2 img {
@@ -172,8 +265,8 @@
     width: 145.41px;
     height: 78.09px;
     top: 793.37px;
-    left: 129.07px;  
-    animation: animarPiedraIzq 0.8s;  
+    left: 129.07px;
+    animation: animarPiedraIzq 0.8s;
 }
 
 .container-pasto-3 img {
@@ -210,6 +303,7 @@
     from {
         transform: translateY(460px);
     }
+
     to {
         transform: translateX(0);
     }
@@ -219,6 +313,7 @@
     from {
         transform: translateX(-460px);
     }
+
     to {
         transform: translateX(0);
     }
@@ -228,6 +323,7 @@
     from {
         transform: translateX(460px);
     }
+
     to {
         transform: translateX(0);
     }
@@ -237,6 +333,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -246,6 +343,7 @@
     from {
         transform: translateX(-460px);
     }
+
     to {
         transform: translateX(0);
     }
@@ -255,6 +353,7 @@
     from {
         transform: translateX(460px);
     }
+
     to {
         transform: translateX(0);
     }
@@ -265,6 +364,7 @@
         transform: rotateX(-200deg);
         opacity: 0;
     }
+
     100% {
         transform: rotateX(0deg);
         opacity: 1;
