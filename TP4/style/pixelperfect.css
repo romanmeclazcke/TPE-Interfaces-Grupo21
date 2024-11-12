@@ -6,7 +6,7 @@
     text-decoration: none;
     border: none;
     outline: none;
-    color: white;
+    font-family: Lato;
 }
 
 main{
@@ -24,7 +24,8 @@ header{
 }
 
 header>button {
-    position: relative;
+    cursor: pointer;
+    position: sticky;
     width: 200px;
     height: 50px;
     left: 980px;
@@ -33,11 +34,14 @@ header>button {
     border: 8px solid #FFFFFF;
     box-shadow: 4px 5px 0px #02187E;
     border-radius: 111px;
+    color: white;
+    font-weight: 900;
+    font-size: 20px;
 }
 
 
 header #btn-menu {
-    position: relative;
+    position: sticky;
     width: 34px;
     height: 26px;
     top: 20px;
@@ -45,7 +49,7 @@ header #btn-menu {
     filter: drop-shadow(4px 5px 0px #02187E);
     cursor: pointer;
     border-radius: 111px 0px 0px 0px;
-    border: 4px 0px 0px 0px;
+    border: 4px;
 }
 
 header #btn-menu .barras{
@@ -77,7 +81,7 @@ header #btn-menu .barras{
     top: 80px; 
     left: 100px;
     width: 15%;
-    z-index: 1000000; 
+    z-index: 1000000;
     padding: 10px 0;
 }
 nav ul {
@@ -137,16 +141,20 @@ nav ul li:nth-child(5) {
 }
 
 .seccion-1,
-.seccion-2 {
+.seccion-2,
+.seccion-3 {
     position: relative;
     width: 1280px;
     height: 959px;
-    margin: 0 auto;
     display: flex;
 }
 
+.seccion-1 {
+    overflow: hidden;
+}
 
-.container-fondo-seccion-1 {
+
+.container-fondo-seccion-1, .container-fondo-seccion-2, .container-fondo-seccion-3 {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -160,6 +168,12 @@ nav ul li:nth-child(5) {
     top: 0;
 }
 
+.container-fondo-seccion-3 img {
+    width: 1280px;
+    height: 1334px;
+    top: 2806px;
+}
+
 .container-pasto-1,
 .container-arbol-3,
 .container-pasto-2,
@@ -168,7 +182,6 @@ nav ul li:nth-child(5) {
 .container-piedra-1,
 .container-piedra-4,
 .container-personaje-3,
-.container-personaje-5,
 .container-personaje-2,
 .container-personaje-1,
 .container-pasto-4,
@@ -179,6 +192,7 @@ nav ul li:nth-child(5) {
     position: absolute;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 
@@ -365,15 +379,10 @@ nav ul li:nth-child(5) {
     z-index: 1000;
 }
 
-.container-fondo-seccion-2 {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
 .container-fondo-seccion-2 img {
     width: 100%;
-    height: 100%;
+    height: 894px;
+    top: 1848px;
     object-fit: cover;
 }
 
@@ -448,14 +457,36 @@ nav ul li:nth-child(5) {
         opacity: 1;
     }
 }
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+    
+}
+
+.overflow-container {
+    overflow: hidden;
+    position: absolute;
+    top: -95px;
+    left: 787px;
+    z-index: 10;
+    width: 493px;
+    height: 1259px;
+
+}
+
 .container-personaje-5 img {
     position: relative;
     width: 572px;
     height: 1259px;
-    top: -100px;
-    left: 787px;
-    z-index: 100;
     overflow: visible;
+    margin-left: -30px;
 }
 .container-titulos-seccion-2{
     z-index: 100;
@@ -468,7 +499,6 @@ nav ul li:nth-child(5) {
     height: 132px;
     top: 1014px;
     left: 100px;
-    font-family:"Lato";
     font-size: 47px;
     line-height: 44.41px;
     font-weight: 400;
@@ -480,27 +510,69 @@ nav ul li:nth-child(5) {
     height: 154px;
     top: 1168px;
     left: 100px;
-    gap: 0px;
-    opacity: 0px;
-    font-family:"Lato";
     font-size: 20px;
     color: #1B428F;
+    margin-top: 15px;
+    margin-bottom: 0px;
 }
 
 .container-img-galeria {
     width: 576.38px;
     height: 324.35px;
     left: 110px;
+    top: -25px;
     position: relative;
 }
 
 .img-galeria {
-    border-radius: 29px;
     width: 576.38px;
     height: 324.35px;
-    object-fit: cover;
-    display: inline-block;
+    top: 1290px;
+    left: 236px;
+    margin-top: 0px;
+    border-radius: 77px;
+    border: 29px solid rgba(27, 95, 153, 1);
+}
+
+.container-fondo-seccion-3 img {
+    width: 100%;
+    height: 1334px;
     position: absolute;
-    right: 0;
-    border: 29px solid #1B5F99;
+    top: 2806px;
+}
+
+.container-personaje-4 img {
+    position: absolute;
+    width: 601.64px;
+    height: 603px;
+    overflow: visible;
+    bottom: 790px;
+    left: 20px;
+    z-index: 100;
+}
+
+.galeria {
+    display: flex;
+    gap: 40px;
+    margin: 270px 100px;
+}
+
+.galeria img {
+    width: 332.96px;
+    height: 302.69px;
+    border-radius: 41px;
+    border: 9px solid rgba(41, 130, 255, 1);
+    box-shadow: 4px 5px 0px 0px rgba(2, 24, 126, 1);
+    object-fit: cover;
+}
+
+.galeria p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: black;
+    margin-top: 20px;
 }
