@@ -56,8 +56,19 @@ header #btn-menu .barras{
     background-color: #F39E46;
     border: 4px solid #FFFFFF;
     border-radius: 10px;
-    transition: transform 0.3s ease, top 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;     
+}
+
+.lin1.active {
+    transform: rotate(45deg) translateY(17px);
+}
+.lin2.active {
+    opacity: 0;
+}
+
+.lin3.active {
+    transform: rotate(-45deg) translateY(-17px);
 }
 
 .seccion-1,
