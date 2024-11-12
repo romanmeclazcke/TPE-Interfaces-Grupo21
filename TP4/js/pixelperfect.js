@@ -30,6 +30,7 @@ btnMenu.addEventListener('click', () => {
     lin1.classList.remove('active');
     lin2.classList.remove('active');
     lin3.classList.remove('active');
+    nav.style.display="none"
   } else {
     lin1.classList.add('active');
     lin2.classList.add('active');
@@ -41,9 +42,6 @@ btnMenu.addEventListener('click', () => {
 
 document.addEventListener('scroll', function() {
   const scrollTop = window.scrollY; //cantidad de pixeles que se scrollearon
-
-  document.addEventListener('scroll', function() {
-    const scrollTop = window.scrollY; // Cantidad de píxeles que se scrollearon
   
     if (scrollTop > 15) {
       logo.style.height = "86px";
@@ -60,7 +58,7 @@ document.addEventListener('scroll', function() {
       logo.style.position = "absolute"; 
       header.style.backgroundColor = 'transparent';
     }
-  });
+
   
   
   pasto1.style.top= 1- scrollTop*0.12 + "px";
