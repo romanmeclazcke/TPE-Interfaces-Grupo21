@@ -42,9 +42,6 @@ btnMenu.addEventListener('click', () => {
 
 document.addEventListener('scroll', function() {
   const scrollTop = window.scrollY; //cantidad de pixeles que se scrollearon
-
-  document.addEventListener('scroll', function() {
-    const scrollTop = window.scrollY; // Cantidad de píxeles que se scrollearon
   
     if (scrollTop > 15) {
       logo.style.height = "86px";
@@ -61,7 +58,7 @@ document.addEventListener('scroll', function() {
       logo.style.position = "absolute"; 
       header.style.backgroundColor = 'transparent';
     }
-  });
+
   
   
   pasto1.style.top= 1- scrollTop*0.12 + "px";
