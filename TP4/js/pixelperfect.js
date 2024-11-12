@@ -3,7 +3,7 @@ let lin1 = document.getElementById('lin1');
 let lin2 = document.getElementById('lin2');
 let lin3 = document.getElementById('lin3');
 let nav = document.getElementById('nav')
-
+let header = document.getElementById('header')
 
 
 //elementos seccion
@@ -26,13 +26,10 @@ let logo = document.querySelector('.logo');
 
 btnMenu.addEventListener('click', () => {
 
-
   if (lin1.classList.contains('active')) {
     lin1.classList.remove('active');
     lin2.classList.remove('active');
     lin3.classList.remove('active');
-    nav.style.display = 'none'
-
   } else {
     lin1.classList.add('active');
     lin2.classList.add('active');
@@ -54,12 +51,14 @@ document.addEventListener('scroll', function() {
       logo.style.top = "20px";  
       logo.style.left="600px"
       logo.style.position = "fixed"; 
+      header.style.backgroundColor = 'white';
     } else {
       logo.style.height = "320px";
       logo.style.width = "560px";
       logo.style.top = "55px"; 
       logo.style.left="360px"
       logo.style.position = "absolute"; 
+      header.style.backgroundColor = 'transparent';
     }
   });
   
