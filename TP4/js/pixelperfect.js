@@ -4,15 +4,19 @@ btnMenu.addEventListener('click', () => {
   let lin1 = document.getElementById('lin1');
   let lin2 = document.getElementById('lin2');
   let lin3 = document.getElementById('lin3');
+  let nav = document.getElementById('nav')
 
   if (lin1.classList.contains('active')) {
     lin1.classList.remove('active');
     lin2.classList.remove('active');
     lin3.classList.remove('active');
+    nav.style.display = 'none'
+
   } else {
     lin1.classList.add('active');
     lin2.classList.add('active');
     lin3.classList.add('active');
+    nav.style.display = 'block'
   }
 });
 
