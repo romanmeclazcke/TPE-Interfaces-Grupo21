@@ -30,6 +30,7 @@ btnMenu.addEventListener('click', () => {
     lin1.classList.remove('active');
     lin2.classList.remove('active');
     lin3.classList.remove('active');
+    nav.style.display="none"
   } else {
     lin1.classList.add('active');
     lin2.classList.add('active');
