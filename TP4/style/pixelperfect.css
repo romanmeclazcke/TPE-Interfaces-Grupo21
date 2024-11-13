@@ -674,6 +674,13 @@ nav ul li:nth-child(5) {
     padding: 22px;
 }
 
+.espacio-blanco{
+    width:1280px;
+    height:330px;
+    background-color: white;
+    position: relative;
+}
+
 .seccion-9{
     width: 1280px;
     height: 1296px;
@@ -681,17 +688,20 @@ nav ul li:nth-child(5) {
     display: block;
 }
 .container-informacion-seccion-9 {
+    text-align: left;
     position: relative;
     display: flex;
     flex-direction: column; 
     gap: 50px;
     left: 100px;
-    top: 100px;
+    top: -80px;
+    z-index: 10;
 }
 
 .imagen-teen-seccion-9{
     width: 231px;
-    height: 145px;    
+    height: 145px;  
+    margin-top: -30px;  
 }
 
 .container-informacion-seccion-9>h3 {
@@ -720,15 +730,18 @@ nav ul li:nth-child(5) {
 
 
 .input_button_container {
-    margin-top: 32px;
     display: flex;
     align-items: center;
-    margin-left: 100px;
     border-radius: 50px;
     box-shadow: 4px 5px 0px 0px rgba(2, 24, 126, 1);
     margin-bottom: 40px;
     width: 780px;
     height: 100px;
+}
+
+#form {
+    display: flex;
+    justify-content: flex-start; 
 }
 
 #form input {
@@ -779,6 +792,7 @@ nav ul li:nth-child(5) {
     width: 480px;
     height: 480px;
     left: 65px;
+    top: 115px;
     z-index: 20;
 }
 
@@ -787,15 +801,18 @@ nav ul li:nth-child(5) {
     width: 509px;
     height: 509px;
     z-index: 20;
+    left: -60px;
+    top: 75px;
 }
 
 .gif-personaje-7 {
     position: relative;
-    left: -120px;
+    left: -200px;
     width: 561px;
     height: 997px;
     margin-top: -400px;
     z-index: 20;
+    top: 75px;
 }
 
 .img-fondo-seccion-9 {
@@ -804,6 +821,45 @@ nav ul li:nth-child(5) {
     height: auto;
     z-index: 0;
 }
+
+.nube{
+    opacity: 0.5;
+    position: absolute;
+}
+
+.nube-1{
+    width: 378px;
+    height: 181px;
+    right: -400px;
+    margin-top: -55px;
+    animation: scrollNube 15s infinite linear;
+}
+
+.nube-2{
+    width: 378px;
+    height: 181px;
+    right: -400px;
+    top: 300px;
+    animation: scrollNube 20s infinite linear;
+    z-index: 20;
+}
+
+.nube-3{
+    width: 265px;
+    height: 124px;
+    right: -400px;
+    top: 255px;
+    animation: scrollNube 25s infinite linear;
+    z-index: 5;
+}
+
+@keyframes scrollNube {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-1680px); }
+}
+
+
+
 * {
     margin: 0;
     padding: 0;
