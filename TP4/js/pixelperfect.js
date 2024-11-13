@@ -128,3 +128,30 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
+
+let imagenes = [
+  './images/imagen-galeria-1.png',
+  './images/imagen-galeria-2.png',
+  './images/imagen-galeria-3.png',
+  './images/imagen-galeria-4.png',
+];
+
+let indice = 0;
+
+function cambiarImagen() {
+    let imgElemento = document.getElementById('img-galeria');
+    
+    if (imgElemento && imagenes[indice]) {
+        imgElemento.src = imagenes[indice];
+        console.log(`Cambiando a la imagen: ${imagenes[indice]}`);
+    } else {
+        console.error('Error: El índice es inválido o el elemento <img> no se encuentra.');
+    }
+    
+    indice++;
+    if (indice >= imagenes.length) {
+        indice = 0; 
+    }
+}
+
+setInterval(cambiarImagen, 3000);
