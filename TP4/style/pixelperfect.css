@@ -487,11 +487,15 @@ nav ul li:nth-child(5) {
     height: 1259px;
     overflow: visible;
     margin-left: -30px;
+    transition: top 0.2s ease, left 0.2s ease, right 0.2s ease;
 }
+
 .container-titulos-seccion-2{
     z-index: 100;
     margin-left: 100px;
     margin-top: 50px;
+    transition: top 0.2s ease, left 0.2s ease, right 0.2s ease;
+
 }
 .titulo-seccion-2 {
     z-index: 20;
@@ -549,12 +553,15 @@ nav ul li:nth-child(5) {
     bottom: 790px;
     left: 20px;
     z-index: 100;
+    transition: top 0.2s ease, left 0.2s ease, right 0.2s ease;
 }
 
 .galeria {
     display: flex;
     gap: 40px;
     margin: 270px 100px;
+    transition: top 0.2s ease, left 0.2s ease, right 0.2s ease;
+
 }
 
 .galeria img {
@@ -601,12 +608,14 @@ nav ul li:nth-child(5) {
     position: absolute;
     bottom:0;
     width: 1280px;
-    height: 767px
+    height: 767px;
 }
 .container-img-personajes-seccion-4>img{
    width: 1280px;
    height: 767px;
    position: absolute;
+   transition: 0.5s ease-out;
+
 }
 
 .container-informacion-seccion-4 {
