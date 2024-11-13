@@ -142,7 +142,8 @@ nav ul li:nth-child(5) {
 
 .seccion-1,
 .seccion-2,
-.seccion-3 {
+.seccion-3,
+.seccion-9 {
     position: relative;
     width: 1280px;
     height: 959px;
@@ -154,7 +155,7 @@ nav ul li:nth-child(5) {
 }
 
 
-.container-fondo-seccion-1, .container-fondo-seccion-2, .container-fondo-seccion-3 {
+.container-fondo-seccion-1, .container-fondo-seccion-2, .container-fondo-seccion-3{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -673,4 +674,133 @@ nav ul li:nth-child(5) {
     padding: 22px;
 }
 
+.seccion-9{
+    width: 1280px;
+    height: 1296px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #EDFDFF 47.09%, #ADF8FD 88.29%, #E0D299 107.02%);
+    display: block;
+}
+.container-informacion-seccion-9 {
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    gap: 50px;
+    left: 100px;
+    top: 100px;
+}
 
+.imagen-teen-seccion-9{
+    width: 231px;
+    height: 145px;    
+}
+
+.container-informacion-seccion-9>h3 {
+    color: black;
+    width: 816px;
+    height: 171px;
+    left: 100px;
+    font-family: "Lato";
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 56.7px;
+    text-align: left;
+    gap: 50;
+}
+
+.container-informacion-seccion-9>p {
+    width: 578px;
+    height: 95px;
+    top: 13158px;
+    left: 100px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 18.9px;
+    text-align: left;
+}
+
+
+.input_button_container {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+    border-radius: 50px;
+    box-shadow: 4px 5px 0px 0px rgba(2, 24, 126, 1);
+    margin-bottom: 40px;
+    width: 780px;
+    height: 100px;
+}
+
+#form input {
+    flex: 1;
+    padding: 28px;
+    border: 9px solid white;
+    border-right: 4.5px solid white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    outline: none;
+    background-color: #ECECEC;
+    font-size: 16px;
+    padding-right: 265px;
+    padding-left: 25px;
+}
+
+#form button {
+    background-color: rgba(131, 194, 82, 1);
+    color: white;
+    text-transform: uppercase;
+    padding: 28px 20px;
+    border: 9px solid white;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-left: 4.5px solid white;
+    cursor: pointer;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 18.9px;
+    letter-spacing: 0.11em;
+}
+
+.container-gifs-personajes{
+    display: flex;
+}
+
+
+.img-fondo-seccion-9 {
+    width: 1280px;
+    height: 959px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.gif-personaje-2{
+    position: relative;
+    width: 480px;
+    height: 480px;
+    left: 65px;
+    z-index: 20;
+}
+
+.gif-personaje-3 {
+    position: relative;
+    width: 509px;
+    height: 509px;
+    z-index: 20;
+}
+
+.gif-personaje-7 {
+    position: relative;
+    left: -120px;
+    width: 561px;
+    height: 997px;
+    margin-top: -400px;
+    z-index: 20;
+}
+
+.img-fondo-seccion-9 {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
