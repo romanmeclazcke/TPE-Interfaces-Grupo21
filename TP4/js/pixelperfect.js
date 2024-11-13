@@ -47,8 +47,7 @@ btnMenu.addEventListener('click', () => {
 
 document.addEventListener('scroll', function () {
   const scrollTop = window.scrollY; //cantidad de pixeles que se scrollearon
-  console.log(scrollTop)
-  if (scrollTop > 15) {
+    if (scrollTop > 15) {
     logo.style.height = "86px";
     logo.style.width = "150px";
     logo.style.top = "20px";
@@ -143,11 +142,8 @@ function cambiarImagen() {
     
     if (imgElemento && imagenes[indice]) {
         imgElemento.src = imagenes[indice];
-        console.log(`Cambiando a la imagen: ${imagenes[indice]}`);
-    } else {
-        console.error('Error: El índice es inválido o el elemento <img> no se encuentra.');
     }
-    
+
     indice++;
     if (indice >= imagenes.length) {
         indice = 0; 
