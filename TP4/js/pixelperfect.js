@@ -90,6 +90,30 @@ document.addEventListener('scroll', function() {
  personaje2.style.top=3-scrollTop*0.25 + "px"
  personaje3.style.top=3-scrollTop*0.25 + "px"
 
-
-  
 });
+
+
+document.addEventListener("mousemove", (e) => {
+  let seccion4 = document.querySelector('.seccion-4');
+  let imgPersonajesSeccion4 = document.getElementById('img-personajes-seccion-4');
+  
+  if (seccion4) {
+    let rect = seccion4.getBoundingClientRect();
+    let mouseX = e.clientX;
+    let mouseY = e.clientY;
+    
+    if (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const x = (w - mouseX) * 0.05;  
+      const y = (h - mouseY) * 0.05;
+      imgPersonajesSeccion4.style.left = `${x}px`;
+      imgPersonajesSeccion4.style.top = `${y}px`;
+    } else {
+      //restablezco la posocion original si estoy fuera de la zona de la seccion
+      imgPersonajesSeccion4.style.left = '0px';
+      imgPersonajesSeccion4.style.top = '0px';
+    }
+  }
+});
+
