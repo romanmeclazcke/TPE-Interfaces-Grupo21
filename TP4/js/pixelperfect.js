@@ -151,3 +151,23 @@ function cambiarImagen() {
 }
 
 setInterval(cambiarImagen, 3000);
+
+window.addEventListener("scroll", getScroll)
+function getScroll() {
+  const y = this.pageYOffset;
+  checkScrollForCards(y)
+}
+
+function checkScrollForCards(y) {
+  let cards = document.querySelectorAll('.galeria-container');
+
+  if (y >= 1300) {
+    cards.forEach(card => {
+      card.classList.add('float-animation');
+    })
+  } else {
+    cards.forEach(card => {
+      card.classList.remove('float-animation');
+    })
+  }
+}
