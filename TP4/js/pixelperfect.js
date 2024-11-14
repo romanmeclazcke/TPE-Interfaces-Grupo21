@@ -67,6 +67,7 @@ document.addEventListener('scroll', function (e) {
     header.style.backgroundColor = 'transparent';
   }
    moverSeccion1(scrollTop);
+   moverSeccion2(scrollTop);
 });
 
 // Mover elementos de la Sección 1 con el scroll
@@ -101,6 +102,12 @@ function moverSeccion1(scrollTop) {
   personaje3.style.top = 3 - scrollTop * 0.25 + "px";
 }
 
+function moverSeccion2(scrollTop) {
+  personaje5.style.top = 1 - scrollTop * 0.05 + "px";
+  personaje4.style.top = 1 - scrollTop * 0.2 + "px";
+  textoSeccionMasDivertida.style.right =1 - scrollTop * 0.05 + "px";
+  
+}
 // Mover elementos de la Sección 7 con el movimiento del mouse
 const modelViewer = document.querySelector('#reveal');
 const container = modelViewer.parentElement;
