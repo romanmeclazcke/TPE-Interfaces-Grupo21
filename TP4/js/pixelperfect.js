@@ -128,33 +128,26 @@ document.addEventListener("mousemove", (e) => {
 });
 
 //Seccion 5
-// const images = [
-//   'images/personaje-0-seccion-5.png',
-//   'images/personaje-1-seccion-5.png',
-//   'images/personaje-2-seccion-5.png',
-//   'images/personaje-3-seccion-5.png',
-//   'images/personaje-4-seccion-5.png',
-//   'images/personaje-5-seccion-5.png',
-//   'images/personaje-6-seccion-5.png',
-//   'images/personaje-7-seccion-5.png',
-//   'images/personaje-8-seccion-5.png',
-//   'images/personaje-9-seccion-5.png',
-//   'images/personaje-10-seccion-5.png',
-// ];
+document.addEventListener('DOMContentLoaded', function () {
+  const images = document.querySelectorAll('.container-imagenes-sticky-seccion-5 img');
+  const paragraphs = document.querySelectorAll('.container-parrafo-seccion-5');
+  const container = document.querySelector('.container-fondo-seccion-5');
 
-// const imageElement = document.querySelector('.container-imagenes-sticky-seccion-5 img');
-// const sections = document.querySelectorAll('.container-parrafo-seccion-5');
+  window.addEventListener('scroll', function () {
+      const containerTop = container.offsetTop;
+      const containerHeight = container.offsetHeight;
+      const scrollPosition = window.scrollY + window.innerHeight / 2; // Center of the viewport
 
-// document.querySelector('.container-parrafos-seccion-5').addEventListener('scroll', () => {
-//   sections.forEach((section, index) => {
-//       const rect = section.getBoundingClientRect();
-//       const containerRect = section.parentElement.getBoundingClientRect();
-//       if (rect.top >= containerRect.top && rect.bottom <= containerRect.bottom) {
-//           imageElement.src = images[index];
-//       }
-//   });
-// });
-
+      const relativeScrollPosition = (scrollPosition - containerTop) / containerHeight;
+      
+      const imageIndex = Math.floor(relativeScrollPosition * paragraphs.length);
+      
+      images.forEach((img, index) => {
+          img.style.opacity = (index === imageIndex) ? 1 : 0;
+      });
+  });
+});
+//-----
 
 let imagenes = [
   './images/imagen-galeria-1.png',
