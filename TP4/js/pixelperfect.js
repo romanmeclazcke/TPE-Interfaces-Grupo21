@@ -138,10 +138,12 @@ document.addEventListener("mousemove", (e) => {
       const y = (h - mouseY) * 0.05;
       imgPersonajesSeccion4.style.left = `${x}px`;
       imgPersonajesSeccion4.style.top = `${y}px`;
+      imgPersonajesSeccion4.style.transform = 'scale(1.2)';
     } else {
-      // Restablece la posición original si el mouse está fuera de la sección
       imgPersonajesSeccion4.style.left = '0px';
       imgPersonajesSeccion4.style.top = '0px';
+      imgPersonajesSeccion4.style.transform = 'scale(1)';
+
     }
   }
 });
