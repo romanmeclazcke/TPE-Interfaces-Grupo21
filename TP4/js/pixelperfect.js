@@ -127,6 +127,34 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
+//Seccion 5
+// const images = [
+//   'images/personaje-0-seccion-5.png',
+//   'images/personaje-1-seccion-5.png',
+//   'images/personaje-2-seccion-5.png',
+//   'images/personaje-3-seccion-5.png',
+//   'images/personaje-4-seccion-5.png',
+//   'images/personaje-5-seccion-5.png',
+//   'images/personaje-6-seccion-5.png',
+//   'images/personaje-7-seccion-5.png',
+//   'images/personaje-8-seccion-5.png',
+//   'images/personaje-9-seccion-5.png',
+//   'images/personaje-10-seccion-5.png',
+// ];
+
+// const imageElement = document.querySelector('.container-imagenes-sticky-seccion-5 img');
+// const sections = document.querySelectorAll('.container-parrafo-seccion-5');
+
+// document.querySelector('.container-parrafos-seccion-5').addEventListener('scroll', () => {
+//   sections.forEach((section, index) => {
+//       const rect = section.getBoundingClientRect();
+//       const containerRect = section.parentElement.getBoundingClientRect();
+//       if (rect.top >= containerRect.top && rect.bottom <= containerRect.bottom) {
+//           imageElement.src = images[index];
+//       }
+//   });
+// });
+
 
 let imagenes = [
   './images/imagen-galeria-1.png',
