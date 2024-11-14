@@ -11,6 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
+
 </head>
 
 <body>
@@ -23,7 +25,22 @@
             </div>
             <button class="btn-comprar">
                 <span>COMPRAR</span>
-                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <defs>  </defs> <g id="cart"> <circle r="1.91" cy="20.59" cx="10.07" class="cls-1"></circle> <circle r="1.91" cy="20.59" cx="18.66" class="cls-1"></circle> <path d="M.52,1.5H3.18a2.87,2.87,0,0,1,2.74,2L9.11,13.91H8.64A2.39,2.39,0,0,0,6.25,16.3h0a2.39,2.39,0,0,0,2.39,2.38h10" class="cls-1"></path> <polyline points="7.21 5.32 22.48 5.32 22.48 7.23 20.57 13.91 9.11 13.91" class="cls-1"></polyline> </g> </g></svg>
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                    <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <defs> </defs>
+                        <g id="cart">
+                            <circle r="1.91" cy="20.59" cx="10.07" class="cls-1"></circle>
+                            <circle r="1.91" cy="20.59" cx="18.66" class="cls-1"></circle>
+                            <path
+                                d="M.52,1.5H3.18a2.87,2.87,0,0,1,2.74,2L9.11,13.91H8.64A2.39,2.39,0,0,0,6.25,16.3h0a2.39,2.39,0,0,0,2.39,2.38h10"
+                                class="cls-1"></path>
+                            <polyline points="7.21 5.32 22.48 5.32 22.48 7.23 20.57 13.91 9.11 13.91" class="cls-1">
+                            </polyline>
+                        </g>
+                    </g>
+                </svg>
             </button>
         </header>
         <nav class="nav" id="nav">
@@ -35,7 +52,7 @@
                 <li><a href="">New Slatter</a></li>
             </ul>
         </nav>
-        <div class="seccion-1">
+        <div class="seccion-1" id="seccion-1">
             <div class="container-fondo-seccion-1">
                 <img src="images/ff.png" class="img-fondo-seccion-1" alt="">
             </div>
@@ -109,19 +126,17 @@
                     <img src="images/personaje5.png" alt="" id="personaje-5">
                 </div>
             </div>
+            <div class="container-personaje-4">
+                <img src="images/personaje4.png" alt="" class="personaje-4" id="personaje-4">
+            </div>
         </div>
 
         <div class="seccion-3">
             <div class="container-fondo-seccion-3">
                 <img src="images/fondo3.png" alt="">
             </div>
-
-            <div class="container-personaje-4">
-                <img src="images/personaje4.png" alt="" id="personaje-4">
-            </div>
-
             <div class="galeria">
-                <div>
+                <div class="galeria-container">
                     <img src="images/imggaleria2.png" alt="">
                     <p>Los niños descubrirán lo divertido que puede ser aprender matemáticas. A través de personajes
                         animados y desafíos interactivos, podrán sumar, restar y entender conceptos básicos de manera
@@ -129,14 +144,14 @@
                     </p>
                 </div>
 
-                <div>
+                <div class="galeria-container">
                     <img src="images/imggaleria3.png" alt="">
                     <p>Con NumberBlocks, los niños encontrarán emocionantes retos en cada nivel, diseñados para hacer
                         que el aprendizaje sea tan divertido como un juego. ¡Cada desafío es una nueva aventura
                         matemática! Diviértete e invita a tus amigos, desafíalos y gana premios. </p>
                 </div>
 
-                <div>
+                <div class="galeria-container">
                     <img src="images/imggaleria4.png" alt="">
                     <p>Entrena a UNO y Comparte lo que Aprendes! En NumberBlocks, deberás enseñar a UNO cada lección que
                         aprendas, ayudándolo a crecer y superar nuevos desafíos matemáticos. ¡Conviértete en su mejor
@@ -256,7 +271,7 @@
             </div>
         </section>
 
-        <div class="seccion-7">
+        <div class="seccion-7" id="seccion-7">
             <h2 class="titulo-seccion-7">¡Experimenta Efectos 3D Asombrosos en NumberBlocks: Una Aventura Matemática
                 Inmersiva!</h2>
             <p>En NumberBlocks, la aventura no solo está en el aprendizaje, ¡sino también en la experiencia visual!
@@ -264,18 +279,43 @@
                 cobren una nueva dimensión. A medida que los niños interactúan con los personajes y los bloques, verán
                 cómo sus acciones tienen un impacto real en el entorno, creando un aprendizaje dinámico y emocionante.
                 ¡Cada sesión de juego se convierte en una experiencia inolvidable llena de color y diversión!</p>
-            <img class="personaje-7" src="images/personaje-seccion-7.png" alt="">
+                <model-viewer class="personaje-7" id="reveal" loading="eager"
+                poster="../../assets/poster-shishkebab.webp"
+                tone-mapping="aces" src="images/one.glb"
+                shadow-intensity="1" alt="A 3D model of a shishkebab"></model-viewer>
+        </div>
+        <div class="seccion-8">
             <div class="grilla">
-                <div class="personaje" data-personaje="1"></div>
-                <div class="personaje" data-personaje="2"></div>
-                <div class="personaje" data-personaje="3"></div>
-                <div class="personaje" data-personaje="4"></div>
-                <div class="personaje" data-personaje="5"></div>
-                <div class="personaje" data-personaje="6"></div>
-                <div class="personaje" data-personaje="7"></div>
-                <div class="personaje" data-personaje="8"></div>
-                <div class="personaje" data-personaje="9"></div>
-                <div class="personaje" data-personaje="10"></div>
+                <div class="personaje-container">
+                    <img src="images/grilla1.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla2.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla3.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla4.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla5.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla6.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla7.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla8.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla9.png" alt="">
+                </div>
+                <div class="personaje-container">
+                    <img src="images/grilla10.png" alt="">
+                </div>
             </div>
         </div>
         <div class="espacio-blanco">
@@ -294,15 +334,17 @@
                     <span>Política de privacidad</span> y las <span>Condiciones del servicio.</span>
                 </p>
                 <img src="images/imagen-teen-seccion-9.png" class="imagen-teen-seccion-9">
-            </div>
-            <div class="container-nube">
-                <img src="images/nube-1.png" class="nube-1 nube" alt="">
-            </div>
-            <div class="container-nube">
-                <img src="images/nube-1.png" class="nube-2 nube" alt="">
-            </div>
-            <div class="container-nube">
-                <img src="images/nube-1.png" class="nube-3 nube" alt="">
+            </div> 
+            <div class="contenedor-nubes">
+                <div class="container-nube">
+                    <img src="images/nube-1.png" class="nube-1 nube" alt="">
+                </div>
+                <div class="container-nube">
+                    <img src="images/nube-1.png" class="nube-2 nube" alt="">
+                </div>
+                <div class="container-nube">
+                    <img src="images/nube-1.png" class="nube-3 nube" alt="">
+                </div>
             </div>
             <div class="container-gifs-personajes">
                 <div>
