@@ -722,12 +722,18 @@ nav ul li:nth-child(5) {
     margin-top: 300px;
 }
 
+.personaje-container {
+    width: 256px;
+    height: 360px;
+    overflow: hidden;
+}
+
 .personaje {
     width: 256px;
     height: 360px;
     background-image: url('../images/grilla-seccion-7.png');
     background-size: 1280px 729px;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.7s ease, filter 0.7s ease;
     cursor: pointer;
 }
 
