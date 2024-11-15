@@ -800,7 +800,7 @@ nav ul li:nth-child(5) {
     position: sticky;
     top: 0;
     width: 55%; 
-    height: 40vh; 
+    height: 45vh; /* viewport height*/
 }
 
 .container-imagenes-sticky-seccion-5 img{
@@ -826,7 +826,7 @@ nav ul li:nth-child(5) {
 
 .personaje-3-seccion-5{
     top: 150px;
-    left: 240px;
+    left: 270px;
 }
 
 .personaje-4-seccion-5{
