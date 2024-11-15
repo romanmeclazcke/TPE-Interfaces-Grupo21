@@ -155,6 +155,28 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
+//Seccion 5
+document.addEventListener('DOMContentLoaded', function () {
+  const images = document.querySelectorAll('.container-imagenes-sticky-seccion-5 img');
+  const paragraphs = document.querySelectorAll('.container-parrafo-seccion-5');
+  const container = document.querySelector('.container-fondo-seccion-5');
+
+  window.addEventListener('scroll', function () {
+      const containerTop = container.offsetTop;
+      const containerHeight = container.offsetHeight;
+      const scrollPosition = window.scrollY + window.innerHeight / 2; // Center of the viewport
+
+      const relativeScrollPosition = (scrollPosition - containerTop) / containerHeight;
+      
+      const imageIndex = Math.floor(relativeScrollPosition * paragraphs.length);
+      
+      images.forEach((img, index) => {
+          img.style.opacity = (index === imageIndex) ? 1 : 0;
+      });
+  });
+});
+//-----
+
 // Cambiar imágenes de la galería en intervalos
 let imagenes = [
   './images/imagen-galeria-1.png',
