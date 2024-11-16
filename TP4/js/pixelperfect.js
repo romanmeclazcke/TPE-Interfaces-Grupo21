@@ -138,14 +138,14 @@ document.addEventListener("mousemove", (e) => {
     let mouseX = e.clientX;
     let mouseY = e.clientY;
 
-    if (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom) {
+    if (mouseY >= rect.top && mouseY <= rect.bottom) {
       const w = window.innerWidth;
       const h = window.innerHeight;
       const x = (w - mouseX) * 0.05;
       const y = (h - mouseY) * 0.05;
       imgPersonajesSeccion4.style.left = `${x}px`;
       imgPersonajesSeccion4.style.top = `${y}px`;
-      imgPersonajesSeccion4.style.transform = 'scale(1.2)';
+      imgPersonajesSeccion4.style.transform = 'scale(1.15)';
     } else {
       imgPersonajesSeccion4.style.left = '0px';
       imgPersonajesSeccion4.style.top = '0px';

@@ -671,8 +671,6 @@ nav ul li:nth-child(5) {
    width: 1280px;
    height: 767px;
    position: absolute;
-   transition: 0.5s ease-out;
-
 }
 
 .container-informacion-seccion-4 {
