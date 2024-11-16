@@ -1213,6 +1213,53 @@ nav ul li:nth-child(5) {
     margin-left: 100px;
 }
 
+/* Spritesheets */
+.spritesheet1, .spritesheet2, .spritesheet3 {
+    overflow: hidden;
+    position: absolute;
+}
+
+.spritesheet1 {
+    width: 233.3px; /* ancho de la imagen / #columnas */
+    height: 233px; /* alto / #filas */
+    bottom: 0;
+    left: -70px;
+}
+
+.girl-spritesheet {
+    animation: spritesheet 0.5s steps(6) infinite;
+}
+
+.spritesheet2 {
+    width: 108.8px;
+    height: 109px;
+    bottom: 200px;
+    right: 150px;
+}
+
+.astronaut-spritesheet {
+    animation: spritesheet 0.5s steps(9) infinite;
+}
+
+.spritesheet3 {
+    width: 100px;
+    height: 100px;
+    bottom: 220px;
+    right: 250px;
+}
+
+.mike-spritesheet {
+    animation: spritesheet 0.5s steps(7) infinite;
+}
+
+@keyframes spritesheet {
+    from {
+        transform: translate3d(0px, 0, 0);
+    }
+    to {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
 
 
 
