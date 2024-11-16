@@ -895,8 +895,6 @@ nav ul li:nth-child(5) {
     font-size: 20px;
 }
 
-/*Seccion 6*/
-
 .seccion-6{
     position: relative;
     width: 1280px;
@@ -959,9 +957,6 @@ nav ul li:nth-child(5) {
         transform: translateY(4deg); /* Move 20px to the right */
     }
 }
-/*---*/
-
-
 
 .titulo-seccion-7 {
     width: 746px;
