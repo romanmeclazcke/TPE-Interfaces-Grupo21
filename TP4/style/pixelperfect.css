@@ -1215,36 +1215,36 @@ nav ul li:nth-child(5) {
 }
 
 .spritesheet1 {
-    width: 233.3px; /* ancho de la imagen / #columnas */
-    height: 233px; /* alto / #filas */
-    bottom: 0;
-    left: -70px;
+    width: 81px; /* ancho de la imagen / #columnas */
+    height: 78px;
+    bottom: 71px;
+    left: 15px;
 }
 
-.girl-spritesheet {
-    animation: spritesheet 0.5s steps(6) infinite;
+.character-spritesheet {
+    animation: spritesheet 1s steps(10) infinite;
 }
 
 .spritesheet2 {
-    width: 108.8px;
-    height: 109px;
-    bottom: 200px;
-    right: 150px;
+    width: 83.3px;
+    height: 87px;
+    bottom: 400px;
+    right: 10px;
 }
 
-.astronaut-spritesheet {
-    animation: spritesheet 0.5s steps(9) infinite;
+.number8-spritesheet {
+    animation: spritesheet 0.7s steps(6) infinite;
 }
 
 .spritesheet3 {
-    width: 100px;
-    height: 100px;
+    width: 231px;
+    height: 151px;
     bottom: 220px;
-    right: 250px;
+    right: 180px;
 }
 
-.mike-spritesheet {
-    animation: spritesheet 0.5s steps(7) infinite;
+.block-spritesheet {
+    animation: spritesheet 0.4s steps(4) infinite;
 }
 
 @keyframes spritesheet {
