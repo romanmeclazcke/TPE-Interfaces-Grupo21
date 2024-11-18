@@ -10,19 +10,28 @@
     scroll-behavior: smooth;
 }
 
-main{
-    position: absolute;
+
+main {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
 }
 
-header{
-    width: 1280px;
-    height: 100px;
+
+header {
     display: flex;
-    top: 0;
-    padding-top: 20px;
-    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    height: 100px;
     position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 1280px;
+    padding: 20px 100px;
 }
+
 
 .btn-comprar {
     cursor: pointer;
@@ -113,7 +122,7 @@ header #btn-menu .barras{
     display: none;
     position: fixed;
     top: 80px; 
-    left: 100px;
+    left: 400px;
     width: 15%;
     z-index: 1000000;
     padding: 10px 0;
@@ -406,12 +415,10 @@ nav ul li:nth-child(5) {
     width: 560px;
     height: 320px;
     top: 55px;
-    left: 360px;
-    gap: 0px;
-    opacity: 0px;
     animation: animarLogo 2s ease;
     transition: all 0.5s ease-in-out;
     z-index: 1000;
+    left: 30%;
 }
 
 .container-fondo-seccion-2 img {
@@ -746,7 +753,8 @@ nav ul li:nth-child(5) {
     position: absolute;
     width: 667px;
     height: 973px;
-    top: -210px;
+    top: -130px;
+    z-index: 0;
     left: 610px;
 }
 
@@ -967,7 +975,8 @@ nav ul li:nth-child(5) {
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     color: rgba(157, 33, 33, 1);
-    margin: 300px 100px 0px;
+    margin: 200px 100px 0px;
+    z-index: 100;
 }
 
 .espacio-blanco{
@@ -1166,6 +1175,7 @@ nav ul li:nth-child(5) {
 }
 
 .container-top-footer {
+    width: 1280px;
     position: relative;
     background-color: rgba(36, 36, 36, 1);
     height: 80px;
@@ -1173,6 +1183,7 @@ nav ul li:nth-child(5) {
     justify-content: center;
     align-items: center;
 }
+
 
 .container-bottom-footer {
     position: relative;
@@ -1228,7 +1239,9 @@ nav ul li:nth-child(5) {
     width: 83.3px;
     height: 87px;
     bottom: 400px;
-    right: 10px;
+    right: 80px;
+    bottom: -100px;
+    z-index: 10;
 }
 
 .number8-spritesheet {
@@ -1238,8 +1251,9 @@ nav ul li:nth-child(5) {
 .spritesheet3 {
     width: 231px;
     height: 151px;
-    bottom: 220px;
-    right: 180px;
+    z-index: 10;
+    right: 30px;
+    bottom: -300px;
 }
 
 .block-spritesheet {
