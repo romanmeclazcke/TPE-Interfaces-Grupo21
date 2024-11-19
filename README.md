@@ -5,4 +5,4 @@ Link a TP2: https://romanmeclazcke.github.io/TPE-Interfaces-Grupo21/TP2/home.htm
 
 Link a TP3: https://romanmeclazcke.github.io/TPE-Interfaces-Grupo21/TP3/4enlinea.html
 
-Link a TP4: https://romanmeclazcke.github.io/TPE-Interfaces-Grupo21/TP4/pixelPerfect.html
+Link a TP4: https://romanmeclazcke.github.io/TPE-Interfaces-Grupo21/TP4/pixelperfect.html
