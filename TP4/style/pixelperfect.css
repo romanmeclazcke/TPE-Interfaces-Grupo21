@@ -19,6 +19,7 @@ body{
 main {
     display: block;
     width: 1280px;
+    position: relative;
 }
 
 
@@ -122,10 +123,10 @@ header #btn-menu .barras{
 }
 
 .nav {
-    display: none;
     position: fixed;
-    top: 80px; 
-    left: 400px;
+    display: none;
+    top: 90px; 
+    left: 300px;
     width: 15%;
     z-index: 1000000;
     padding: 10px 0;
