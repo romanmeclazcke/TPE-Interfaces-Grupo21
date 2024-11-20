@@ -126,7 +126,7 @@ header #btn-menu .barras{
     position: fixed;
     display: none;
     top: 90px; 
-    left: 300px;
+    margin-left: 100px;
     width: 15%;
     z-index: 1000000;
     padding: 10px 0;
