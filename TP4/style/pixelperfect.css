@@ -1011,7 +1011,7 @@ nav ul li:nth-child(5) {
     position: absolute;
     left: 630px;
     top: 400px;
-    animation: moveLeftRight 3s infinite alternate ease-in-out;
+    animation: moveLeftRight 4s infinite alternate ease-in-out;
 }
 
 @keyframes moveLeftRight {
@@ -1019,10 +1019,10 @@ nav ul li:nth-child(5) {
         transform: rotate(0deg);
     }
     50% {
-        transform: rotate(-4deg); /* Move 20px to the left */
+        transform: rotate(-3deg); 
     }
     100% {
-        transform: translateY(4deg); /* Move 20px to the right */
+        transform: translateY(4deg); 
     }
 }
 
