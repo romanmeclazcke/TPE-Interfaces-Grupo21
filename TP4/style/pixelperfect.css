@@ -16,11 +16,68 @@ body{
     overflow-x: hidden;
 }
 
+
 main {
-    display: block;
     width: 1280px;
     position: relative;
+    display: none;
 }
+
+
+.loader {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    height: 100vh; 
+    background-color: #0072bc; 
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.container-personajes-loader {
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    margin-bottom: 30px; 
+    overflow: hidden;
+}
+
+.container-personajes-loader img {
+    position: absolute; 
+    width: 100%;
+    height: 100%; 
+    object-fit: contain; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out;
+}
+
+.container-personajes-loader img.active {
+    opacity: 1; 
+}
+
+.progress-container {
+    width: 80%; 
+    height: 20px; 
+    background-color: #ddd; 
+    border-radius: 10px;
+    overflow: hidden; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.progress-bar {
+    width: 0%; 
+    height: 100%; 
+    background-color: #4caf50; 
+    transition: width 0.3s ease;
+    border-radius: 10px; 
+}
+
 
 
 header {

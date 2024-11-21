@@ -31,6 +31,38 @@ let seccion1 = document.getElementById('seccion-1');
 let seccion4 = document.querySelector('.seccion-4');
 let seccion7 = document.getElementById('seccion-7');
 
+let main = document.getElementById('main');
+let loader = document.getElementById('loader');
+
+const images = document.querySelectorAll('.container-personajes-loader img');
+let indiceActualImg = 0;
+const totalImages = images.length;
+const barraProgreso = document.querySelector('.progress-bar');
+let intervalo;
+
+function cambiarImagenLoader() {
+    images[indiceActualImg].classList.remove('active');
+    indiceActualImg = (indiceActualImg + 1) % totalImages;
+    
+    images[indiceActualImg].classList.add('active');
+    
+    let progreso = (indiceActualImg + 1) * (100 / totalImages);
+    barraProgreso.style.width = progreso + '%';
+    if (indiceActualImg === totalImages - 1) {
+        setTimeout(() => {
+            clearInterval(intervalo);
+            main.style.display = "block"; 
+            loader.style.display = "none";
+        }, 1000);
+    }
+}
+
+images[indiceActualImg].classList.add('active');
+intervalo = setInterval(cambiarImagenLoader, 1000);
+
+
+
+
 btnMenu.addEventListener('click', () => {
   if (lin1.classList.contains('active')) {
     lin1.classList.remove('active');
