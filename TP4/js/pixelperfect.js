@@ -41,27 +41,24 @@ const barraProgreso = document.querySelector('.progress-bar');
 let intervalo;
 
 function cambiarImagenLoader() {
-    images[indiceActualImg].classList.remove('active');
-    indiceActualImg = (indiceActualImg + 1) % totalImages;
-    
-    images[indiceActualImg].classList.add('active');
-    
-    let progreso = (indiceActualImg + 1) * (100 / totalImages);
-    barraProgreso.style.width = progreso + '%';
-    if (indiceActualImg === totalImages - 1) {
-        setTimeout(() => {
-            clearInterval(intervalo);
-            main.style.display = "block"; 
-            loader.style.display = "none";
-        }, 1000);
-    }
+  images[indiceActualImg].classList.remove('active');
+  indiceActualImg = (indiceActualImg + 1) % totalImages;
+
+  images[indiceActualImg].classList.add('active');
+
+  let progreso = (indiceActualImg + 1) * (100 / totalImages);
+  barraProgreso.style.width = progreso + '%';
+  if (indiceActualImg === totalImages - 1) {
+    setTimeout(() => {
+      clearInterval(intervalo);
+      main.style.display = "block";
+      loader.style.display = "none";
+    }, 1000);
+  }
 }
 
 images[indiceActualImg].classList.add('active');
 intervalo = setInterval(cambiarImagenLoader, 1000);
-
-
-
 
 btnMenu.addEventListener('click', () => {
   if (lin1.classList.contains('active')) {
@@ -97,8 +94,8 @@ document.addEventListener('scroll', function (e) {
     logo.style.position = "absolute";
     header.style.backgroundColor = 'transparent';
   }
-   moverSeccion1(scrollTop);
-   moverSeccion2(scrollTop);
+  moverSeccion1(scrollTop);
+  moverSeccion2(scrollTop);
 });
 
 // Mover elementos de la Sección 1 con el scroll
@@ -136,12 +133,14 @@ function moverSeccion1(scrollTop) {
 function moverSeccion2(scrollTop) {
   personaje5.style.top = 1 - scrollTop * 0.05 + "px";
   personaje4.style.top = 1 - scrollTop * 0.2 + "px";
-  textoSeccionMasDivertida.style.right =1 - scrollTop * 0.05 + "px";
-  
+  textoSeccionMasDivertida.style.right = 1 - scrollTop * 0.05 + "px";
+
 }
+
 // Mover elementos de la Sección 7 con el movimiento del mouse
 const modelViewer = document.querySelector('#reveal');
 const container = modelViewer.parentElement;
+
 document.addEventListener('mousemove', (e) => {
   if (seccion7) {
     let rectSeccion7 = seccion7.getBoundingClientRect();
@@ -156,6 +155,7 @@ document.addEventListener('mousemove', (e) => {
     }
   }
 });
+
 document.addEventListener('mouseleave', () => {
   modelViewer.setAttribute('camera-orbit', '0deg 90deg 100m');
 });
@@ -193,17 +193,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const container = document.querySelector('.container-fondo-seccion-5');
 
   window.addEventListener('scroll', function () {
-      const containerTop = container.offsetTop;
-      const containerHeight = container.offsetHeight;
-      const scrollPosition = window.scrollY + window.innerHeight / 2; // Center of the viewport
+    const containerTop = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const scrollPosition = window.scrollY + window.innerHeight / 2; // Center of the viewport
 
-      const relativeScrollPosition = (scrollPosition - containerTop) / containerHeight;
-      
-      const imageIndex = Math.floor(relativeScrollPosition * paragraphs.length);
-      
-      images.forEach((img, index) => {
-          img.style.opacity = (index === imageIndex) ? 1 : 0;
-      });
+    const relativeScrollPosition = (scrollPosition - containerTop) / containerHeight;
+
+    const imageIndex = Math.floor(relativeScrollPosition * paragraphs.length);
+
+    images.forEach((img, index) => {
+      img.style.opacity = (index === imageIndex) ? 1 : 0;
+    });
   });
 });
 //-----
